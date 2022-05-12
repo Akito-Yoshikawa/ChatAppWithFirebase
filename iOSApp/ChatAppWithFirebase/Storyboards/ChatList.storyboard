@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lg3-2Q-WXM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chat List View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ChatListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="ChatListViewController" customModule="ChatAppWithFirebase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Pyt-F5-NVY">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellId" rowHeight="70" id="fof-is-7Ip" customClass="ChatListTableViewCell" customModule="ChatAppWithFirebase" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fof-is-7Ip" id="1N7-UI-JY1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freeImage01" translatesAutoresizingMaskIntoConstraints="NO" id="5pj-9S-OBM">
+                                                    <rect key="frame" x="10" y="5" width="60" height="60"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="UJd-QW-W4f"/>
+                                                        <constraint firstAttribute="width" secondItem="5pj-9S-OBM" secondAttribute="height" multiplier="1:1" id="g9C-lf-bSi"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最後のメッセージ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPW-RF-azy">
+                                                    <rect key="frame" x="80" y="21" width="114.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="太郎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKs-Jf-khy">
+                                                    <rect key="frame" x="80" y="46" width="29" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWF-mr-evv">
+                                                    <rect key="frame" x="368.5" y="21" width="35.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FPW-RF-azy" firstAttribute="leading" secondItem="5pj-9S-OBM" secondAttribute="trailing" constant="10" id="2d1-pO-H78"/>
+                                                <constraint firstItem="jWF-mr-evv" firstAttribute="top" secondItem="1N7-UI-JY1" secondAttribute="topMargin" constant="10" id="D2B-We-d4z"/>
+                                                <constraint firstItem="FPW-RF-azy" firstAttribute="top" secondItem="1N7-UI-JY1" secondAttribute="topMargin" constant="10" id="Hf4-UE-9bh"/>
+                                                <constraint firstItem="jWF-mr-evv" firstAttribute="trailing" secondItem="1N7-UI-JY1" secondAttribute="trailingMargin" constant="10" id="IIH-rk-gQc"/>
+                                                <constraint firstItem="5pj-9S-OBM" firstAttribute="leading" secondItem="1N7-UI-JY1" secondAttribute="leading" constant="10" id="Lw3-RD-eUY"/>
+                                                <constraint firstItem="TKs-Jf-khy" firstAttribute="leading" secondItem="5pj-9S-OBM" secondAttribute="trailing" constant="10" id="YMb-6e-0rB"/>
+                                                <constraint firstItem="5pj-9S-OBM" firstAttribute="centerY" secondItem="1N7-UI-JY1" secondAttribute="centerY" id="vEV-6E-0z9"/>
+                                                <constraint firstItem="TKs-Jf-khy" firstAttribute="top" secondItem="FPW-RF-azy" secondAttribute="bottom" constant="8" id="wZ1-E8-vzO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="jWF-mr-evv" id="1Ui-w2-euH"/>
+                                            <outlet property="latestMessageLabel" destination="FPW-RF-azy" id="IIv-4m-Mz8"/>
+                                            <outlet property="pertnerLabel" destination="TKs-Jf-khy" id="Ywd-Q7-Cgt"/>
+                                            <outlet property="userImageView" destination="5pj-9S-OBM" id="U2S-8L-ZOM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Pyt-F5-NVY" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="2Ak-mD-ApM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Pyt-F5-NVY" secondAttribute="bottom" id="8rF-Dc-MlI"/>
+                            <constraint firstItem="Pyt-F5-NVY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="JNp-1F-A8A"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Pyt-F5-NVY" secondAttribute="trailing" id="dYT-dl-sXS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6jT-1U-0eH"/>
+                    <connections>
+                        <outlet property="chatListTableView" destination="Pyt-F5-NVY" id="hWO-Qa-VaG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rdV-yi-Gkt">
+            <objects>
+                <navigationController id="Lg3-2Q-WXM" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="73Z-LN-PPd">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="5J0-2c-9wR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f0J-7H-FT6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-743" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="freeImage01" width="1029" height="1030"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
