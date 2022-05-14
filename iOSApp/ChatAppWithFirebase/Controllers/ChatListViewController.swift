@@ -59,11 +59,17 @@ class ChatListViewController: UIViewController {
         let dic = documentChange.document.data()
         let chatRoom = ChatRoom.init(dic: dic)
         chatRoom.documentId = documentChange.document.documentID
-        
+                
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
+
+        let isConatin = chatRoom.members.contains(uid)
         
+        if !isConatin {
+            return
+        }
+
         chatRoom.members.forEach { (memberUid) in
             if memberUid != uid {
                 Firestore.firestore().collection("users").document(memberUid).getDocument { (snapshot, err) in
