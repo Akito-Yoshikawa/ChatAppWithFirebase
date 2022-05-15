@@ -72,23 +72,46 @@ class ChatListViewController: UIViewController {
 
         chatRoom.members.forEach { (memberUid) in
             if memberUid != uid {
-                Firestore.firestore().collection("users").document(memberUid).getDocument { (snapshot, err) in
+                Firestore.firestore().collection("users").document(memberUid).getDocument { (userSnapshot, err) in
                     if let err = err {
                         print("ユーザーの情報に取得に失敗しました。\(err)")
                         return
                     }
                     
-                    guard let dic = snapshot?.data() else {
+                    guard let dic = userSnapshot?.data() else {
                         return
                     }
                     
                     let user = User(dic: dic)
                     user.uid = documentChange.document.documentID
-                    
                     chatRoom.partnerUser = user
-                    self.chatRooms.append(chatRoom)
-                    self.chatListTableView.reloadData()
                     
+                    guard let chatroomId = chatRoom.documentId else {
+                        return
+                    }
+                    let latestMessageId = chatRoom.latestMessageId
+                    
+                    if latestMessageId.isEmpty {
+                        self.chatRooms.append(chatRoom)
+                        self.chatListTableView.reloadData()
+                        return
+                    }
+                    
+                    Firestore.firestore().collection("chatRooms").document(chatroomId).collection("messages").document(latestMessageId).getDocument { (messageSnapshot, err)  in
+                        if let err = err {
+                            print("最新情報の取得に失敗しました。\(err)")
+                            return
+                        }
+                        
+                        guard let dic = messageSnapshot?.data() else {
+                            return
+                        }
+                        let message = Message(dic: dic)
+                        chatRoom.latestMessage = message
+                        
+                        self.chatRooms.append(chatRoom)
+                        self.chatListTableView.reloadData()
+                    }
                 }
             }
         }
@@ -207,7 +230,8 @@ class ChatListTableViewCell: UITableViewCell {
                 pertnerLabel.text = chatroom.partnerUser?.username
                 userImageView.loadImage(with: chatroom.partnerUser?.profileImageUrl ?? "")
                 
-                dateLabel.text = dateFormatterForDateLabel(date: chatroom.createdAt.dateValue())
+                dateLabel.text = dateFormatterForDateLabel(date: chatroom.latestMessage?.createdAt.dateValue() ?? Date())
+                latestMessageLabel.text = chatroom.latestMessage?.message
             }
         }
     }
@@ -230,7 +254,7 @@ class ChatListTableViewCell: UITableViewCell {
     private func dateFormatterForDateLabel(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .full
-        formatter.timeStyle = .none
+        formatter.timeStyle = .short
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter.string(from: date)
         
