@@ -111,6 +111,9 @@
                                 <rect key="frame" x="102" y="644" width="210" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="既にアカウントをお持ちの方"/>
+                                <connections>
+                                    <action selector="tappedAlreadyHaveAccountButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="rGp-Xs-cqA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

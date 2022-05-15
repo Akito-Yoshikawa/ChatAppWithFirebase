@@ -69,10 +69,26 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
+    @IBAction func tappedAlreadyHaveAccountButton(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        loginViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(loginViewController, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+
+    private func setUpViews() {
         profileImageButton.layer.cornerRadius = 85
         profileImageButton.layer.borderWidth = 1
         profileImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
@@ -86,7 +102,6 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         registerButton.isEnabled = false
         registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
     }
-
     
     private func createUserToFirestore(profileImageUrl: String) {
         guard let email = emailTextField.text,
