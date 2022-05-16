@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class SignUpViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -33,15 +34,16 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         self.present(imagePickerController, animated: true, completion: nil)
     }
     
+    
     @IBAction func tappedRegisterButton(_ sender: Any) {
         
-        guard let image = profileImageButton.imageView?.image else {
-            return
-        }
+        let image = profileImageButton.imageView?.image ?? UIImage(named: "freeImage01")
 
-        guard let uploadImage = image.jpegData(compressionQuality: 0.3) else {
+        guard let uploadImage = image?.jpegData(compressionQuality: 0.3) else {
             return
         }
+        
+        HUD.show(.progress)
         
         let fileName = NSUUID().uuidString
         let storageRef = Storage.storage().reference().child("profile_image").child(fileName)
@@ -49,6 +51,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         storageRef.putData(uploadImage, metadata: nil) { (matadata,err) in
             if let err = err {
                 print("Firestorageへの情報の保存に失敗しました。\(err)")
+                HUD.hide()
                 return
             }
             print("Firestorageへの情報の保存に成功しました。")
@@ -56,6 +59,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
             storageRef.downloadURL { (url, err) in
                 if let err = err {
                         print("Firestorageからのダウンロードに失敗しました。\(err)")
+                    HUD.hide()
                     return
                 }
                 
@@ -114,7 +118,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
 
             if let err = err {
                 print("Auth情報の保存に失敗しました。\(err)")
-
+                HUD.hide()
                 return
             }
             
@@ -137,14 +141,20 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 
                 if let err = err {
                     print("Firestoreへの保存に失敗しました。\(err)" )
+                    HUD.hide()
+                    return
                 }
-                
+
+                HUD.hide()
                 print("Firestoreへの情報の保存が成功しました。")
                 self.dismiss(animated: true, completion: nil)
             }
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
 
 extension SignUpViewController: UIImagePickerControllerDelegate {

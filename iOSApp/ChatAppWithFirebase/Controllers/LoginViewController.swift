@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 import Firebase
+import PKHUD
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
-    
+
     @IBOutlet weak var passwordTextField: UITextField!
         
     @IBOutlet weak var loginButton: UIButton!
@@ -34,13 +35,17 @@ class LoginViewController: UIViewController {
         guard let password = self.passwordTextField.text else {
             return
         }
+        
+        HUD.show(.progress)
 
         Auth.auth().signIn(withEmail: email, password: password) { (res, err) in
             if let err = err {
                 print("ログインに失敗しました。\(err)")
+                HUD.hide()
                 return
             }
             
+            HUD.hide()
             print("ログインに成功しました。")
             
             let nav = self.presentingViewController as! UINavigationController
@@ -53,5 +58,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func tappedDontHaveAccountButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

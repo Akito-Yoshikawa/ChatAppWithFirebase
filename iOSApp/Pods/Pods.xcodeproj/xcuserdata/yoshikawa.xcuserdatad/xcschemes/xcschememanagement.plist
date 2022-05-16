@@ -144,33 +144,47 @@
 			<key>orderHint</key>
 			<integer>25</integer>
 		</dict>
-		<key>Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.xcscheme</key>
+		<key>PKHUD-PKHUDResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>27</integer>
 		</dict>
-		<key>Pods-ChatAppWithFirebase.xcscheme</key>
+		<key>PKHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>26</integer>
 		</dict>
-		<key>Pods-ChatAppWithFirebaseTests.xcscheme</key>
+		<key>Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>29</integer>
+		</dict>
+		<key>Pods-ChatAppWithFirebase.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>28</integer>
 		</dict>
+		<key>Pods-ChatAppWithFirebaseTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>30</integer>
+		</dict>
 		<key>PromisesObjC.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>29</integer>
+			<integer>31</integer>
 		</dict>
 		<key>abseil.xcscheme</key>
 		<dict>
