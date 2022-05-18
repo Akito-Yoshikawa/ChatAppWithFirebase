@@ -36,7 +36,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最後のメッセージ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPW-RF-azy">
-                                                    <rect key="frame" x="80" y="21" width="114.5" height="17"/>
+                                                    <rect key="frame" x="80" y="21" width="254" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWF-mr-evv">
-                                                    <rect key="frame" x="368.5" y="21" width="35.5" height="17"/>
+                                                    <rect key="frame" x="334" y="21" width="70" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -61,6 +61,8 @@
                                                 <constraint firstItem="jWF-mr-evv" firstAttribute="trailing" secondItem="1N7-UI-JY1" secondAttribute="trailingMargin" constant="10" id="IIH-rk-gQc"/>
                                                 <constraint firstItem="5pj-9S-OBM" firstAttribute="leading" secondItem="1N7-UI-JY1" secondAttribute="leading" constant="10" id="Lw3-RD-eUY"/>
                                                 <constraint firstItem="TKs-Jf-khy" firstAttribute="leading" secondItem="5pj-9S-OBM" secondAttribute="trailing" constant="10" id="YMb-6e-0rB"/>
+                                                <constraint firstItem="jWF-mr-evv" firstAttribute="leading" secondItem="FPW-RF-azy" secondAttribute="trailing" id="eOj-5R-BOL"/>
+                                                <constraint firstItem="FPW-RF-azy" firstAttribute="centerX" secondItem="1N7-UI-JY1" secondAttribute="centerX" id="gsA-Gc-8J4"/>
                                                 <constraint firstItem="5pj-9S-OBM" firstAttribute="centerY" secondItem="1N7-UI-JY1" secondAttribute="centerY" id="vEV-6E-0z9"/>
                                                 <constraint firstItem="TKs-Jf-khy" firstAttribute="top" secondItem="FPW-RF-azy" secondAttribute="bottom" constant="8" id="wZ1-E8-vzO"/>
                                             </constraints>
