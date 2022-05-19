@@ -119,6 +119,16 @@ class ChatListViewController: UIViewController {
                         chatRoom.latestMessage = message
                         
                         self.chatRooms.append(chatRoom)
+                        
+                        // 最新順に上から並び替える
+                        self.chatRooms.sort { (m1, m2) -> Bool in
+                            guard let m1Date = m1.latestMessage?.createdAt.dateValue(),
+                                  let m2Date = m2.latestMessage?.createdAt.dateValue() else {
+                                      return false
+                            }
+                            return m1Date > m2Date
+                        }
+                        
                         self.chatListTableView.reloadData()
                     }
                 }
