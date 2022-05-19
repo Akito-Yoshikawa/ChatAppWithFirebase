@@ -278,12 +278,45 @@ class ChatListTableViewCell: UITableViewCell {
     }
     
     private func dateFormatterForDateLabel(date: Date) -> String {
+        let calendar = Calendar(identifier: .gregorian)
+                
         let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        formatter.timeStyle = .short
         formatter.locale = Locale(identifier: "ja_JP")
-        return formatter.string(from: date)
+        formatter.timeZone = TimeZone(identifier:  "Asia/Tokyo")
+
+        // 現在時刻から一週間前
+        let nowDate = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: -7, to: nowDate)!
+        let modifiedYear = Calendar.current.date(byAdding: .year, value: -1, to: nowDate)!
         
+        let isDateYesterday = calendar.isDateInYesterday(date)
+        let isDateToday = calendar.isDateInToday(date)
+                        
+        // 一年以上前の場合(年、日付を表示)
+        if modifiedYear >= date {            formatter.dateFormat = "yyyy/MM/dd"
+            return formatter.string(from: date)
+        }
+        
+        // 一週間以上の場合(日付を表示)
+        if modifiedDate >= date {
+            formatter.dateFormat = "MM/dd"
+            return formatter.string(from: date)
+        }
+        
+        // 今日かどうか(時間を表示)
+        if isDateToday {
+            formatter.dateFormat = "HH:mm"
+            return formatter.string(from: date)
+        }
+
+        // 昨日かどうか
+        if isDateYesterday {
+            return "昨日"
+        } else {
+            // 曜日表示
+            formatter.dateFormat = "EEEE"
+            return formatter.string(from: date)
+        }
     }
     
 }
