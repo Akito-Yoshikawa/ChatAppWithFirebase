@@ -255,6 +255,8 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
         chatRoomViewController.chatRoom = chatRooms[indexPath.row]
         
         navigationController?.pushViewController(chatRoomViewController, animated: true)
+        
+        chatListTableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
