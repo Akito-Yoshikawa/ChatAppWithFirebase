@@ -57,7 +57,7 @@ class ChatRoomViewController: UIViewController {
         chatRoomTableView.scrollIndicatorInsets = tableViewIndicatorInset
         chatRoomTableView.keyboardDismissMode = .interactive
         chatRoomTableView.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
-        
+        chatRoomTableView.rowHeight = UITableView.automaticDimension
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
