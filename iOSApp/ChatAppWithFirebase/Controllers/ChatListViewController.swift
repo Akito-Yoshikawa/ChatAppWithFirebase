@@ -185,6 +185,11 @@ class ChatListViewController: UIViewController {
 
         do {
             try Auth.auth().signOut()
+
+            chatRoomListener?.remove()
+            chatRooms.removeAll()
+            chatListTableView.reloadData()
+
             pushLoginViewController()
         } catch {
             print("ログアウトに失敗しました。\(error)")
