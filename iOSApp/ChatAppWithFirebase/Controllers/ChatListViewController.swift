@@ -276,7 +276,7 @@ class ChatListTableViewCell: UITableViewCell {
                 pertnerLabel.text = chatroom.partnerUser?.username
                 userImageView.loadImage(with: chatroom.partnerUser?.profileImageUrl ?? "")
                 
-                dateLabel.text = dateFormatterForDateLabel(date: chatroom.latestMessage?.createdAt.dateValue() ?? Date())
+                dateLabel.text = dateFormatterForDateLabel(date: chatListdateReturn(chatroom))
                 latestMessageLabel.text = chatroom.latestMessage?.message
             }
         }
@@ -295,6 +295,20 @@ class ChatListTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    ///  チャットリスト画面の右側に表示する時間を返す
+    /// - Parameter chatRoom: chatRoomモデル
+    /// - Returns: (最後にメッセージした時間→ルームを作成した時間->Date() )
+    private func chatListdateReturn(_ chatRoom: ChatRoom) -> Date {
+        guard let createdAtLatestMessage = chatroom?.latestMessage?.createdAt.dateValue() else {
+            if let createdAtChatroom = chatroom?.createdAt.dateValue() {
+                return createdAtChatroom
+            }
+            return Date()
+        }
+        
+        return createdAtLatestMessage
     }
     
     private func dateFormatterForDateLabel(date: Date) -> String {
