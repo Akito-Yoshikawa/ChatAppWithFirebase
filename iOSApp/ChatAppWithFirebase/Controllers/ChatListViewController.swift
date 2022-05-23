@@ -318,7 +318,8 @@ class ChatListTableViewCell: UITableViewCell {
         let isDateToday = calendar.isDateInToday(date)
                         
         // 一年以上前の場合(年、日付を表示)
-        if modifiedYear >= date {            formatter.dateFormat = "yyyy/MM/dd"
+        if modifiedYear >= date {
+            formatter.dateFormat = "yyyy/MM/dd"
             return formatter.string(from: date)
         }
         
