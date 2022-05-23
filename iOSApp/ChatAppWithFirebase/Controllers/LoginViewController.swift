@@ -41,6 +41,7 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (res, err) in
             if let err = err {
                 print("ログインに失敗しました。\(err)")
+                self.showSingleBtnAlert(title: "ログインに失敗しました。")
                 HUD.hide()
                 return
             }
