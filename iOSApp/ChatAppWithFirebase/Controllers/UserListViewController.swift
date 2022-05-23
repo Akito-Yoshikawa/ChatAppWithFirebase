@@ -109,10 +109,8 @@ class UserListViewController: UIViewController {
                 // 既にチャットを開始している人は表示しない制御
                 // chatRoomsを受け取って、uidを比較する
                 for chatRoom in self.chatRooms {
-                    for membersId in chatRoom.members {
-                        if snapshot.documentID == membersId {
-                            self.users.removeLast()
-                        }
+                    if chatRoom.searchMembersUser(searchID: snapshot.documentID) {
+                        self.users.removeLast()
                     }
                 }
             })

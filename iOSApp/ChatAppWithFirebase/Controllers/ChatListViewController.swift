@@ -51,12 +51,7 @@ class ChatListViewController: UIViewController {
             }
             
             snapshots?.documentChanges.forEach({ (documentChange) in
-                switch documentChange.type {
-                    
-                case .added:
-                    self.handleAddedDocumentChange(documentChange: documentChange)
-                case .modified, .removed: break
-                }
+                self.handleAddedDocumentChange(documentChange: documentChange)
             })
             
         })
@@ -87,7 +82,8 @@ class ChatListViewController: UIViewController {
                         return
                     }
                     
-                    guard let dic = userSnapshot?.data() else {
+                    guard let dic = userSnapshot?.data(),
+                          let userDocumentID = userSnapshot?.documentID else {
                         return
                     }
                     
@@ -118,14 +114,23 @@ class ChatListViewController: UIViewController {
                         let message = Message(dic: dic)
                         chatRoom.latestMessage = message
                         
+                        switch documentChange.type {
+                        case .modified:
+                            // チャットルームが変更されたら、変更された前のチャットルームを削除する
+                            for (index, chatRoom) in self.chatRooms.enumerated() {
+                                if chatRoom.searchMembersUser(searchID: userDocumentID) {
+                                    self.chatRooms.remove(at: index)
+                                }
+                            }
+                        default: break
+                        }
+                        
                         self.chatRooms.append(chatRoom)
                         
                         // 最新順に上から並び替える
                         self.chatRooms.sort { (m1, m2) -> Bool in
-                            guard let m1Date = m1.latestMessage?.createdAt.dateValue(),
-                                  let m2Date = m2.latestMessage?.createdAt.dateValue() else {
-                                      return false
-                            }
+                            let m1Date = m1.chatListdateReturn()
+                            let m2Date = m2.chatListdateReturn()
                             return m1Date > m2Date
                         }
                         
@@ -276,7 +281,7 @@ class ChatListTableViewCell: UITableViewCell {
                 pertnerLabel.text = chatroom.partnerUser?.username
                 userImageView.loadImage(with: chatroom.partnerUser?.profileImageUrl ?? "")
                 
-                dateLabel.text = dateFormatterForDateLabel(date: chatListdateReturn(chatroom))
+                dateLabel.text = dateFormatterForDateLabel(date: chatroom.chatListdateReturn())
                 latestMessageLabel.text = chatroom.latestMessage?.message
             }
         }
@@ -296,21 +301,7 @@ class ChatListTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    ///  チャットリスト画面の右側に表示する時間を返す
-    /// - Parameter chatRoom: chatRoomモデル
-    /// - Returns: (最後にメッセージした時間→ルームを作成した時間->Date() )
-    private func chatListdateReturn(_ chatRoom: ChatRoom) -> Date {
-        guard let createdAtLatestMessage = chatroom?.latestMessage?.createdAt.dateValue() else {
-            if let createdAtChatroom = chatroom?.createdAt.dateValue() {
-                return createdAtChatroom
-            }
-            return Date()
-        }
         
-        return createdAtLatestMessage
-    }
-    
     private func dateFormatterForDateLabel(date: Date) -> String {
         let calendar = Calendar(identifier: .gregorian)
                 
