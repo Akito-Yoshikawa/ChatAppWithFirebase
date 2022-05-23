@@ -35,6 +35,8 @@
 		3652590A2830E37200D42D13 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365259092830E37200D42D13 /* Login.storyboard */; };
 		3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652590B2830EA2300D42D13 /* LoginViewController.swift */; };
 		36655206282BFBFE005105CF /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36655205282BFBFD005105CF /* ChatRoom.swift */; };
+		36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */; };
+		36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */; };
 		3D2CB2ACC0C2625669833526 /* Pods_ChatAppWithFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A0543DF24ECBDF95D3ECDC /* Pods_ChatAppWithFirebaseTests.framework */; };
 		5D914614A573261E81A92590 /* Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE25A47AC8F26A620F77C99 /* Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests.framework */; };
 /* End PBXBuildFile section */
@@ -90,6 +92,8 @@
 		365259092830E37200D42D13 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3652590B2830EA2300D42D13 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		36655205282BFBFD005105CF /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
+		36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Extension.swift"; sourceTree = "<group>"; };
 		4CE25A47AC8F26A620F77C99 /* Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E50A12F55EA31CDDCA2ADD0 /* Pods-ChatAppWithFirebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebaseTests.release.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebaseTests/Pods-ChatAppWithFirebaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A6AACBA3136EB37F70FF097 /* Pods-ChatAppWithFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebase.debug.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebase/Pods-ChatAppWithFirebase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 			children = (
 				361A61C62818275F00C464C2 /* UIColor-Extension.swift */,
 				364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */,
+				36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */,
+				36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */,
 				3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */,
 				364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */,
 				361A61CF2818437400C464C2 /* ChatRoomTableViewCell.swift in Sources */,
@@ -522,6 +529,7 @@
 				361A61DC28240F0900C464C2 /* SignUpViewController.swift in Sources */,
 				36397B752816A4410083F5AE /* AppDelegate.swift in Sources */,
 				361A61C72818275F00C464C2 /* UIColor-Extension.swift in Sources */,
+				36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */,
 				36655206282BFBFE005105CF /* ChatRoom.swift in Sources */,
 				362D8E2F2829E17B00EAC347 /* UserListViewController.swift in Sources */,
 				361E5D622827FF5E00BF36D1 /* User.swift in Sources */,
