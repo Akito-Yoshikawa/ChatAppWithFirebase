@@ -201,6 +201,9 @@ class ChatListViewController: UIViewController {
         let storyboard = UIStoryboard.init(name: "UserList", bundle: nil)
         let userListViewController = storyboard.instantiateViewController(withIdentifier: "UserListViewController")
         let nav = UINavigationController(rootViewController: userListViewController)
+        let userListVC = nav.viewControllers[0] as! UserListViewController
+        userListVC.chatRooms = self.chatRooms
+
         self.present(nav, animated: true, completion: nil)
     }
     

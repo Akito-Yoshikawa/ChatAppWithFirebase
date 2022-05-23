@@ -14,6 +14,8 @@ class UserListViewController: UIViewController {
     private let cellId = "cellId"
     private var users = [User]()
     private var selectedUser: User?
+    
+    public var chatRooms = [ChatRoom]()
 
     @IBOutlet weak var userListTableView: UITableView!
     
@@ -103,6 +105,16 @@ class UserListViewController: UIViewController {
                 }
                 
                 self.users.append(user)
+
+                // 既にチャットを開始している人は表示しない制御
+                // chatRoomsを受け取って、uidを比較する
+                for chatRoom in self.chatRooms {
+                    for membersId in chatRoom.members {
+                        if snapshot.documentID == membersId {
+                            self.users.removeLast()
+                        }
+                    }
+                }
             })
             
             self.userListTableView.reloadData()
