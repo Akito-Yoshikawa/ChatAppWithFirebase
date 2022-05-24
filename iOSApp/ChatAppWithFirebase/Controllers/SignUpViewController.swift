@@ -76,10 +76,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func tappedAlreadyHaveAccountButton(_ sender: Any) {
-        let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
-        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-        loginViewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(loginViewController, animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {

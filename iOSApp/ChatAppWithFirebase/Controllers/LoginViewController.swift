@@ -57,7 +57,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func tappedDontHaveAccountButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        let storyboard = UIStoryboard.init(name: "SignUp", bundle: nil)
+        let SignUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController")
+        SignUpViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(SignUpViewController, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

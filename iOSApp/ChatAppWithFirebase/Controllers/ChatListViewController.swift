@@ -150,9 +150,9 @@ class ChatListViewController: UIViewController {
     }
     
     private func pushLoginViewController() {
-        let storyboar = UIStoryboard(name: "SignUp", bundle: nil)
-        let signUpViewController = storyboar.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
-        let nav = UINavigationController(rootViewController: signUpViewController)
+        let storyboar = UIStoryboard(name: "Login", bundle: nil)
+        let loginViewController = storyboar.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let nav = UINavigationController(rootViewController: loginViewController)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion:
         nil)
