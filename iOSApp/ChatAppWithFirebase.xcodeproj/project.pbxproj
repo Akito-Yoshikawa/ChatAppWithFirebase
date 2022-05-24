@@ -34,6 +34,7 @@
 		364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */; };
 		3652590A2830E37200D42D13 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365259092830E37200D42D13 /* Login.storyboard */; };
 		3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652590B2830EA2300D42D13 /* LoginViewController.swift */; };
+		3652B486283D9EBD004BFAF4 /* UINavigationController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652B485283D9EBD004BFAF4 /* UINavigationController-Extension.swift */; };
 		36655206282BFBFE005105CF /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36655205282BFBFD005105CF /* ChatRoom.swift */; };
 		36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */; };
 		36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */; };
@@ -91,6 +92,7 @@
 		364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		365259092830E37200D42D13 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3652590B2830EA2300D42D13 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3652B485283D9EBD004BFAF4 /* UINavigationController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController-Extension.swift"; sourceTree = "<group>"; };
 		36655205282BFBFD005105CF /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
 		36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Extension.swift"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */,
 				36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */,
 				36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */,
+				3652B485283D9EBD004BFAF4 /* UINavigationController-Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3652B486283D9EBD004BFAF4 /* UINavigationController-Extension.swift in Sources */,
 				36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */,
 				3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */,
 				364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */,

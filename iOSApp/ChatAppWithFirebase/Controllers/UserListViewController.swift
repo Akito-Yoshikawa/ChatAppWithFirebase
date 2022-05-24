@@ -33,18 +33,8 @@ class UserListViewController: UIViewController {
         startChatButton.isEnabled = false
         startChatButton.addTarget(self, action: #selector(tappedStartButton), for: .touchUpInside)
                 
-        if #available(iOS 15.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .rgb(red: 39, green: 49, blue: 69)
-            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        } else {
-            navigationController?.navigationBar.barTintColor = .rgb(red: 39, green: 49, blue: 69)
-            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        }
-        
+        navigationController?.changeNavigationBarBackGroundColor()
+
         fetchUserInfoFromFireStore()
     }
     

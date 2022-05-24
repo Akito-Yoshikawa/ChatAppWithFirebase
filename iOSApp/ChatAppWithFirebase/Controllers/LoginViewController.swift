@@ -68,6 +68,9 @@ class LoginViewController: UIViewController {
     }
         
     private func setUpViews() {
+
+        navigationController?.changeNavigationBarBackGroundColor()
+        
         emailTextField.delegate = self
         passwordTextField.delegate = self
 
