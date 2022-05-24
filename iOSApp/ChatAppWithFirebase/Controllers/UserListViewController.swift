@@ -110,7 +110,9 @@ class UserListViewController: UIViewController {
                 // chatRoomsを受け取って、uidを比較する
                 for chatRoom in self.chatRooms {
                     if chatRoom.searchMembersUser(searchID: snapshot.documentID) {
-                        self.users.removeLast()
+                        if self.users.count != 0 {
+                            self.users.removeLast()
+                        }
                     }
                 }
             })
