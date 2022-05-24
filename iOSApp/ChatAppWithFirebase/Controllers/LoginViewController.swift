@@ -23,10 +23,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.layer.cornerRadius = 8
+        setUpViews()
     }
     
-        
     @IBAction func tappedLoginButton(_ sender: Any) {
         guard let email = self.emailTextField.text else {
             return
@@ -63,5 +62,31 @@ class LoginViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+        
+    private func setUpViews() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+
+        loginButton.layer.cornerRadius = 8
+        loginButton.isEnabled = false
+        loginButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        let emailIsEmpty = emailTextField.text?.isEmpty ?? false
+        let passwordIsEmpty = passwordTextField.text?.isEmpty ?? false
+
+        if emailIsEmpty || passwordIsEmpty {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
+        } else {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = .rgb(red: 0, green: 180, blue: 0)
+        }
     }
 }
