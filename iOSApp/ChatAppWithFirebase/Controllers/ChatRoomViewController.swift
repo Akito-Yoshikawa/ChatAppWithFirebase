@@ -109,6 +109,7 @@ class ChatRoomViewController: UIViewController {
         Firestore.firestore().collection("chatRooms").document(chatRoomDocId).collection("messages").addSnapshotListener { (snapshots, err) in
             if let err = err {
                 print("メッセージ情報の取得に失敗しました。\(err)")
+                self.showSingleBtnAlert(title: "メッセージ情報の取得に失敗しました。")
                 return
             }
             
