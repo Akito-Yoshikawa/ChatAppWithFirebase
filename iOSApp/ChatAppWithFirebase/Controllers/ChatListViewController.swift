@@ -46,7 +46,7 @@ class ChatListViewController: UIViewController {
         chatRoomListener = Firestore.firestore().collection("chatRooms").addSnapshotListener({ (snapshots, err) in
             if let err = err {
                 print("ChatRooms情報の取得に失敗しました。\(err)")
-                
+                self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
                 return
             }
             
@@ -79,6 +79,7 @@ class ChatListViewController: UIViewController {
                 Firestore.firestore().collection("users").document(memberUid).getDocument { (userSnapshot, err) in
                     if let err = err {
                         print("ユーザーの情報に取得に失敗しました。\(err)")
+                        self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
                         return
                     }
                     
@@ -105,6 +106,7 @@ class ChatListViewController: UIViewController {
                     Firestore.firestore().collection("chatRooms").document(chatroomId).collection("messages").document(latestMessageId).getDocument { (messageSnapshot, err)  in
                         if let err = err {
                             print("最新情報の取得に失敗しました。\(err)")
+                            self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
                             return
                         }
                         

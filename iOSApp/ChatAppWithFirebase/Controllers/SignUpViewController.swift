@@ -51,6 +51,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         storageRef.putData(uploadImage, metadata: nil) { (matadata,err) in
             if let err = err {
                 print("Firestorageへの情報の保存に失敗しました。\(err)")
+                self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
                 HUD.hide()
                 return
             }
@@ -58,7 +59,8 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
 
             storageRef.downloadURL { (url, err) in
                 if let err = err {
-                        print("Firestorageからのダウンロードに失敗しました。\(err)")
+                    print("Firestorageからのダウンロードに失敗しました。\(err)")
+                    self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
                     HUD.hide()
                     return
                 }
@@ -118,6 +120,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
 
             if let err = err {
                 print("Auth情報の保存に失敗しました。\(err)")
+                self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
                 HUD.hide()
                 return
             }
@@ -141,6 +144,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 
                 if let err = err {
                     print("Firestoreへの保存に失敗しました。\(err)" )
+                    self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
                     HUD.hide()
                     return
                 }
