@@ -148,6 +148,12 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
 
                 HUD.hide()
                 print("Firestoreへの情報の保存が成功しました。")
+                
+                let nav = self.presentingViewController as! UITabBarController
+                let selectedVC = nav.selectedViewController as! UINavigationController
+                let chatListViewController = selectedVC.viewControllers[selectedVC.viewControllers.count-1] as? ChatListViewController
+                chatListViewController?.fetchChatroomsInfoFromFirestore()
+                
                 self.dismiss(animated: true, completion: nil)
             }
         }

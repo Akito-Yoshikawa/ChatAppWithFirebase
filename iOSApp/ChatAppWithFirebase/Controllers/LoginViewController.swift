@@ -47,9 +47,10 @@ class LoginViewController: UIViewController {
             
             HUD.hide()
             print("ログインに成功しました。")
-            
-            let nav = self.presentingViewController as! UINavigationController
-            let chatListViewController = nav.viewControllers[nav.viewControllers.count-1] as? ChatListViewController
+
+            let nav = self.presentingViewController as! UITabBarController
+            let selectedVC = nav.selectedViewController as! UINavigationController
+            let chatListViewController = selectedVC.viewControllers[selectedVC.viewControllers.count-1] as? ChatListViewController
             chatListViewController?.fetchChatroomsInfoFromFirestore()
             
             self.dismiss(animated: true, completion: nil)
@@ -68,9 +69,6 @@ class LoginViewController: UIViewController {
     }
         
     private func setUpViews() {
-
-        navigationController?.changeNavigationBarBackGroundColor()
-        
         emailTextField.delegate = self
         passwordTextField.delegate = self
 

@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    let firstDisplayViewName = "TabBarViewController"
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,12 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = windows
         window?.makeKeyAndVisible()
         
-        let storyboard = UIStoryboard(name: "ChatList", bundle: nil)
-        
-        let chatListViewController = storyboard.instantiateViewController(identifier: "ChatListViewController")
-        let nav = UINavigationController(rootViewController: chatListViewController)
-        
-        window?.rootViewController = nav
+        window?.rootViewController = UIStoryboard(name: firstDisplayViewName, bundle: nil).instantiateInitialViewController()
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
