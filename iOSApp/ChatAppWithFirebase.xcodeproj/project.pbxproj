@@ -38,6 +38,8 @@
 		3652B488283DA126004BFAF4 /* TabBarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */; };
 		36541B11283DE5F40047D0E5 /* AccountSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */; };
 		36541B13283DE6350047D0E5 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */; };
+		365CF74C283F3A5A002F0E12 /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */; };
+		365CF74E283F3AC1002F0E12 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */; };
 		36655206282BFBFE005105CF /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36655205282BFBFD005105CF /* ChatRoom.swift */; };
 		36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */; };
 		36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */; };
@@ -99,6 +101,8 @@
 		3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarViewController.storyboard; sourceTree = "<group>"; };
 		36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountSetting.storyboard; sourceTree = "<group>"; };
 		36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserListTableViewCell.xib; sourceTree = "<group>"; };
+		365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
 		36655205282BFBFD005105CF /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
 		36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Extension.swift"; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			children = (
 				361A61CC2818426000C464C2 /* ChatRoomTableViewCell.xib */,
 				361A61D328197FBC00C464C2 /* ChatInputAccessoryView.xib */,
+				365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			children = (
 				361A61CE2818437400C464C2 /* ChatRoomTableViewCell.swift */,
 				361A61D52819810B00C464C2 /* ChatInputAccessoryView.swift */,
+				365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -408,6 +414,7 @@
 				361A61DA2822890800C464C2 /* SignUp.storyboard in Resources */,
 				3652590A2830E37200D42D13 /* Login.storyboard in Resources */,
 				361A61D828227BDE00C464C2 /* GoogleService-Info.plist in Resources */,
+				365CF74C283F3A5A002F0E12 /* UserListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3652B486283D9EBD004BFAF4 /* UINavigationController-Extension.swift in Sources */,
+				365CF74E283F3AC1002F0E12 /* UserListTableViewCell.swift in Sources */,
 				36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */,
 				3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */,
 				364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */,

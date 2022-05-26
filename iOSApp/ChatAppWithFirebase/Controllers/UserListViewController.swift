@@ -11,7 +11,7 @@ import Nuke
 
 class UserListViewController: UIViewController {
 
-    private let cellId = "cellId"
+    private let cellId = "UserListTableViewCell"
     private var users = [User]()
     private var selectedUser: User?
     
@@ -29,6 +29,8 @@ class UserListViewController: UIViewController {
         userListTableView.delegate = self
         userListTableView.dataSource = self
         
+        
+        userListTableView.register(UINib(nibName: "UserListTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
         startChatButton.layer.cornerRadius = 15
         startChatButton.isEnabled = false
         startChatButton.addTarget(self, action: #selector(tappedStartButton), for: .touchUpInside)
@@ -119,7 +121,7 @@ extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = userListTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! UserListTableViewCell
+        let cell = userListTableView.dequeueReusableCell(withIdentifier: "UserListTableViewCell", for: indexPath) as! UserListTableViewCell
 
         cell.user = users[indexPath.row]
         
@@ -136,31 +138,3 @@ extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-class UserListTableViewCell: UITableViewCell {
-    
-    var user: User? {
-        didSet {
-            userNameLabel.text = user?.username
-
-            userImageView.loadImage(with: user?.profileImageUrl ?? "")
-        }
-    }
-    
-    
-    @IBOutlet weak var userNameLabel: UILabel!    
-    @IBOutlet weak var userImageView: UIImageView!
-    
-    
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        userImageView.layer.cornerRadius = 32.5
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-}
