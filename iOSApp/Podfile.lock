@@ -795,6 +795,11 @@ PODS:
   - Nuke (10.7.1)
   - PKHUD (5.3.0)
   - PromisesObjC (2.1.0)
+  - Realm (10.26.0):
+    - Realm/Headers (= 10.26.0)
+  - Realm/Headers (10.26.0)
+  - RealmSwift (10.26.0):
+    - Realm (= 10.26.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -803,6 +808,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Nuke
   - PKHUD
+  - RealmSwift
 
 SPEC REPOS:
   trunk:
@@ -833,6 +839,8 @@ SPEC REPOS:
     - Nuke
     - PKHUD
     - PromisesObjC
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -862,7 +870,9 @@ SPEC CHECKSUMS:
   Nuke: 279f17a599fd1c83cf51de5e0e1f2db143a287b0
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
+  Realm: 97bc2540088e1e88a4b2051ba4b8eac85be0039a
+  RealmSwift: 1bc3cbcb1681c5a9262df5883280123aa2d1d4cf
 
-PODFILE CHECKSUM: 2331c30c842620f8a222b819af1d485029a84228
+PODFILE CHECKSUM: 7dcb521a51663f1e4f02b908c9dd22d70528b737
 
 COCOAPODS: 1.11.3
