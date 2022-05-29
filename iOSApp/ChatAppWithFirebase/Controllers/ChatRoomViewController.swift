@@ -124,8 +124,8 @@ class ChatRoomViewController: UIViewController {
                     self.messages.append(message)
                     
                     self.messages.sort { (m1, m2) -> Bool in
-                        let m1Date = m1.createdAt.dateValue()
-                        let m2Date = m2.createdAt.dateValue()
+                        let m1Date = m1.createdAt
+                        let m2Date = m2.createdAt
                         return m1Date > m2Date
                     }
                       
@@ -228,7 +228,6 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         cell.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
         cell.message = messages[indexPath.row]
         
-//        cell.messageText = messages[indexPath.row]
         return cell
     }
 }

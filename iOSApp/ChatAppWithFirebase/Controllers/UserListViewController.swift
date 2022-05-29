@@ -8,15 +8,20 @@
 import UIKit
 import Firebase
 import Nuke
+import RealmSwift
+import PKHUD
 
 class UserListViewController: UIViewController {
 
     private let cellId = "UserListTableViewCell"
-    private var users = [User]()
     private var selectedUser: User?
+    private var ralmUsers: Results<User>?
     
-    public var chatRooms = [ChatRoom]()
+    // DBから取得したChatRoom
+    private var realmChatRoom: Results<ChatRoom>?
 
+    private var usersListener: ListenerRegistration?
+    
     @IBOutlet weak var userListTableView: UITableView!
     
     @IBOutlet weak var startChatButton: UIButton!
@@ -36,7 +41,16 @@ class UserListViewController: UIViewController {
         startChatButton.addTarget(self, action: #selector(tappedStartButton), for: .touchUpInside)
                 
         navigationController?.changeNavigationBarBackGroundColor()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        reloadUserList()
+    }
+    
+    func reloadUserList() {
+        realmChatRoom = ChatRoomAccessor.shardInstance.getAll()
         fetchUserInfoFromFireStore()
     }
     
@@ -55,7 +69,7 @@ class UserListViewController: UIViewController {
         let docData = [
             "members": members,
             "latestMessageId": "",
-            "createdAt": Timestamp()
+            "createdAt": Date()
         ] as [String: Any]
         
         Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
@@ -64,18 +78,23 @@ class UserListViewController: UIViewController {
                 return
             }
             
+            self.reloadUserList()
             
-            self.dismiss(animated: true, completion: nil)
+            self.selectedUser = nil
             print("ChatRoom情報の保存に成功しました。")
         }
-
-        
-        
     }
     
     
     private func fetchUserInfoFromFireStore() {
-        Firestore.firestore().collection("users").getDocuments { (snapshot,err)  in
+        guard let currentUid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        var sqlConditionsString = [currentUid]
+        
+        usersListener = Firestore.firestore().collection("users").addSnapshotListener { (snapshot, err)  in
+            
             if let err = err {
                 print("user情報の取得に失敗しました。\(err)")
                 return
@@ -83,7 +102,7 @@ class UserListViewController: UIViewController {
             
             snapshot?.documents.forEach({ (snapshot) in
                 let dic = snapshot.data()
-                let user = User.init(dic: dic)
+                let user = User(dic: dic)
                 
                 user.uid = snapshot.documentID
                 
@@ -95,19 +114,24 @@ class UserListViewController: UIViewController {
                 if uid == snapshot.documentID {
                     return
                 }
-                
-                self.users.append(user)
+                                
+                if !UserAccessor.shardInstance.set(data: user, updatePolicy: .error) {
+                    print("Realmに保存に失敗しました。")
+                    return
+                }
 
                 // 既にチャットを開始している人は表示しない制御
                 // chatRoomsを受け取って、uidを比較する
-                for chatRoom in self.chatRooms {
-                    if chatRoom.searchMembersUser(searchID: snapshot.documentID) {
-                        if self.users.count != 0 {
-                            self.users.removeLast()
+                if let localRealmChatRoom = self.realmChatRoom {
+                    for realmChatRoom in localRealmChatRoom {
+                        if realmChatRoom.searchMembersUser(searchID: snapshot.documentID) {
+                            sqlConditionsString.append(snapshot.documentID)
                         }
                     }
                 }
             })
+            
+            self.ralmUsers = UserAccessor.shardInstance.getExceptingAll(uids: sqlConditionsString)
             
             self.userListTableView.reloadData()
         }
@@ -117,13 +141,13 @@ class UserListViewController: UIViewController {
 
 extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return ralmUsers?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userListTableView.dequeueReusableCell(withIdentifier: "UserListTableViewCell", for: indexPath) as! UserListTableViewCell
 
-        cell.user = users[indexPath.row]
+        cell.user = ralmUsers?[indexPath.row]
         
         return cell
     }
@@ -132,7 +156,7 @@ extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         startChatButton.isEnabled = true
 
-        let user = users[indexPath.row]
+        let user = ralmUsers?[indexPath.row]
         self.selectedUser = user
 
     }

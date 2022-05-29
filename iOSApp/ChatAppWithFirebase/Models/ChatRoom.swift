@@ -7,30 +7,62 @@
 
 import Foundation
 import Firebase
+import RealmSwift
 
-class ChatRoom {
+class Member: Object {
+    @objc dynamic var path = ""
+}
+
+class ChatRoom: Object {
     
-    let latestMessageId: String
-    let members: [String]
-    let createdAt: Timestamp
+    @objc dynamic var latestMessageId = ""
+    var members = List<Member>()
+    @objc dynamic var createdAt: Date?
     
-    var latestMessage: Message?
-    var documentId: String?
-    var partnerUser: User?
+    @objc dynamic var latestMessage: Message?
+    @objc dynamic var partnerUser: User?
     
-    init(dic: [String: Any]) {
-        self.latestMessageId = dic["latestMessageId"] as? String ?? ""
-        self.members = dic["members"] as? [String] ?? [String]()
-        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
+    @objc dynamic var documentId = ""
+
+    override static func primaryKey() -> String? {
+        return "documentId"
     }
     
+    convenience init(dic: [String: Any]) {
+        self.init()
+        self.latestMessageId = dic["latestMessageId"] as? String ?? ""
+        let members = dic["members"] as? [String] ?? [String]()
+
+        for path in members {
+            let member = Member()
+            member.path = path
+            self.members.append(member)
+        }
+        let timestamp = dic["createdAt"] as? Timestamp ?? Timestamp()
+        self.createdAt = timestamp.dateValue()
+    }
+}
+
+
+extension ChatRoom {
+    
+    ///  Array型のStringをList型のStringに変換
+    /// - Returns: Array型のString
+    func transformToJSON() -> Array<String> {
+        var results = [String]()
+        for obj in self.members {
+            results.append(obj.path)
+        }
+        return results
+    }
+        
     ///  最後にメッセージした時間→ルームを作成した時間の順でDateを返す
     /// - Returns: (最後にメッセージした時間→ルームを作成した時間)
     public func chatListdateReturn() -> Date {
-        guard let createdAtLatestMessage = self.latestMessage?.createdAt.dateValue() else {
-            return self.createdAt.dateValue()
+        guard let createdAtLatestMessage = self.latestMessage?.createdAt else {
+            return self.createdAt ?? Date()
         }
-        
+
         return createdAtLatestMessage
     }
     
@@ -38,8 +70,8 @@ class ChatRoom {
     /// - Parameter searchID: 検索するID
     /// - Returns: true: 存在する false:存在しない
     public func searchMembersUser(searchID: String) -> Bool {
-        for membersId in self.members {
-            if searchID == membersId {
+        for member in self.members {
+            if member.path == searchID {
                 return true
             }
         }

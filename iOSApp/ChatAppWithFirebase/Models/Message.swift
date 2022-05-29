@@ -7,20 +7,22 @@
 
 import Foundation
 import Firebase
+import RealmSwift
 
-class Message {
+class Message: Object {
     
-    let name: String
-    let message: String
-    let uid: String
-    let createdAt: Timestamp
+    @objc dynamic var name = ""
+    @objc dynamic var message = ""
+    @objc dynamic var uid = ""
+    @objc dynamic var createdAt = Date()
     
-    var partnerUser: User?
+    @objc dynamic var partnerUser: User?
     
-    init(dic: [String: Any]) {
+    convenience init(dic: [String: Any]) {
+        self.init()
         self.name = dic["name"] as? String ?? ""
         self.message = dic["message"] as? String ?? ""
         self.uid = dic["uid"] as? String ?? ""
-        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
+        self.createdAt = dic["createdAt"] as? Date ?? Date()
     }
 }

@@ -10,17 +10,7 @@ import Firebase
 
 class ChatRoomTableViewCell: UITableViewCell {
     
-    var message: Message? {
-        didSet {
-//            if let message = message {
-//                let width = estimateFrameForTextView(text: message.message).width + 20
-//                messageTextVIewConstraint.constant = width
-//
-//                partnarMessageTextView.text = message.message
-//                partnarDateLabel.text = dateFormatterForDateLabel(date: message.createdAt.dateValue())
-//            }
-        }
-    }
+    var message: Message?
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var partnarMessageTextView: UITextView!
@@ -66,7 +56,7 @@ class ChatRoomTableViewCell: UITableViewCell {
                 let width = estimateFrameForTextView(text: message.message).width + 20
                 myMessageTextViewWidthConstraint.constant = width
                 
-                myDateLabel.text = dateFormatterForDateLabel(date: message.createdAt.dateValue())
+                myDateLabel.text = dateFormatterForDateLabel(date: message.createdAt)
             }
 
             
@@ -84,7 +74,7 @@ class ChatRoomTableViewCell: UITableViewCell {
                 messageTextViewWidthConstraint.constant = width
                 
                 partnarMessageTextView.text = message.message
-                partnarDateLabel.text = dateFormatterForDateLabel(date: message.createdAt.dateValue())
+                partnarDateLabel.text = dateFormatterForDateLabel(date: message.createdAt)
             }
 
         }

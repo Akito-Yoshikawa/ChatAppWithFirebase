@@ -8,12 +8,14 @@
 import UIKit
 import Firebase
 import Nuke
+import RealmSwift
 
 class ChatListViewController: UIViewController {
         
     private let cellId = "cellId"
-    private var chatRooms = [ChatRoom]()
     private var chatRoomListener: ListenerRegistration?
+    
+    private var realmChatRoom: Results<ChatRoom>?
     
     private var user: User? {
         didSet {
@@ -35,12 +37,16 @@ class ChatListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.realmChatRoom = ChatRoomAccessor.shardInstance.getAll()
         fetchLoginUserInfo()
     }
     
     public func fetchChatroomsInfoFromFirestore() {
         chatRoomListener?.remove()
-        chatRooms.removeAll()
+        if !ChatRoomAccessor.shardInstance.deleteAll() {
+            print("DBの削除に失敗しました。")
+        }
+
         chatListTableView.reloadData()
         
         chatRoomListener = Firestore.firestore().collection("chatRooms").addSnapshotListener({ (snapshots, err) in
@@ -68,13 +74,15 @@ class ChatListViewController: UIViewController {
             return
         }
 
-        let isConatin = chatRoom.members.contains(uid)
+        let chatRoomMembers = chatRoom.transformToJSON()
+
+        let isConatin = chatRoomMembers.contains(uid)
         
         if !isConatin {
             return
         }
 
-        chatRoom.members.forEach { (memberUid) in
+        chatRoomMembers.forEach { (memberUid) in
             if memberUid != uid {
                 Firestore.firestore().collection("users").document(memberUid).getDocument { (userSnapshot, err) in
                     if let err = err {
@@ -89,16 +97,20 @@ class ChatListViewController: UIViewController {
                     }
                     
                     let user = User(dic: dic)
-                    user.uid = documentChange.document.documentID
+                    user.uid = userDocumentID
+                    
                     chatRoom.partnerUser = user
                     
-                    guard let chatroomId = chatRoom.documentId else {
-                        return
-                    }
+                    let chatroomId = chatRoom.documentId
                     let latestMessageId = chatRoom.latestMessageId
                     
                     if latestMessageId.isEmpty {
-                        self.chatRooms.append(chatRoom)
+                        // チャットルームDB保存
+                        if !ChatRoomAccessor.shardInstance.set(data: chatRoom) {
+                            print("Realmに保存に失敗しました。")
+                            return
+                        }
+                        
                         self.chatListTableView.reloadData()
                         return
                     }
@@ -118,24 +130,22 @@ class ChatListViewController: UIViewController {
                         
                         switch documentChange.type {
                         case .modified:
-                            // チャットルームが変更されたら、変更された前のチャットルームを削除する
-                            for (index, chatRoom) in self.chatRooms.enumerated() {
-                                if chatRoom.searchMembersUser(searchID: userDocumentID) {
-                                    self.chatRooms.remove(at: index)
-                                }
+                            // チャットルームが変更されたら、変更された前のチャットルームを更新する
+                            if !ChatRoomAccessor.shardInstance.set(data: chatRoom, updatePolicy: .modified) {
+                                print("Realmに保存に失敗しました。")
+                                return
                             }
                         default: break
                         }
-                        
-                        self.chatRooms.append(chatRoom)
-                        
-                        // 最新順に上から並び替える
-                        self.chatRooms.sort { (m1, m2) -> Bool in
-                            let m1Date = m1.chatListdateReturn()
-                            let m2Date = m2.chatListdateReturn()
-                            return m1Date > m2Date
+                                                
+                        // チャットルームDB保存
+                        if !ChatRoomAccessor.shardInstance.set(data: chatRoom) {
+                            print("Realmに保存に失敗しました。")
+                            return
                         }
                         
+                        self.realmChatRoom = ChatRoomAccessor.shardInstance.getAll()
+
                         self.chatListTableView.reloadData()
                     }
                 }
@@ -167,11 +177,7 @@ class ChatListViewController: UIViewController {
         
         navigationItem.title = "トーク"
 
-        let rigthBarButton = UIBarButtonItem(title: "新規チャット", style: .plain, target: self, action: #selector(tappedNavRightBarButton))
         let logoutBarButton = UIBarButtonItem(title: "ログアウト", style: .plain, target: self, action: #selector(tappedLogoutButton))
-        
-        navigationItem.rightBarButtonItem = rigthBarButton
-        navigationItem.rightBarButtonItem?.tintColor = .white
         navigationItem.leftBarButtonItem = logoutBarButton
         navigationItem.leftBarButtonItem?.tintColor = .white
     }
@@ -182,7 +188,7 @@ class ChatListViewController: UIViewController {
             try Auth.auth().signOut()
 
             chatRoomListener?.remove()
-            chatRooms.removeAll()
+            
             chatListTableView.reloadData()
 
             pushLoginViewController()
@@ -191,24 +197,13 @@ class ChatListViewController: UIViewController {
         }
         
     }
-    
-    @objc private func tappedNavRightBarButton() {
-        let storyboard = UIStoryboard.init(name: "UserList", bundle: nil)
-        let userListViewController = storyboard.instantiateViewController(withIdentifier: "UserListViewController")
-        let nav = UINavigationController(rootViewController: userListViewController)
-        let userListVC = nav.viewControllers[0] as! UserListViewController
-        userListVC.chatRooms = self.chatRooms
-
-        self.present(nav, animated: true, completion: nil)
-    }
-    
+        
     private func fetchLoginUserInfo() {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
-
         
-        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+        Firestore.firestore().collection("users").document(uid).getDocument { [self] (snapshot, err) in
 
             if let err = err {
                 print("ユーザーの情報に取得に失敗しました。\(err)")
@@ -221,8 +216,14 @@ class ChatListViewController: UIViewController {
             }
 
             let user = User(dic: dic)
+            user.uid = uid
             
-            self.user = user
+            if !UserAccessor.shardInstance.set(data: user) {
+                print("Realmに保存に失敗しました。")
+                return
+            }
+            
+            self.user = UserAccessor.shardInstance.getByID(id: uid)
         }
     }
     
@@ -238,13 +239,13 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatRooms.count
+        return realmChatRoom?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = chatListTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! ChatListTableViewCell
-        cell.chatroom = chatRooms[indexPath.row]
+        cell.chatroom = realmChatRoom?[indexPath.row]
         
         return cell
         
@@ -255,7 +256,7 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
         let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController
         
         chatRoomViewController.user = user
-        chatRoomViewController.chatRoom = chatRooms[indexPath.row]
+        chatRoomViewController.chatRoom = realmChatRoom?[indexPath.row]
         
         navigationController?.pushViewController(chatRoomViewController, animated: true)
         
