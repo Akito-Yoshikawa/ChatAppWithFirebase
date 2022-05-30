@@ -26,7 +26,7 @@ class ChatRoomAccessor: AccessorBase, AccessorProtcol {
     }
     
     func getAll() -> Results<ChatRoom>? {
-        return super.realm.objects(ChatRoom.self).sorted(byKeyPath: "createdAt", ascending: false)
+        return super.realm.objects(ChatRoom.self).sorted(byKeyPath: "documentId")
     }
     
     /// 全object削除

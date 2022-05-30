@@ -15,7 +15,7 @@ class ChatListViewController: UIViewController {
     private let cellId = "cellId"
     private var chatRoomListener: ListenerRegistration?
     
-    private var realmChatRoom: Results<ChatRoom>?
+    private var realmChatRoom = [ChatRoom]()
     
     private var user: User? {
         didSet {
@@ -37,8 +37,21 @@ class ChatListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.realmChatRoom = ChatRoomAccessor.shardInstance.getAll()
+        sortChatRoomList()
         fetchLoginUserInfo()
+    }
+    
+    ///  chatRoomListのソートを行う
+    public func sortChatRoomList() {
+        let realmChatRoom = ChatRoomAccessor.shardInstance.getAll()
+
+        if let localRealmChatRoom = realmChatRoom {
+            self.realmChatRoom = localRealmChatRoom.sorted { m1, m2 in
+                let m1Date = m1.chatListdateReturn()
+                let m2Date = m2.chatListdateReturn()
+                return m1Date > m2Date
+            }
+        }
     }
     
     public func fetchChatroomsInfoFromFirestore() {
@@ -144,7 +157,7 @@ class ChatListViewController: UIViewController {
                             return
                         }
                         
-                        self.realmChatRoom = ChatRoomAccessor.shardInstance.getAll()
+                        self.sortChatRoomList()
 
                         self.chatListTableView.reloadData()
                     }
@@ -239,13 +252,13 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return realmChatRoom?.count ?? 0
+        return realmChatRoom.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = chatListTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! ChatListTableViewCell
-        cell.chatroom = realmChatRoom?[indexPath.row]
+        cell.chatroom = realmChatRoom[indexPath.row]
         
         return cell
         
@@ -256,7 +269,7 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
         let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController
         
         chatRoomViewController.user = user
-        chatRoomViewController.chatRoom = realmChatRoom?[indexPath.row]
+        chatRoomViewController.chatRoom = realmChatRoom[indexPath.row]
         
         navigationController?.pushViewController(chatRoomViewController, animated: true)
         
