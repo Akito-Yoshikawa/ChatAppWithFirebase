@@ -23,6 +23,8 @@ class Message: Object {
         self.name = dic["name"] as? String ?? ""
         self.message = dic["message"] as? String ?? ""
         self.uid = dic["uid"] as? String ?? ""
-        self.createdAt = dic["createdAt"] as? Date ?? Date()
+        
+        let timestamp = dic["createdAt"] as? Timestamp ?? Timestamp()
+        self.createdAt = timestamp.dateValue()
     }
 }
