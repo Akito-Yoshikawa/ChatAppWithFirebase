@@ -48,22 +48,8 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="wVu-jd-Cww" secondAttribute="bottom" id="n5t-c1-Hli"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Cjr-Gx-y1G">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="5Wb-Wu-0tb">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Hnl-ua-PvS">
-                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="tintColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="会話を開始">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Cjr-Gx-y1G"/>
                     <connections>
-                        <outlet property="startChatButton" destination="Hnl-ua-PvS" id="2fo-nS-5KK"/>
                         <outlet property="userListTableView" destination="wVu-jd-Cww" id="2YF-o6-aZI"/>
                     </connections>
                 </viewController>
@@ -76,9 +62,6 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
