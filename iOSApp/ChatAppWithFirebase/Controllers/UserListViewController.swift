@@ -15,16 +15,16 @@ class UserListViewController: UIViewController {
 
     private let cellId = "UserListTableViewCell"
     private var selectedUser: User?
-    private var ralmUsers: Results<User>?
-    
+//    private var ralmUsers: Results<User>?
+    private var users = [User]()
+
     // DBから取得したChatRoom
-    private var realmChatRoom: Results<ChatRoom>?
+    public var chatRooms = [ChatRoom]()
+//    private var realmChatRoom: Results<ChatRoom>?
 
     private var usersListener: ListenerRegistration?
     
     @IBOutlet weak var userListTableView: UITableView!
-    
-    @IBOutlet weak var startChatButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +36,7 @@ class UserListViewController: UIViewController {
         
         
         userListTableView.register(UINib(nibName: "UserListTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
-        startChatButton.layer.cornerRadius = 15
-        startChatButton.isEnabled = false
-        startChatButton.addTarget(self, action: #selector(tappedStartButton), for: .touchUpInside)
-                
+
         navigationController?.changeNavigationBarBackGroundColor()
     }
     
@@ -49,8 +46,18 @@ class UserListViewController: UIViewController {
         reloadUserList()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        usersListener?.remove()
+    }
+    
     func reloadUserList() {
-        realmChatRoom = ChatRoomAccessor.shardInstance.getAll()
+        
+//        self.realmChatRoom = Array(ChatRoomAccessor.shardInstance.getAll()!)
+//        print(self.realmChatRoom)
+
+//        self.realmChatRoom = nil
+
         fetchUserInfoFromFireStore()
     }
     
@@ -69,7 +76,7 @@ class UserListViewController: UIViewController {
         let docData = [
             "members": members,
             "latestMessageId": "",
-            "createdAt": Date()
+            "createdAt": Timestamp()
         ] as [String: Any]
         
         Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
@@ -90,9 +97,7 @@ class UserListViewController: UIViewController {
         guard let currentUid = Auth.auth().currentUser?.uid else {
             return
         }
-        
-        var sqlConditionsString = [currentUid]
-        
+                
         usersListener = Firestore.firestore().collection("users").addSnapshotListener { (snapshot, err)  in
             
             if let err = err {
@@ -114,24 +119,19 @@ class UserListViewController: UIViewController {
                 if uid == snapshot.documentID {
                     return
                 }
-                                
-                if !UserAccessor.shardInstance.set(data: user, updatePolicy: .error) {
-                    print("Realmに保存に失敗しました。")
-                    return
-                }
 
                 // 既にチャットを開始している人は表示しない制御
                 // chatRoomsを受け取って、uidを比較する
-                if let localRealmChatRoom = self.realmChatRoom {
-                    for realmChatRoom in localRealmChatRoom {
-                        if realmChatRoom.searchMembersUser(searchID: snapshot.documentID) {
-                            sqlConditionsString.append(snapshot.documentID)
+
+                for chatRoom in self.chatRooms {
+                    if chatRoom.searchMembersUser(searchID: snapshot.documentID) {
+                        if self.users.count != 0 {
+                            self.users.removeLast()
                         }
                     }
                 }
             })
             
-            self.ralmUsers = UserAccessor.shardInstance.getExceptingAll(uids: sqlConditionsString)
             
             self.userListTableView.reloadData()
         }
@@ -141,24 +141,34 @@ class UserListViewController: UIViewController {
 
 extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ralmUsers?.count ?? 0
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userListTableView.dequeueReusableCell(withIdentifier: "UserListTableViewCell", for: indexPath) as! UserListTableViewCell
 
-        cell.user = ralmUsers?[indexPath.row]
-        
+        cell.user = users[indexPath.row]
+
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        startChatButton.isEnabled = true
+        let user = users[indexPath.row]
 
-        let user = ralmUsers?[indexPath.row]
-        self.selectedUser = user
-
+        let storyboard = UIStoryboard.init(name: "UserDetail", bundle: nil)
+        let userDetailViewController = storyboard.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+        userDetailViewController.partherUser = user
+        userDetailViewController.delegate = self
+        
+        self.present(userDetailViewController, animated: true, completion: nil)
     }
 }
 
+extension UserListViewController: ChatStartDelegate {
+    
+    func chatStart() {
+        
+        reloadUserList()
+    }
+}

@@ -7,26 +7,20 @@
 
 import Foundation
 import Firebase
-import RealmSwift
 
-class User: Object {
+class User {
     
-    @objc dynamic var email = ""
-    @objc dynamic var username = ""
-    @objc dynamic var createdAt = Date()
-    @objc dynamic var profileImageUrl = ""
+    let email: String
+    let username: String
+    let createdAt: Timestamp
+    let profileImageUrl: String
+
+    var uid: String?
     
-    @objc dynamic var uid = ""
-    
-    override static func primaryKey() -> String? {
-        return "uid"
-    }
-    
-    convenience init(dic: [String: Any]) {
-        self.init()
+    init(dic: [String: Any]) {
         self.email = dic["email"] as? String ?? ""
         self.username = dic["username"] as? String ?? ""
-        self.createdAt = dic["createdAt"] as? Date ?? Date()
+        self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
     }
 }

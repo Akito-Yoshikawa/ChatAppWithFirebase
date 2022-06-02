@@ -56,7 +56,7 @@ class ChatRoomTableViewCell: UITableViewCell {
                 let width = estimateFrameForTextView(text: message.message).width + 20
                 myMessageTextViewWidthConstraint.constant = width
                 
-                myDateLabel.text = dateFormatterForDateLabel(date: message.createdAt)
+                myDateLabel.text = dateFormatterForDateLabel(date: message.createdAt.dateValue())
             }
 
             
@@ -74,7 +74,7 @@ class ChatRoomTableViewCell: UITableViewCell {
                 messageTextViewWidthConstraint.constant = width
                 
                 partnarMessageTextView.text = message.message
-                partnarDateLabel.text = dateFormatterForDateLabel(date: message.createdAt)
+                partnarDateLabel.text = dateFormatterForDateLabel(date: message.createdAt.dateValue())
             }
 
         }

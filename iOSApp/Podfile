@@ -15,8 +15,6 @@ target 'ChatAppWithFirebase' do
   pod "Nuke"
   pod "PKHUD"
 
-  pod 'RealmSwift'
-  
   target 'ChatAppWithFirebaseTests' do
     inherit! :search_paths
     # Pods for testing

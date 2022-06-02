@@ -38,12 +38,10 @@
 		3652B488283DA126004BFAF4 /* TabBarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */; };
 		36541B11283DE5F40047D0E5 /* AccountSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */; };
 		36541B13283DE6350047D0E5 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */; };
-		3655124C2840F3F100C7BCAF /* AccessorProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655124B2840F3F100C7BCAF /* AccessorProtcol.swift */; };
-		3655124E2840F54800C7BCAF /* AccessorBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655124D2840F54800C7BCAF /* AccessorBase.swift */; };
-		3659751F2841BF9B000A3AD6 /* UserAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659751E2841BF9B000A3AD6 /* UserAccessor.swift */; };
-		365975212841C294000A3AD6 /* ChatRoomAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365975202841C294000A3AD6 /* ChatRoomAccessor.swift */; };
 		365CF74C283F3A5A002F0E12 /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */; };
 		365CF74E283F3AC1002F0E12 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */; };
+		365D102028448427008E9285 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365D101F28448427008E9285 /* UserDetail.storyboard */; };
+		365D10222845997C008E9285 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D10212845997C008E9285 /* UserDetailViewController.swift */; };
 		36655206282BFBFE005105CF /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36655205282BFBFD005105CF /* ChatRoom.swift */; };
 		36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */; };
 		36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */; };
@@ -105,12 +103,10 @@
 		3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarViewController.storyboard; sourceTree = "<group>"; };
 		36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountSetting.storyboard; sourceTree = "<group>"; };
 		36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
-		3655124B2840F3F100C7BCAF /* AccessorProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessorProtcol.swift; sourceTree = "<group>"; };
-		3655124D2840F54800C7BCAF /* AccessorBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessorBase.swift; sourceTree = "<group>"; };
-		3659751E2841BF9B000A3AD6 /* UserAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccessor.swift; sourceTree = "<group>"; };
-		365975202841C294000A3AD6 /* ChatRoomAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomAccessor.swift; sourceTree = "<group>"; };
 		365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserListTableViewCell.xib; sourceTree = "<group>"; };
 		365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
+		365D101F28448427008E9285 /* UserDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
+		365D10212845997C008E9285 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		36655205282BFBFD005105CF /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
 		36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Extension.swift"; sourceTree = "<group>"; };
@@ -160,6 +156,7 @@
 				362D8E2E2829E17B00EAC347 /* UserListViewController.swift */,
 				3652590B2830EA2300D42D13 /* LoginViewController.swift */,
 				36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */,
+				365D10212845997C008E9285 /* UserDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -174,6 +171,7 @@
 				362D8E2C2829DFFF00EAC347 /* UserList.storyboard */,
 				3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */,
 				36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */,
+				365D101F28448427008E9285 /* UserDetail.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -245,7 +243,6 @@
 		36397B732816A4410083F5AE /* ChatAppWithFirebase */ = {
 			isa = PBXGroup;
 			children = (
-				3659751D2841BF7D000A3AD6 /* RealmAccessor */,
 				361E5D602827FF3C00BF36D1 /* Models */,
 				361A61D228197F2800C464C2 /* Extensions */,
 				361A61D128197F0900C464C2 /* Views */,
@@ -277,17 +274,6 @@
 				36397B972816A4480083F5AE /* ChatAppWithFirebaseUITestsLaunchTests.swift */,
 			);
 			path = ChatAppWithFirebaseUITests;
-			sourceTree = "<group>";
-		};
-		3659751D2841BF7D000A3AD6 /* RealmAccessor */ = {
-			isa = PBXGroup;
-			children = (
-				3655124B2840F3F100C7BCAF /* AccessorProtcol.swift */,
-				3655124D2840F54800C7BCAF /* AccessorBase.swift */,
-				3659751E2841BF9B000A3AD6 /* UserAccessor.swift */,
-				365975202841C294000A3AD6 /* ChatRoomAccessor.swift */,
-			);
-			path = RealmAccessor;
 			sourceTree = "<group>";
 		};
 		C3A8197E9C5D409A9D2187C7 /* Frameworks */ = {
@@ -424,6 +410,7 @@
 			files = (
 				362D8E2D2829DFFF00EAC347 /* UserList.storyboard in Resources */,
 				36397B812816A4480083F5AE /* LaunchScreen.storyboard in Resources */,
+				365D102028448427008E9285 /* UserDetail.storyboard in Resources */,
 				36397B7E2816A4480083F5AE /* Assets.xcassets in Resources */,
 				36541B11283DE5F40047D0E5 /* AccountSetting.storyboard in Resources */,
 				36397BA52816A78D0083F5AE /* ChatList.storyboard in Resources */,
@@ -564,6 +551,7 @@
 			files = (
 				3652B486283D9EBD004BFAF4 /* UINavigationController-Extension.swift in Sources */,
 				365CF74E283F3AC1002F0E12 /* UserListTableViewCell.swift in Sources */,
+				365D10222845997C008E9285 /* UserDetailViewController.swift in Sources */,
 				36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */,
 				3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */,
 				364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */,
@@ -574,16 +562,12 @@
 				361A61C72818275F00C464C2 /* UIColor-Extension.swift in Sources */,
 				36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */,
 				36655206282BFBFE005105CF /* ChatRoom.swift in Sources */,
-				3655124E2840F54800C7BCAF /* AccessorBase.swift in Sources */,
 				36541B13283DE6350047D0E5 /* AccountSettingViewController.swift in Sources */,
 				362D8E2F2829E17B00EAC347 /* UserListViewController.swift in Sources */,
 				361E5D622827FF5E00BF36D1 /* User.swift in Sources */,
 				364169F7282D492F00ABF06C /* Message.swift in Sources */,
 				361A61CB28183C2600C464C2 /* ChatRoomViewController.swift in Sources */,
 				36397BA72816A8230083F5AE /* ChatListViewController.swift in Sources */,
-				365975212841C294000A3AD6 /* ChatRoomAccessor.swift in Sources */,
-				3659751F2841BF9B000A3AD6 /* UserAccessor.swift in Sources */,
-				3655124C2840F3F100C7BCAF /* AccessorProtcol.swift in Sources */,
 				36397B772816A4410083F5AE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
