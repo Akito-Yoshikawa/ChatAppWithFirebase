@@ -7,8 +7,9 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
-class ChatRoom {
+struct ChatRoom {
     
     let latestMessageId: String
     let members: [String]
@@ -22,6 +23,10 @@ class ChatRoom {
         self.latestMessageId = dic["latestMessageId"] as? String ?? ""
         self.members = dic["members"] as? [String] ?? [String]()
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
+    }
+    
+    static func targetCollectionRef() -> CollectionReference {
+        return Firestore.firestore().collection("chatRooms")
     }
 }
 

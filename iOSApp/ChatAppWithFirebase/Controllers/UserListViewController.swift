@@ -8,20 +8,18 @@
 import UIKit
 import Firebase
 import Nuke
-import RealmSwift
 import PKHUD
 
 class UserListViewController: UIViewController {
 
     private let cellId = "UserListTableViewCell"
     private var selectedUser: User?
-//    private var ralmUsers: Results<User>?
     private var users = [User]()
 
-    // DBから取得したChatRoom
-    public var chatRooms = [ChatRoom]()
-//    private var realmChatRoom: Results<ChatRoom>?
-
+    private var userAccessor = UserAccessor()
+    
+    private var chatRoomAccessor = ChatRoomAccessor()
+    
     private var usersListener: ListenerRegistration?
     
     @IBOutlet weak var userListTableView: UITableView!
@@ -38,12 +36,13 @@ class UserListViewController: UIViewController {
         userListTableView.register(UINib(nibName: "UserListTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
 
         navigationController?.changeNavigationBarBackGroundColor()
+        
+        reloadUserList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        reloadUserList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,81 +60,65 @@ class UserListViewController: UIViewController {
         fetchUserInfoFromFireStore()
     }
     
-    @objc private func tappedStartButton() {
+    private func fetchUserInfoFromFireStore() {
         
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
         
-        guard let partherUid = self.selectedUser?.uid else {
-            return
-        }
-        
-        let members = [uid, partherUid]
-        
-        let docData = [
-            "members": members,
-            "latestMessageId": "",
-            "createdAt": Timestamp()
-        ] as [String: Any]
-        
-        Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
-            if let err = err {
-                print("ChatRoom情報の取得に失敗しました。\(err)")
-                return
-            }
-            
-            self.reloadUserList()
-            
-            self.selectedUser = nil
-            print("ChatRoom情報の保存に成功しました。")
-        }
-    }
-    
-    
-    private func fetchUserInfoFromFireStore() {
-        guard let currentUid = Auth.auth().currentUser?.uid else {
-            return
-        }
+        users = []
                 
-        usersListener = Firestore.firestore().collection("users").addSnapshotListener { (snapshot, err)  in
+        userAccessor.getUserAddSnapshotListener() { [weak self] (result) in
+            guard let self = self else { return }
             
-            if let err = err {
-                print("user情報の取得に失敗しました。\(err)")
-                return
-            }
+            switch result {
+            case .success(let documentChanges):
+                
+                documentChanges?.forEach({ (documentChange) in
+                    let dic = documentChange.document.data()
+                    var user = User(dic: dic)
+                    
+                    user.uid = documentChange.document.documentID
+                    
+                    // 同じユーザーだった場合
+                    if uid == documentChange.document.documentID {
+                        return
+                    }
+                    
+                    self.users.append(user)
+                })
             
-            snapshot?.documents.forEach({ (snapshot) in
-                let dic = snapshot.data()
-                let user = User(dic: dic)
-                
-                user.uid = snapshot.documentID
-                
-                guard let uid = Auth.auth().currentUser?.uid else {
-                    return
-                }
-
-                // 同じユーザーだった場合
-                if uid == snapshot.documentID {
-                    return
-                }
-
                 // 既にチャットを開始している人は表示しない制御
                 // chatRoomsを受け取って、uidを比較する
+                self.chatRoomAccessor.getChatRoomsAddSnapshotListener() { [weak self] (result) in
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let chatRoomdDcumentChanges):
+                        chatRoomdDcumentChanges?.forEach({ (chatRoomdDcumentDocumentChange) in
+                            let dic = chatRoomdDcumentDocumentChange.document.data()
+                            let chatRoom = ChatRoom.init(dic: dic)
+                            
+                            if chatRoom.searchMembersUser(searchID: uid) {
+                                
+                                for (index, user) in self.users.enumerated() {
 
-                for chatRoom in self.chatRooms {
-                    if chatRoom.searchMembersUser(searchID: snapshot.documentID) {
-                        if self.users.count != 0 {
-                            self.users.removeLast()
-                        }
+                                    if user.searchMembersUser(members: chatRoom.members) {
+                                        self.users.remove(at: index)
+                                    }
+                                }
+                                
+                            }
+                        })
+                        
+                        self.userListTableView.reloadData()
+                    case .failure(_): break
                     }
                 }
-            })
-            
-            
-            self.userListTableView.reloadData()
+            case .failure(_):
+                self.showSingleBtnAlert(title: "ユーザー情報の取得に失敗しました。")
+            }
         }
-        
     }
 }
 
@@ -159,16 +142,7 @@ extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
         let storyboard = UIStoryboard.init(name: "UserDetail", bundle: nil)
         let userDetailViewController = storyboard.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
         userDetailViewController.partherUser = user
-        userDetailViewController.delegate = self
         
         self.present(userDetailViewController, animated: true, completion: nil)
-    }
-}
-
-extension UserListViewController: ChatStartDelegate {
-    
-    func chatStart() {
-        
-        reloadUserList()
     }
 }

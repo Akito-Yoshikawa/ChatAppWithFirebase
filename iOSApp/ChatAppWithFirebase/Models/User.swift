@@ -7,8 +7,9 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
-class User {
+struct User {
     
     let email: String
     let username: String
@@ -23,5 +24,28 @@ class User {
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
     }
+    
+    static func targetCollectionRef() -> CollectionReference {
+        return Firestore.firestore().collection("users")
+    }
+    
+    static func identificationTargetCollectionRef(_ memberUid: String) -> DocumentReference {
+        return Firestore.firestore().collection("users").document(memberUid)
+    }
 }
 
+extension User {
+    
+    ///  membersから受け取ったIDが存在するかチェックする
+    /// - Parameter searchID: 検索するID
+    /// - Returns: true: 存在する false:存在しない
+    public func searchMembersUser(members: [String]) -> Bool {
+        for membersId in members {
+            if self.uid == membersId {
+                return true
+            }
+        }
+        
+        return false
+    }
+}

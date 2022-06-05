@@ -7,9 +7,9 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
-class Message {
-    
+struct Message {
     let name: String
     let message: String
     let uid: String
@@ -24,4 +24,8 @@ class Message {
         
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
     }
+    
+    static func targetCollectionRef(_ chatRoomId: String, _ latestMessageId: String) -> DocumentReference {
+        return Firestore.firestore().collection("chatRooms").document(chatRoomId).collection("messages").document(latestMessageId)
+    }    
 }

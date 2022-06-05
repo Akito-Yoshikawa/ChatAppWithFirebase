@@ -670,6 +670,8 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseFirestoreSwift (9.1.0):
+    - FirebaseFirestore (~> 9.0)
   - FirebaseInstallations (9.1.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -800,6 +802,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
+  - FirebaseFirestoreSwift
   - Nuke
   - PKHUD
 
@@ -817,6 +820,7 @@ SPEC REPOS:
     - FirebaseCoreExtension
     - FirebaseCoreInternal
     - FirebaseFirestore
+    - FirebaseFirestoreSwift
     - FirebaseInstallations
     - FirebaseStorage
     - FirebaseStorageInternal
@@ -846,6 +850,7 @@ SPEC CHECKSUMS:
   FirebaseCoreExtension: c2efdc29b8ffeaa0be3e1bd1fc59758de9b3fe6d
   FirebaseCoreInternal: f3c838ae0b41cd840bbf34f90debfede78d352e5
   FirebaseFirestore: 20b1df7d65058b038745ecebb60f741a10e40a6f
+  FirebaseFirestoreSwift: 5d57539cec470bf3c9a752db009ff7e9d1a77d09
   FirebaseInstallations: a91c74276b544524ce144c8315d8cdbce2dbe30b
   FirebaseStorage: 1706d112a8a9d39f3b5465d00a0cb75725f16f63
   FirebaseStorageInternal: d0e5482946dd483dbb2f6a76ef5750b9b5907049
@@ -862,6 +867,6 @@ SPEC CHECKSUMS:
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
 
-PODFILE CHECKSUM: d4d8c9048b5cb0d45631d0883796e60ed19e7157
+PODFILE CHECKSUM: 123c1a5cfafd084c56d05205ade946022cda2526
 
 COCOAPODS: 1.11.3

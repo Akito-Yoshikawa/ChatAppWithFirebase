@@ -14,8 +14,13 @@ class ChatListViewController: UIViewController {
     private let cellId = "cellId"
     private var chatRoomListener: ListenerRegistration?
     
+    private var chatRoomsAccessor = ChatRoomAccessor()
     private var chatRooms = [ChatRoom]()
 
+    private var userAccessor = UserAccessor()
+    
+    private var messageAccessor = MessageAccessor()
+    
     private var user: User? {
         didSet {
             navigationItem.title = user?.username
@@ -23,52 +28,44 @@ class ChatListViewController: UIViewController {
     }
         
     @IBOutlet weak var chatListTableView: UITableView!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          
         setupViews()
         confirmLoggedInUser()
+        
+        fetchChatroomsInfoFromFirestore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchChatroomsInfoFromFirestore()
-        
         fetchLoginUserInfo()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        chatRoomListener?.remove()
-    }
-    
+            
     public func fetchChatroomsInfoFromFirestore() {
-        chatRoomListener?.remove()
-
-        chatListTableView.reloadData()
         
-        chatRoomListener = Firestore.firestore().collection("chatRooms").addSnapshotListener({ (snapshots, err) in
-            if let err = err {
-                print("ChatRooms情報の取得に失敗しました。\(err)")
+        chatRoomsAccessor.getChatRoomsAddSnapshotListener() { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let result):
+                if let collection = result {
+                    collection.forEach({ (documentChange) in
+                        self.handleAddedDocumentChange(documentChange: documentChange)
+                    })
+                }
+            case .failure(_):
                 self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
-                return
             }
-            
-            snapshots?.documentChanges.forEach({ (documentChange) in
-                self.handleAddedDocumentChange(documentChange: documentChange)
-            })
-            
-        })
-        
+        }
     }
     
     private func handleAddedDocumentChange(documentChange: DocumentChange) {
         
         let dic = documentChange.document.data()
-        let chatRoom = ChatRoom.init(dic: dic)
+        var chatRoom = ChatRoom.init(dic: dic)
         chatRoom.documentId = documentChange.document.documentID
                 
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -83,69 +80,80 @@ class ChatListViewController: UIViewController {
 
         chatRoom.members.forEach { (memberUid) in
             if memberUid != uid {
-                Firestore.firestore().collection("users").document(memberUid).getDocument { (userSnapshot, err) in
-                    if let err = err {
-                        print("ユーザーの情報に取得に失敗しました。\(err)")
-                        self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
-                        return
-                    }
+                
+                // ユーザー情報の取得
+                userAccessor.getApecificUser(memberUid: memberUid) {
+                    [weak self] (result) in
+                    guard let self = self else { return }
                     
-                    guard let dic = userSnapshot?.data(),
-                          let userDocumentID = userSnapshot?.documentID else {
-                        return
-                    }
-                    
-                    let user = User(dic: dic)
-                    user.uid = userDocumentID
-                    
-                    chatRoom.partnerUser = user
-                    
-                    guard let chatroomId = chatRoom.documentId else {
-                        return
-                    }
-                    let latestMessageId = chatRoom.latestMessageId
-                    
-                    if latestMessageId.isEmpty {
-                        self.chatRooms.append(chatRoom)
-
-                        self.chatListTableView.reloadData()
-                        return
-                    }
-                    
-                    Firestore.firestore().collection("chatRooms").document(chatroomId).collection("messages").document(latestMessageId).getDocument { (messageSnapshot, err)  in
-                        if let err = err {
-                            print("最新情報の取得に失敗しました。\(err)")
-                            self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
+                    switch result {
+                    case .success(let result):
+                        guard let dic = result?.data(),
+                              let userDocumentID = result?.documentID else {
+                                  return
+                              }
+                        
+                        var user = User(dic: dic)
+                        user.uid = userDocumentID
+                        
+                        chatRoom.partnerUser = user
+                        
+                        guard let chatroomId = chatRoom.documentId else {
                             return
                         }
+                        let latestMessageId = chatRoom.latestMessageId
                         
-                        guard let dic = messageSnapshot?.data() else {
-                            return
-                        }
-                        let message = Message(dic: dic)
-                        chatRoom.latestMessage = message
-                        
-                        switch documentChange.type {
-                        case .modified:
-                            // チャットルームが変更されたら、変更された前のチャットルームを削除する
-                            for (index, chatRoom) in self.chatRooms.enumerated() {
-                                if chatRoom.searchMembersUser(searchID: userDocumentID) {
-                                    self.chatRooms.remove(at: index)
+                        if latestMessageId.isEmpty {
+                            for localChatRoom in self.chatRooms {
+                                if localChatRoom.documentId == chatRoom.documentId {
+                                    return
                                 }
                             }
-                        default: break
+                            
+                            self.chatRooms.append(chatRoom)
+                            
+                            self.chatRoomsSort()
+                            
+                            self.chatListTableView.reloadData()
+                            return
                         }
                         
-                        self.chatRooms.append(chatRoom)
-                        
-                        // 最新順に上から並び替える
-                        self.chatRooms.sort { (m1, m2) -> Bool in
-                            let m1Date = m1.chatListdateReturn()
-                            let m2Date = m2.chatListdateReturn()
-                            return m1Date > m2Date
+                        // チャットルーム情報の取得
+                        self.messageAccessor.getMessage(chatRoomId: chatroomId, latestMessageId: latestMessageId) {
+                            [weak self] (result) in
+                            guard let self = self else { return }
+
+                            switch result {
+                            case .success(let result):
+                                guard let dic = result?.data() else {
+                                    return
+                                }
+                                let message = Message(dic: dic)
+                                chatRoom.latestMessage = message
+                                
+                                switch documentChange.type {
+                                case .modified:
+                                    // チャットルームが変更されたら、変更された前のチャットルームを削除する
+                                    for (index, chatRoom) in self.chatRooms.enumerated() {
+                                        if chatRoom.searchMembersUser(searchID: userDocumentID) {
+                                            self.chatRooms.remove(at: index)
+                                        }
+                                    }
+                                default: break
+                                }
+                                
+                                self.chatRooms.append(chatRoom)
+                                
+                                self.chatRoomsSort()
+                                
+                                self.chatListTableView.reloadData()
+                                
+                            case .failure(_):
+                                self.showSingleBtnAlert(title: "メッセージの取得に失敗しました。")
+                            }
                         }
-                        
-                        self.chatListTableView.reloadData()
+                    case .failure(_):
+                        self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
                     }
                 }
             }
@@ -188,6 +196,8 @@ class ChatListViewController: UIViewController {
 
             chatRoomListener?.remove()
             
+            chatRooms = []
+            
             chatListTableView.reloadData()
 
             pushLoginViewController()
@@ -217,6 +227,16 @@ class ChatListViewController: UIViewController {
             let user = User(dic: dic)
 
             self.user = user
+        }
+    }
+    
+    ///  ローカルchatRoomsのソートを最新の時間で行う
+    private func chatRoomsSort() {
+        // 最新順に上から並び替える
+        self.chatRooms.sort { (m1, m2) -> Bool in
+            let m1Date = m1.chatListdateReturn()
+            let m2Date = m2.chatListdateReturn()
+            return m1Date > m2Date
         }
     }
     

@@ -43,6 +43,9 @@
 		365D102028448427008E9285 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365D101F28448427008E9285 /* UserDetail.storyboard */; };
 		365D10222845997C008E9285 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D10212845997C008E9285 /* UserDetailViewController.swift */; };
 		36655206282BFBFE005105CF /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36655205282BFBFD005105CF /* ChatRoom.swift */; };
+		3692B7EA284C8F2B001097C7 /* ChatRoomAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692B7E9284C8F2B001097C7 /* ChatRoomAccessor.swift */; };
+		3692B7EC284CA01F001097C7 /* UserAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692B7EB284CA01F001097C7 /* UserAccessor.swift */; };
+		3692B7EE284CA902001097C7 /* MessageAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692B7ED284CA902001097C7 /* MessageAccessor.swift */; };
 		36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */; };
 		36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */; };
 		3D2CB2ACC0C2625669833526 /* Pods_ChatAppWithFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A0543DF24ECBDF95D3ECDC /* Pods_ChatAppWithFirebaseTests.framework */; };
@@ -108,6 +111,9 @@
 		365D101F28448427008E9285 /* UserDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
 		365D10212845997C008E9285 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		36655205282BFBFD005105CF /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		3692B7E9284C8F2B001097C7 /* ChatRoomAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomAccessor.swift; sourceTree = "<group>"; };
+		3692B7EB284CA01F001097C7 /* UserAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccessor.swift; sourceTree = "<group>"; };
+		3692B7ED284CA902001097C7 /* MessageAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAccessor.swift; sourceTree = "<group>"; };
 		36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
 		36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Extension.swift"; sourceTree = "<group>"; };
 		4CE25A47AC8F26A620F77C99 /* Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +249,7 @@
 		36397B732816A4410083F5AE /* ChatAppWithFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				365D10232848759E008E9285 /* Firestore */,
 				361E5D602827FF3C00BF36D1 /* Models */,
 				361A61D228197F2800C464C2 /* Extensions */,
 				361A61D128197F0900C464C2 /* Views */,
@@ -274,6 +281,16 @@
 				36397B972816A4480083F5AE /* ChatAppWithFirebaseUITestsLaunchTests.swift */,
 			);
 			path = ChatAppWithFirebaseUITests;
+			sourceTree = "<group>";
+		};
+		365D10232848759E008E9285 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				3692B7E9284C8F2B001097C7 /* ChatRoomAccessor.swift */,
+				3692B7EB284CA01F001097C7 /* UserAccessor.swift */,
+				3692B7ED284CA902001097C7 /* MessageAccessor.swift */,
+			);
+			path = Firestore;
 			sourceTree = "<group>";
 		};
 		C3A8197E9C5D409A9D2187C7 /* Frameworks */ = {
@@ -551,6 +568,7 @@
 			files = (
 				3652B486283D9EBD004BFAF4 /* UINavigationController-Extension.swift in Sources */,
 				365CF74E283F3AC1002F0E12 /* UserListTableViewCell.swift in Sources */,
+				3692B7EE284CA902001097C7 /* MessageAccessor.swift in Sources */,
 				365D10222845997C008E9285 /* UserDetailViewController.swift in Sources */,
 				36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */,
 				3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */,
@@ -569,6 +587,8 @@
 				361A61CB28183C2600C464C2 /* ChatRoomViewController.swift in Sources */,
 				36397BA72816A8230083F5AE /* ChatListViewController.swift in Sources */,
 				36397B772816A4410083F5AE /* SceneDelegate.swift in Sources */,
+				3692B7EA284C8F2B001097C7 /* ChatRoomAccessor.swift in Sources */,
+				3692B7EC284CA01F001097C7 /* UserAccessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

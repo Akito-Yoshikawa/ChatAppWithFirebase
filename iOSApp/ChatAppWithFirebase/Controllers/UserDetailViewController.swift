@@ -9,10 +9,6 @@ import Foundation
 import UIKit
 import Firebase
 
-protocol ChatStartDelegate: AnyObject {
-    func chatStart()
-}
-
 class UserDetailViewController: UIViewController {
     
     public var partherUser: User?
@@ -26,8 +22,6 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var commentLabelContent: UILabel!
     
     @IBOutlet weak var chatStartButton: UIButton!
-    
-    weak var delegate: ChatStartDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +66,6 @@ class UserDetailViewController: UIViewController {
                         
             print("ChatRoom情報の保存に成功しました。")
         
-            /// delegate
-            self.delegate?.chatStart()
-
             self.dismiss(animated: true, completion: nil)
         }
     }
