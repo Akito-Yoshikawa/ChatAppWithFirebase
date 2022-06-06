@@ -13,14 +13,11 @@ import PKHUD
 class UserListViewController: UIViewController {
 
     private let cellId = "UserListTableViewCell"
-    private var selectedUser: User?
     private var users = [User]()
 
     private var userAccessor = UserAccessor()
     
     private var chatRoomAccessor = ChatRoomAccessor()
-    
-    private var usersListener: ListenerRegistration?
     
     @IBOutlet weak var userListTableView: UITableView!
     
@@ -36,27 +33,20 @@ class UserListViewController: UIViewController {
         userListTableView.register(UINib(nibName: "UserListTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
 
         navigationController?.changeNavigationBarBackGroundColor()
-        
-        reloadUserList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+     
+        /// リスナーがnilの場合に取得を行う(ログアウト時削除)
+        if UserAccessor.userListener == nil {
+            reloadUserList()
+        }
+    }
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        usersListener?.remove()
-    }
-    
     func reloadUserList() {
+        users = []
         
-//        self.realmChatRoom = Array(ChatRoomAccessor.shardInstance.getAll()!)
-//        print(self.realmChatRoom)
-
-//        self.realmChatRoom = nil
-
         fetchUserInfoFromFireStore()
     }
     
@@ -66,8 +56,7 @@ class UserListViewController: UIViewController {
             return
         }
         
-        users = []
-                
+        // ユーザー情報取得
         userAccessor.getUserAddSnapshotListener() { [weak self] (result) in
             guard let self = self else { return }
             
@@ -88,15 +77,14 @@ class UserListViewController: UIViewController {
                     self.users.append(user)
                 })
             
-                // 既にチャットを開始している人は表示しない制御
-                // chatRoomsを受け取って、uidを比較する
-                self.chatRoomAccessor.getChatRoomsAddSnapshotListener() { [weak self] (result) in
+                // チャットルーム情報取得、既に会話を始めている人を制御する
+                self.chatRoomAccessor.getChatRoomsAddSnapshotListener(listenerName: .userListViewController) { [weak self] (result) in
                     guard let self = self else { return }
                     
                     switch result {
                     case .success(let chatRoomdDcumentChanges):
-                        chatRoomdDcumentChanges?.forEach({ (chatRoomdDcumentDocumentChange) in
-                            let dic = chatRoomdDcumentDocumentChange.document.data()
+                        chatRoomdDcumentChanges?.forEach({ (chatRoomdDocumentChange) in
+                            let dic = chatRoomdDocumentChange.document.data()
                             let chatRoom = ChatRoom.init(dic: dic)
                             
                             if chatRoom.searchMembersUser(searchID: uid) {

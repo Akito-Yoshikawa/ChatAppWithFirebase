@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 
 class UserAccessor: NSObject {
     
-    var userListener: ListenerRegistration?
+    static var userListener: ListenerRegistration?
     
     func getAllUsers(completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
         
@@ -48,7 +48,7 @@ class UserAccessor: NSObject {
     func getUserAddSnapshotListener(completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
         
         DispatchQueue.global(qos: .userInitiated).async {
-            self.userListener = User.targetCollectionRef().addSnapshotListener { (snapshot, error) in
+            UserAccessor.userListener = User.targetCollectionRef().addSnapshotListener { (snapshot, error) in
                 if let error = error {
                     print("Users情報の取得に失敗しました。\(error)")
                     completion(.failure(error))
@@ -61,4 +61,8 @@ class UserAccessor: NSObject {
     }
     
     
+    static func removeUserListener() {
+        self.userListener?.remove()
+        self.userListener = nil
+    }
 }

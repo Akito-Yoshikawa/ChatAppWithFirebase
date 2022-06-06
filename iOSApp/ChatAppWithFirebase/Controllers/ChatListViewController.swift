@@ -12,7 +12,6 @@ import Nuke
 class ChatListViewController: UIViewController {
         
     private let cellId = "cellId"
-    private var chatRoomListener: ListenerRegistration?
     
     private var chatRoomsAccessor = ChatRoomAccessor()
     private var chatRooms = [ChatRoom]()
@@ -46,7 +45,7 @@ class ChatListViewController: UIViewController {
             
     public func fetchChatroomsInfoFromFirestore() {
         
-        chatRoomsAccessor.getChatRoomsAddSnapshotListener() { [weak self] (result) in
+        chatRoomsAccessor.getChatRoomsAddSnapshotListener(listenerName: .chatListViewController) { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
@@ -153,7 +152,7 @@ class ChatListViewController: UIViewController {
                             }
                         }
                     case .failure(_):
-                        self.showSingleBtnAlert(title: "チャットリスト情報の取得に失敗しました。")
+                        self.showSingleBtnAlert(title: "ユーザー情報の取得に失敗しました。")
                     }
                 }
             }
@@ -194,8 +193,10 @@ class ChatListViewController: UIViewController {
         do {
             try Auth.auth().signOut()
 
-            chatRoomListener?.remove()
+            ChatRoomAccessor.removeAllChatRoomListener()
             
+            UserAccessor.removeUserListener()
+
             chatRooms = []
             
             chatListTableView.reloadData()
