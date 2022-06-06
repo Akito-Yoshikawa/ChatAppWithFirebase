@@ -139,5 +139,7 @@ extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
         userDetailViewController.partherUser = user
         
         self.present(userDetailViewController, animated: true, completion: nil)
+        
+        userListTableView.deselectRow(at: indexPath, animated: true)
     }
 }
