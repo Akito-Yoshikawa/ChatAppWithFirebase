@@ -77,6 +77,13 @@ class UserListViewController: UIViewController {
                     self.users.append(user)
                 })
             
+                // ユーザーを最新順にソートする
+                self.users.sort { (m1, m2) -> Bool in
+                    let m1Date = m1.createdAt.dateValue()
+                    let m2Date = m2.createdAt.dateValue()
+                    return m1Date > m2Date
+                }
+                
                 // チャットルーム情報取得、既に会話を始めている人を制御する
                 self.chatRoomAccessor.getChatRoomsAddSnapshotListener(listenerName: .userListViewController) { [weak self] (result) in
                     guard let self = self else { return }
