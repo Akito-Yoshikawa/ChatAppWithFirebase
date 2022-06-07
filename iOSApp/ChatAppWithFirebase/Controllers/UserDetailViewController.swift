@@ -22,6 +22,8 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var commentLabelContent: UILabel!
     
     @IBOutlet weak var chatStartButton: UIButton!
+        
+    @IBOutlet weak var closeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,8 @@ class UserDetailViewController: UIViewController {
         userImage.layer.cornerRadius = 75
         
         chatStartButton.layer.cornerRadius = 15
+        
+        closeButton.layer.cornerRadius = 15
         
         userLabel.text = partherUser?.username
         userImage?.loadImage(with: partherUser?.profileImageUrl ?? "")
@@ -60,7 +64,7 @@ class UserDetailViewController: UIViewController {
                 
         Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
             if let err = err {
-                print("ChatRoom情報の取得に失敗しました。\(err)")
+                print("ChatRoom情報の保存に失敗しました。\(err)")
                 return
             }
                         
@@ -68,5 +72,9 @@ class UserDetailViewController: UIViewController {
         
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func userDetailClose(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
