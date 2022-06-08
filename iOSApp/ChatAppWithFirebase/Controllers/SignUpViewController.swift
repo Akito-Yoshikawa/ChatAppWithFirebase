@@ -12,6 +12,8 @@ import PKHUD
 class SignUpViewController: UIViewController, UINavigationControllerDelegate {
     
     
+    private let userAccessor = UserAccessor()
+    
     @IBOutlet weak var profileImageButton: UIButton!
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -135,20 +137,19 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 "profileImageUrl": profileImageUrl
             ] as [String: Any]
                         
+            self.userAccessor.setUserData(memberUid: uid, docData: docData) { [weak self]
+                (error) in
 
-            Firestore.firestore().collection("users").document(uid).setData(docData) {
-                (err) in
-                
-                if let err = err {
-                    print("Firestoreへの保存に失敗しました。\(err)" )
+                guard let self = self else { return }
+
+                if let _ = error {
                     self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
                     HUD.hide()
                     return
                 }
-
-                HUD.hide()
-                print("Firestoreへの情報の保存が成功しました。")
                 
+                HUD.hide()
+
                 let nav = self.presentingViewController as! UITabBarController
                 let selectedVC = nav.selectedViewController as! UINavigationController
                 let chatListViewController = selectedVC.viewControllers[selectedVC.viewControllers.count-1] as? ChatListViewController

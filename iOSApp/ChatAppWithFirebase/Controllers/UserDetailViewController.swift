@@ -13,6 +13,8 @@ class UserDetailViewController: UIViewController {
     
     public var partherUser: User?
             
+    private let chatRoomAccessor = ChatRoomAccessor()
+    
     @IBOutlet weak var userDetailStackView: UIStackView!
 
     @IBOutlet weak var userImage: UIImageView!
@@ -62,14 +64,15 @@ class UserDetailViewController: UIViewController {
             "createdAt": Date()
         ] as [String: Any]
                 
-        Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
-            if let err = err {
-                print("ChatRoom情報の保存に失敗しました。\(err)")
+        chatRoomAccessor.setChatRoom(docData: docData) { [weak self] (error) in
+            guard let self = self else { return }
+
+            if let _ = error {
+                print("ChatRoom情報の保存に失敗しました。")
                 return
             }
-                        
             print("ChatRoom情報の保存に成功しました。")
-        
+            
             self.dismiss(animated: true, completion: nil)
         }
     }

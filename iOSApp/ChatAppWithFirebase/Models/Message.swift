@@ -25,6 +25,10 @@ struct Message {
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
     }
     
+    static func allMessagesTargetCollectionRef(_ chatRoomId: String) -> CollectionReference {
+        return Firestore.firestore().collection("chatRooms").document(chatRoomId).collection("messages")
+    }
+    
     static func targetCollectionRef(_ chatRoomId: String, _ latestMessageId: String) -> DocumentReference {
         return Firestore.firestore().collection("chatRooms").document(chatRoomId).collection("messages").document(latestMessageId)
     }    

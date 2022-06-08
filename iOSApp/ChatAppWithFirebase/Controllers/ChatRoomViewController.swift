@@ -15,7 +15,12 @@ class ChatRoomViewController: UIViewController {
     
     private let cellId = "ChatRoomTableViewcellId"
     
+    private var chatRoomAccessor = ChatRoomAccessor()
+    
     private var messages = [Message]()
+    
+    private var messageAccessor = MessageAccessor()
+    
     private let accessoryHeight: CGFloat = 100
     private let tableViewContentInset: UIEdgeInsets = .init(top: 60, left: 0, bottom: 0, right: 0)
     private let tableViewIndicatorInset: UIEdgeInsets = .init(top: 60, left: 0, bottom: 0, right: 0)
@@ -105,42 +110,41 @@ class ChatRoomViewController: UIViewController {
         guard let chatRoomDocId = chatRoom?.documentId else {
             return
         }
-
-        Firestore.firestore().collection("chatRooms").document(chatRoomDocId).collection("messages").addSnapshotListener { (snapshots, err) in
-            if let err = err {
-                print("メッセージ情報の取得に失敗しました。\(err)")
-                self.showSingleBtnAlert(title: "メッセージ情報の取得に失敗しました。")
-                return
-            }
+        
+        messageAccessor.getAllMessageSnapshotListener(chatRoomId: chatRoomDocId) { [weak self] (result) in
+            guard let self = self else { return }
             
-            snapshots?.documentChanges.forEach({ (documentChange) in
-                switch documentChange.type {
-                case .added:
-                    let dic = documentChange.document.data()
-                    
-                    var message = Message(dic: dic)
-                    message.partnerUser = self.chatRoom?.partnerUser
-                    
-                    self.messages.append(message)
-                    
-                    self.messages.sort { (m1, m2) -> Bool in
-                        let m1Date = m1.createdAt.dateValue()
-                        let m2Date = m2.createdAt.dateValue()
-                        return m1Date > m2Date
+            switch result {
+            case .success(let result):
+                result?.forEach({ (documentChange) in
+                    switch documentChange.type {
+                    case .added:
+                        let dic = documentChange.document.data()
+                        
+                        var message = Message(dic: dic)
+                        message.partnerUser = self.chatRoom?.partnerUser
+                        
+                        self.messages.append(message)
+                        
+                        self.messages.sort { (m1, m2) -> Bool in
+                            let m1Date = m1.createdAt.dateValue()
+                            let m2Date = m2.createdAt.dateValue()
+                            return m1Date > m2Date
+                        }
+                        
+                        self.chatRoomTableView.reloadData()
+                        print("message dic: ", dic)
+                        
+                    case .modified, .removed: break
+                        
                     }
-                      
-                    self.chatRoomTableView.reloadData()
-//                    self.chatRoomTableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: true)
-                    
-                    print("message dic: ", dic)
-                    
-                case .modified, .removed: break
-                    
-                    
-                }
-            })
-            
+                })
+                
+            case .failure(_):
+                self.showSingleBtnAlert(title: "メッセージ情報の取得に失敗しました。")
+            }
         }
+            
     }
 }
 
@@ -153,7 +157,7 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
         guard let chatRoomDocId = chatRoom?.documentId else {
             return
         }
-
+        
         guard let name = user?.username else {
             return
         }
@@ -171,42 +175,39 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
             "uid": uid,
             "message": text
         ] as [String: Any]
-
-
-        Firestore.firestore().collection("chatRooms").document(chatRoomDocId).collection("messages").document(messageId).setData(docData) { (err) in
-            if let err = err {
-                print("メッセージ情報の保存に失敗しました。\(err)")
+        
+        // メッセージ情報の保存
+        messageAccessor.setMessage(chatRoomId: chatRoomDocId, messageId: messageId, docData: docData) { (error) in
+            if let _ = error {
                 return
             }
-
+            
             let latestMessageData = [
                 "latestMessageId": messageId
             ]
             
-            Firestore.firestore().collection("chatRooms").document(chatRoomDocId).updateData(latestMessageData) { (err) in
-                
-                if let err = err {
-                    print("最新メッセージの保存に失敗しました。\(err)")
+            // ChatRoom直下のlatestMessageにメッセージIDをセットする
+            self.chatRoomAccessor.setLatestMessage(chatRoomId: chatRoomDocId, latestMessageData: latestMessageData) { (error) in
+                if let _ = error {
                     return
                 }
                 
                 print("メッセージ情報の保存に成功しました。")
-
             }
         }
+    }
+    
+    func randomString(length: Int) -> String {
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
         
-        func randomString(length: Int) -> String {
-            let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            let len = UInt32(letters.length)
-            
-            var randomString = ""
-            for _ in 0 ..< length {
-                let rand = arc4random_uniform(len)
-                var nextChar = letters.character(at: Int(rand))
-                randomString += NSString(characters: &nextChar, length: 1) as String
-            }
-            return randomString
+        var randomString = ""
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
         }
+        return randomString
     }
 }
 

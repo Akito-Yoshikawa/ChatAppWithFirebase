@@ -60,6 +60,20 @@ class UserAccessor: NSObject {
         }
     }
     
+    /// users、DocumentID配下にuserを作成する
+    func setUserData(memberUid: String, docData: [String: Any], completion: @escaping (Error?) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            User.identificationTargetCollectionRef(memberUid).setData(docData) {
+                (error) in
+                if let error = error {
+                    print("UserをFirestoreへの保存に失敗しました。\(error)" )
+                    completion(error)
+                    return
+                }
+                completion(nil)
+            }
+        }
+    }
     
     static func removeUserListener() {
         self.userListener?.remove()

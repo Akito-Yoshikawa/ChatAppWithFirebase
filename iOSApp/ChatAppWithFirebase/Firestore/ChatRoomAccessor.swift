@@ -57,6 +57,37 @@ class ChatRoomAccessor: NSObject {
         }
     }
     
+    func setChatRoom(docData: [String: Any], completion: @escaping (Error?) -> Void) {
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            ChatRoom.targetCollectionRef().addDocument(data: docData) {
+                (error) in
+                if let error = error {
+                    print("ChatRoom情報の保存に失敗しました。\(error)")
+                    completion(error)
+                    return
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    /// ChatRoom直下のlatestMessageにメッセージIDをセットする
+    func setLatestMessage(chatRoomId: String, latestMessageData: [String: Any], completion: @escaping (Error?) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            ChatRoom.identificationTargetCollectionRef(chatRoomDocId: chatRoomId).updateData(latestMessageData) {
+                (error) in
+                if let error = error {
+                    print("最新メッセージの保存に失敗しました。\(error)")
+                    completion(error)
+                    return
+                }
+                completion(nil)
+            }
+        }
+    }
+
+    
     static func removeAllChatRoomListener() {
         self.chatRoomListenerUseChatList?.remove()
         self.chatRoomListenerUseUserList?.remove()

@@ -213,21 +213,26 @@ class ChatListViewController: UIViewController {
             return
         }
         
-        Firestore.firestore().collection("users").document(uid).getDocument { [self] (snapshot, err) in
+        userAccessor.getApecificUser(memberUid: uid) {
+            [weak self] (result) in
+            guard let self = self else { return }
 
-            if let err = err {
-                print("ユーザーの情報に取得に失敗しました。\(err)")
+            switch result {
+            case .success(let snapshot):
+            
+                guard let snapshot = snapshot,
+                let dic = snapshot.data() else {
+                    return
+                }
+
+                let user = User(dic: dic)
+
+                self.user = user
+
+            case .failure(_):
+                print("currentUserの取得に失敗しました。")
                 return
             }
- 
-            guard let snapshot = snapshot,
-            let dic = snapshot.data() else {
-                return
-            }
-
-            let user = User(dic: dic)
-
-            self.user = user
         }
     }
     

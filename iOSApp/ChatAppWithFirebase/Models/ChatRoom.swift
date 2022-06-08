@@ -28,6 +28,10 @@ struct ChatRoom {
     static func targetCollectionRef() -> CollectionReference {
         return Firestore.firestore().collection("chatRooms")
     }
+    
+    static func identificationTargetCollectionRef(chatRoomDocId: String) -> DocumentReference {
+        return Firestore.firestore().collection("chatRooms").document(chatRoomDocId)
+    }
 }
 
 
