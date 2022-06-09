@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
             let nav = self.presentingViewController as! UITabBarController
             let selectedVC = nav.selectedViewController as! UINavigationController
             let chatListViewController = selectedVC.viewControllers[selectedVC.viewControllers.count-1] as? ChatListViewController
-            chatListViewController?.fetchChatroomsInfoFromFirestore()
+            chatListViewController?.reloaChatListViewController()
             
             self.dismiss(animated: true, completion: nil)
         }

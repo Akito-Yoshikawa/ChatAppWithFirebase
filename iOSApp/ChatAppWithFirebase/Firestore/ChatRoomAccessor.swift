@@ -11,18 +11,20 @@ import FirebaseFirestoreSwift
 
 class ChatRoomAccessor: NSObject {
     
+    static let sharedManager = ChatRoomAccessor()
+        
     enum ListenerNames: String {
         case chatListViewController = "chatListViewController"
         case userListViewController = "userListViewController"
     }
     
-    static var chatRoomListenerUseChatList: ListenerRegistration?
-    static var chatRoomListenerUseUserList: ListenerRegistration?
+    var chatRoomListenerUseChatList: ListenerRegistration?
+    var chatRoomListenerUseUserList: ListenerRegistration?
 
-    func getChatRooms(completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
+    func getChatRooms(curentUid: String, completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
 
         DispatchQueue.global(qos: .userInitiated).async {
-            ChatRoom.targetCollectionRef().getDocuments {
+            ChatRoom.targetCollectionRef(currentUid: curentUid).getDocuments {
                 (snapshot, error) in
                 if let error = error {
                     print("ChatRooms情報の取得に失敗しました。\(error)")
@@ -35,10 +37,10 @@ class ChatRoomAccessor: NSObject {
         }
     }
     
-    func getChatRoomsAddSnapshotListener(listenerName: ListenerNames, completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
+    func getChatRoomsAddSnapshotListener(listenerName: ListenerNames, cureentUid: String, completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
         
         DispatchQueue.global(qos: .userInitiated).async {
-            let chatListListener = ChatRoom.targetCollectionRef().addSnapshotListener { (snapshot, error) in
+            let chatListListener = ChatRoom.targetCollectionRef(currentUid: cureentUid).addSnapshotListener { (snapshot, error) in
                 if let error = error {
                     print("ChatRooms情報の取得に失敗しました。\(error)")
                     completion(.failure(error))
@@ -50,9 +52,9 @@ class ChatRoomAccessor: NSObject {
             
             switch listenerName {
             case .chatListViewController:
-                ChatRoomAccessor.chatRoomListenerUseChatList = chatListListener
+                self.chatRoomListenerUseChatList = chatListListener
             case .userListViewController:
-                ChatRoomAccessor.chatRoomListenerUseUserList = chatListListener
+                self.chatRoomListenerUseUserList = chatListListener
             }
         }
     }
@@ -86,9 +88,8 @@ class ChatRoomAccessor: NSObject {
             }
         }
     }
-
     
-    static func removeAllChatRoomListener() {
+    func removeAllChatRoomListener() {
         self.chatRoomListenerUseChatList?.remove()
         self.chatRoomListenerUseUserList?.remove()
         

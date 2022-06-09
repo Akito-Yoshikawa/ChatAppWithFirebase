@@ -13,16 +13,11 @@ class ChatListViewController: UIViewController {
         
     private let cellId = "cellId"
     
-    private var chatRoomsAccessor = ChatRoomAccessor()
     private var chatRooms = [ChatRoom]()
 
-    private var userAccessor = UserAccessor()
-    
-    private var messageAccessor = MessageAccessor()
-    
-    private var user: User? {
+    private var currentUser: User? {
         didSet {
-            navigationItem.title = user?.username
+            navigationItem.title = currentUser?.username
         }
     }
         
@@ -33,19 +28,29 @@ class ChatListViewController: UIViewController {
          
         setupViews()
         confirmLoggedInUser()
-        
-        fetchChatroomsInfoFromFirestore()
+     
+        reloaChatListViewController()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        fetchLoginUserInfo()
+    public func reloaChatListViewController() {
+        UserAccessor.sharedManager.setCurrentUser() { [weak self] (result) in
+            guard let self = self else { return }
+            if !result {
+                print("CurrentUserのSetに失敗しました。")
+            }
+            self.currentUser = UserAccessor.sharedManager.returnCurrentUser()
+            
+            self.fetchChatroomsInfoFromFirestore()
+        }
     }
             
     public func fetchChatroomsInfoFromFirestore() {
+        guard let currentUser = self.currentUser,
+                let currentUserUid = currentUser.uid else {
+                    return
+                }
         
-        chatRoomsAccessor.getChatRoomsAddSnapshotListener(listenerName: .chatListViewController) { [weak self] (result) in
+        ChatRoomAccessor.sharedManager.getChatRoomsAddSnapshotListener(listenerName: .chatListViewController, cureentUid: currentUserUid) { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
@@ -81,7 +86,7 @@ class ChatListViewController: UIViewController {
             if memberUid != uid {
                 
                 // ユーザー情報の取得
-                userAccessor.getApecificUser(memberUid: memberUid) {
+                UserAccessor.sharedManager.getApecificUser(memberUid: memberUid) {
                     [weak self] (result) in
                     guard let self = self else { return }
                     
@@ -118,7 +123,7 @@ class ChatListViewController: UIViewController {
                         }
                         
                         // チャットルーム情報の取得
-                        self.messageAccessor.getMessage(chatRoomId: chatroomId, latestMessageId: latestMessageId) {
+                        MessageAccessor.sharedManager.getMessage(chatRoomId: chatroomId, latestMessageId: latestMessageId) {
                             [weak self] (result) in
                             guard let self = self else { return }
 
@@ -193,9 +198,9 @@ class ChatListViewController: UIViewController {
         do {
             try Auth.auth().signOut()
 
-            ChatRoomAccessor.removeAllChatRoomListener()
+            ChatRoomAccessor.sharedManager.removeAllChatRoomListener()
             
-            UserAccessor.removeUserListener()
+            UserAccessor.sharedManager.removeUserListener()
 
             chatRooms = []
             
@@ -208,34 +213,6 @@ class ChatListViewController: UIViewController {
         
     }
         
-    private func fetchLoginUserInfo() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        userAccessor.getApecificUser(memberUid: uid) {
-            [weak self] (result) in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(let snapshot):
-            
-                guard let snapshot = snapshot,
-                let dic = snapshot.data() else {
-                    return
-                }
-
-                let user = User(dic: dic)
-
-                self.user = user
-
-            case .failure(_):
-                print("currentUserの取得に失敗しました。")
-                return
-            }
-        }
-    }
-    
     ///  ローカルchatRoomsのソートを最新の時間で行う
     private func chatRoomsSort() {
         // 最新順に上から並び替える
@@ -274,7 +251,7 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
         let storyboard = UIStoryboard.init(name: "ChatRoom", bundle: nil)
         let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController
         
-        chatRoomViewController.user = user
+        chatRoomViewController.user = currentUser
         chatRoomViewController.chatRoom = chatRooms[indexPath.row]
 
         navigationController?.pushViewController(chatRoomViewController, animated: true)

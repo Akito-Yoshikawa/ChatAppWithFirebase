@@ -24,9 +24,13 @@ struct ChatRoom {
         self.members = dic["members"] as? [String] ?? [String]()
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
     }
-    
+
     static func targetCollectionRef() -> CollectionReference {
         return Firestore.firestore().collection("chatRooms")
+    }
+    
+    static func targetCollectionRef(currentUid: String) -> Query {
+        return Firestore.firestore().collection("chatRooms").whereField("members", arrayContainsAny: [currentUid])
     }
     
     static func identificationTargetCollectionRef(chatRoomDocId: String) -> DocumentReference {

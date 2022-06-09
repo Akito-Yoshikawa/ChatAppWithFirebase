@@ -14,10 +14,6 @@ class UserListViewController: UIViewController {
 
     private let cellId = "UserListTableViewCell"
     private var users = [User]()
-
-    private var userAccessor = UserAccessor()
-    
-    private var chatRoomAccessor = ChatRoomAccessor()
     
     @IBOutlet weak var userListTableView: UITableView!
     
@@ -39,7 +35,7 @@ class UserListViewController: UIViewController {
         super.viewWillAppear(animated)
      
         /// リスナーがnilの場合に取得を行う(ログアウト時削除)
-        if UserAccessor.userListener == nil {
+        if UserAccessor.sharedManager.userListener == nil {
             reloadUserList()
         }
     }
@@ -52,12 +48,12 @@ class UserListViewController: UIViewController {
     
     private func fetchUserInfoFromFireStore() {
         
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let currentUid = UserAccessor.sharedManager.currentUid else {
             return
         }
         
         // ユーザー情報取得
-        userAccessor.getUserAddSnapshotListener() { [weak self] (result) in
+        UserAccessor.sharedManager.getUserAddSnapshotListener() { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
@@ -70,7 +66,7 @@ class UserListViewController: UIViewController {
                     user.uid = documentChange.document.documentID
                     
                     // 同じユーザーだった場合
-                    if uid == documentChange.document.documentID {
+                    if currentUid == documentChange.document.documentID {
                         return
                     }
                     
@@ -85,7 +81,7 @@ class UserListViewController: UIViewController {
                 }
                 
                 // チャットルーム情報取得、既に会話を始めている人を制御する
-                self.chatRoomAccessor.getChatRoomsAddSnapshotListener(listenerName: .userListViewController) { [weak self] (result) in
+                ChatRoomAccessor.sharedManager.getChatRoomsAddSnapshotListener(listenerName: .userListViewController, cureentUid: currentUid) { [weak self] (result) in
                     guard let self = self else { return }
                     
                     switch result {
@@ -94,15 +90,10 @@ class UserListViewController: UIViewController {
                             let dic = chatRoomdDocumentChange.document.data()
                             let chatRoom = ChatRoom.init(dic: dic)
                             
-                            if chatRoom.searchMembersUser(searchID: uid) {
-                                
-                                for (index, user) in self.users.enumerated() {
-
-                                    if user.searchMembersUser(members: chatRoom.members) {
-                                        self.users.remove(at: index)
-                                    }
+                            for (index, user) in self.users.enumerated() {
+                                if user.searchMembersUser(members: chatRoom.members) {
+                                    self.users.remove(at: index)
                                 }
-                                
                             }
                         })
                         

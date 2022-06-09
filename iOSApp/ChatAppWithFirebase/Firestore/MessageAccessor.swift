@@ -11,6 +11,8 @@ import FirebaseFirestoreSwift
 
 class MessageAccessor: NSObject {
     
+    static let sharedManager = MessageAccessor()
+    
     func getMessage(chatRoomId: String, latestMessageId: String, completion: @escaping (Result<DocumentSnapshot?, Error>) -> Void) {
         
         DispatchQueue.global(qos: .userInitiated).async {

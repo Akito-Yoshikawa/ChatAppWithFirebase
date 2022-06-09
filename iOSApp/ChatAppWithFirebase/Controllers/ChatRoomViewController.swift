@@ -15,11 +15,7 @@ class ChatRoomViewController: UIViewController {
     
     private let cellId = "ChatRoomTableViewcellId"
     
-    private var chatRoomAccessor = ChatRoomAccessor()
-    
     private var messages = [Message]()
-    
-    private var messageAccessor = MessageAccessor()
     
     private let accessoryHeight: CGFloat = 100
     private let tableViewContentInset: UIEdgeInsets = .init(top: 60, left: 0, bottom: 0, right: 0)
@@ -111,7 +107,7 @@ class ChatRoomViewController: UIViewController {
             return
         }
         
-        messageAccessor.getAllMessageSnapshotListener(chatRoomId: chatRoomDocId) { [weak self] (result) in
+        MessageAccessor.sharedManager.getAllMessageSnapshotListener(chatRoomId: chatRoomDocId) { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
@@ -177,7 +173,7 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
         ] as [String: Any]
         
         // メッセージ情報の保存
-        messageAccessor.setMessage(chatRoomId: chatRoomDocId, messageId: messageId, docData: docData) { (error) in
+        MessageAccessor.sharedManager.setMessage(chatRoomId: chatRoomDocId, messageId: messageId, docData: docData) { (error) in
             if let _ = error {
                 return
             }
@@ -187,7 +183,7 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
             ]
             
             // ChatRoom直下のlatestMessageにメッセージIDをセットする
-            self.chatRoomAccessor.setLatestMessage(chatRoomId: chatRoomDocId, latestMessageData: latestMessageData) { (error) in
+            ChatRoomAccessor.sharedManager.setLatestMessage(chatRoomId: chatRoomDocId, latestMessageData: latestMessageData) { (error) in
                 if let _ = error {
                     return
                 }

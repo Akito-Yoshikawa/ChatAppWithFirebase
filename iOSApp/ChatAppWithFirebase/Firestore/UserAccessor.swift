@@ -11,7 +11,55 @@ import FirebaseFirestoreSwift
 
 class UserAccessor: NSObject {
     
-    static var userListener: ListenerRegistration?
+    static let sharedManager = UserAccessor()
+    
+    var userListener: ListenerRegistration?
+    
+    var currentUid = Auth.auth().currentUser?.uid
+    var currentUser: User?
+    
+    func setCurrentUser(completion: @escaping (Bool) -> Void) {
+        self.currentUid = Auth.auth().currentUser?.uid
+        
+        guard let uid = self.currentUid else {
+            completion(false)
+            return
+        }
+        
+        self.getApecificUser(memberUid: uid) {
+            [weak self] (result) in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let snapshot):
+            
+                guard let snapshot = snapshot,
+                let dic = snapshot.data() else {
+                    return
+                }
+
+                var user = User(dic: dic)
+                user.uid = snapshot.documentID
+                
+                self.currentUser = user
+
+                completion(true)
+            case .failure(_):
+                print("currentUserの取得に失敗しました。")
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    func returnCurrentUser() -> User? {
+        guard let currentUser = self.currentUser else {
+            return nil
+        }
+        
+        return currentUser
+    }
+    
     
     func getAllUsers(completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
         
@@ -48,7 +96,7 @@ class UserAccessor: NSObject {
     func getUserAddSnapshotListener(completion: @escaping (Result<[DocumentChange]?, Error>) -> Void) {
         
         DispatchQueue.global(qos: .userInitiated).async {
-            UserAccessor.userListener = User.targetCollectionRef().addSnapshotListener { (snapshot, error) in
+            self.userListener = User.targetCollectionRef().addSnapshotListener { (snapshot, error) in
                 if let error = error {
                     print("Users情報の取得に失敗しました。\(error)")
                     completion(.failure(error))
@@ -75,7 +123,7 @@ class UserAccessor: NSObject {
         }
     }
     
-    static func removeUserListener() {
+    func removeUserListener() {
         self.userListener?.remove()
         self.userListener = nil
     }

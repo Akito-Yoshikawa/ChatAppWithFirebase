@@ -13,8 +13,6 @@ class UserDetailViewController: UIViewController {
     
     public var partherUser: User?
             
-    private let chatRoomAccessor = ChatRoomAccessor()
-    
     @IBOutlet weak var userDetailStackView: UIStackView!
 
     @IBOutlet weak var userImage: UIImageView!
@@ -64,7 +62,7 @@ class UserDetailViewController: UIViewController {
             "createdAt": Date()
         ] as [String: Any]
                 
-        chatRoomAccessor.setChatRoom(docData: docData) { [weak self] (error) in
+        ChatRoomAccessor.sharedManager.setChatRoom(docData: docData) { [weak self] (error) in
             guard let self = self else { return }
 
             if let _ = error {
