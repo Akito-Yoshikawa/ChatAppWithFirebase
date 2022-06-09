@@ -42,6 +42,7 @@ class UserListViewController: UIViewController {
         
     func reloadUserList() {
         users = []
+        self.userListTableView.reloadData()
         
         fetchUserInfoFromFireStore()
     }
