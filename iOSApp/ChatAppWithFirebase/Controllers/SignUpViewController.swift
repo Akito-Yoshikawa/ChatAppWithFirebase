@@ -10,12 +10,7 @@ import Firebase
 import PKHUD
 
 class SignUpViewController: UIViewController, UINavigationControllerDelegate {
-    
-    
-    private let userAccessor = UserAccessor()
-    
-    @IBOutlet weak var profileImageButton: UIButton!
-    
+        
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
@@ -25,21 +20,11 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var registerButton: UIButton!
     
     @IBOutlet weak var alreadyHaveAccountButton: UIButton!
-        
-    @IBAction func tappedProfileTappedBtn(_ sender: Any) {
-        
-        let imagePickerController = UIImagePickerController()
-        
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
-    
     
     @IBAction func tappedRegisterButton(_ sender: Any) {
         
-        let image = profileImageButton.imageView?.image ?? UIImage(named: "freeImage01")
+        // FIXME: デフォルトイメージを登録(仮画像)
+        let image = UIImage(named: "freeImage01")
 
         guard let uploadImage = image?.jpegData(compressionQuality: 0.3) else {
             return
@@ -94,9 +79,6 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     private func setUpViews() {
-        profileImageButton.layer.cornerRadius = 85
-        profileImageButton.layer.borderWidth = 1
-        profileImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
         
         registerButton.layer.cornerRadius = 12
         
@@ -137,7 +119,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 "profileImageUrl": profileImageUrl
             ] as [String: Any]
                         
-            self.userAccessor.setUserData(memberUid: uid, docData: docData) { [weak self]
+            UserAccessor.sharedManager.setUserData(memberUid: uid, docData: docData) { [weak self]
                 (error) in
 
                 guard let self = self else { return }
@@ -149,13 +131,11 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 }
                 
                 HUD.hide()
-
-                let nav = self.presentingViewController as! UITabBarController
-                let selectedVC = nav.selectedViewController as! UINavigationController
-                let chatListViewController = selectedVC.viewControllers[selectedVC.viewControllers.count-1] as? ChatListViewController
-                chatListViewController?.reloaChatListViewController()
                 
-                self.dismiss(animated: true, completion: nil)
+                let storyboar = UIStoryboard(name: "SignUpDetail", bundle: nil)
+                let SignUpDetailVC = storyboar.instantiateViewController(withIdentifier: "SignUpDetailViewController") as! SignUpDetailViewController
+                SignUpDetailVC.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(SignUpDetailVC, animated: true)
             }
         }
     }
@@ -164,26 +144,6 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         self.view.endEditing(true)
     }
 }
-
-extension SignUpViewController: UIImagePickerControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let editImage = info[.editedImage] as? UIImage {
-            profileImageButton.setImage(editImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        } else if let originalImage = info[.originalImage] as? UIImage {
-            profileImageButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        }
-        
-        profileImageButton.setTitle("", for: .normal)
-        profileImageButton.imageView?.contentMode = .scaleAspectFill
-        profileImageButton.contentHorizontalAlignment = .fill
-        profileImageButton.contentVerticalAlignment = .fill
-        profileImageButton.clipsToBounds = true
-        
-        dismiss(animated: true, completion: nil)
-    }
-}
-
 
 extension SignUpViewController: UITextFieldDelegate {
     

@@ -31,6 +31,8 @@
 		36397BA52816A78D0083F5AE /* ChatList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36397BA42816A78D0083F5AE /* ChatList.storyboard */; };
 		36397BA72816A8230083F5AE /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36397BA62816A8230083F5AE /* ChatListViewController.swift */; };
 		364169F7282D492F00ABF06C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364169F6282D492F00ABF06C /* Message.swift */; };
+		3643BE0E28523042004C3E17 /* SignUpDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */; };
+		3643BE102852ABF7004C3E17 /* SignUpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */; };
 		364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */; };
 		3652590A2830E37200D42D13 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365259092830E37200D42D13 /* Login.storyboard */; };
 		3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652590B2830EA2300D42D13 /* LoginViewController.swift */; };
@@ -99,6 +101,8 @@
 		36397BA42816A78D0083F5AE /* ChatList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatList.storyboard; sourceTree = "<group>"; };
 		36397BA62816A8230083F5AE /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		364169F6282D492F00ABF06C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpDetail.storyboard; sourceTree = "<group>"; };
+		3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDetailViewController.swift; sourceTree = "<group>"; };
 		364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		365259092830E37200D42D13 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3652590B2830EA2300D42D13 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				36397BA62816A8230083F5AE /* ChatListViewController.swift */,
 				361A61CA28183C2600C464C2 /* ChatRoomViewController.swift */,
 				361A61DB28240F0900C464C2 /* SignUpViewController.swift */,
+				3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */,
 				362D8E2E2829E17B00EAC347 /* UserListViewController.swift */,
 				3652590B2830EA2300D42D13 /* LoginViewController.swift */,
 				36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */,
@@ -173,6 +178,7 @@
 				36397BA42816A78D0083F5AE /* ChatList.storyboard */,
 				361A61C828183BCB00C464C2 /* ChatRoom.storyboard */,
 				361A61D92822890800C464C2 /* SignUp.storyboard */,
+				3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */,
 				365259092830E37200D42D13 /* Login.storyboard */,
 				362D8E2C2829DFFF00EAC347 /* UserList.storyboard */,
 				3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */,
@@ -437,6 +443,7 @@
 				361A61C928183BCB00C464C2 /* ChatRoom.storyboard in Resources */,
 				361A61DA2822890800C464C2 /* SignUp.storyboard in Resources */,
 				3652590A2830E37200D42D13 /* Login.storyboard in Resources */,
+				3643BE0E28523042004C3E17 /* SignUpDetail.storyboard in Resources */,
 				361A61D828227BDE00C464C2 /* GoogleService-Info.plist in Resources */,
 				365CF74C283F3A5A002F0E12 /* UserListTableViewCell.xib in Resources */,
 			);
@@ -588,6 +595,7 @@
 				36397BA72816A8230083F5AE /* ChatListViewController.swift in Sources */,
 				36397B772816A4410083F5AE /* SceneDelegate.swift in Sources */,
 				3692B7EA284C8F2B001097C7 /* ChatRoomAccessor.swift in Sources */,
+				3643BE102852ABF7004C3E17 /* SignUpDetailViewController.swift in Sources */,
 				3692B7EC284CA01F001097C7 /* UserAccessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
