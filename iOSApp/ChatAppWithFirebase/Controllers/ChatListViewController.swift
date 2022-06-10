@@ -21,6 +21,8 @@ class ChatListViewController: UIViewController {
         }
     }
         
+    @IBOutlet weak var promptMessageLabel: UILabel!
+        
     @IBOutlet weak var chatListTableView: UITableView!
     
     override func viewDidLoad() {
@@ -56,6 +58,16 @@ class ChatListViewController: UIViewController {
             switch result {
             case .success(let result):
                 if let collection = result {
+                    
+                    // 取得したチャットルームの数が0件の場合はメッセージを表示する
+                    if collection.count <= 0 {
+                        self.promptMessageLabel.lineBreakMode = .byWordWrapping
+                        self.promptMessageLabel.isHidden = false
+                        return
+                    } else {
+                        self.promptMessageLabel.isHidden = true
+                    }
+                    
                     collection.forEach({ (documentChange) in
                         self.handleAddedDocumentChange(documentChange: documentChange)
                     })
