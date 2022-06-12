@@ -136,10 +136,10 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 
                 HUD.hide()
                 
-                let storyboar = UIStoryboard(name: "SignUpDetail", bundle: nil)
-                let SignUpDetailVC = storyboar.instantiateViewController(withIdentifier: "SignUpDetailViewController") as! SignUpDetailViewController
-                SignUpDetailVC.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(SignUpDetailVC, animated: true)
+                let storyboard = UIStoryboard(name: "SignUpDetail", bundle: nil)
+                let signUpDetailVC = storyboard.instantiateViewController(withIdentifier: "SignUpDetailViewController") as! SignUpDetailViewController
+                signUpDetailVC.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(signUpDetailVC, animated: true)
             }
         }
     }
