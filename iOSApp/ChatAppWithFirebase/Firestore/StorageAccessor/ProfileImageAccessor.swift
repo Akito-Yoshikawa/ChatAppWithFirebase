@@ -18,9 +18,9 @@ class ProfileImageAccessor: NSObject {
     static let sharedManager = ProfileImageAccessor()
     
     /// profile_image/fileName(指定した名前)の直下に画像データをセットする
-    func profileImagePutData(fileName: String, uploadImage: Data, completion: @escaping (Error?) -> Void) {
+    func profileImagePutData(fileName: String, uploadImage: Data, metadata: StorageMetadata, completion: @escaping (Error?) -> Void) {
         
-        ProfileImage.targetCollectionRef(fileName).putData(uploadImage, metadata: nil) {
+        ProfileImage.targetCollectionRef(fileName).putData(uploadImage, metadata: metadata) {
             (matadata, error) in
                 if let error = error {
                     print("Firestorageへの情報の保存に失敗しました。\(error)")

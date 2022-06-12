@@ -32,9 +32,11 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         
         HUD.show(.progress)
         
-        let fileName = NSUUID().uuidString
+        let fileName = "\(NSUUID().uuidString).jpg"
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
         
-        ProfileImageAccessor.sharedManager.profileImagePutData(fileName: fileName, uploadImage: uploadImage) { [weak self]
+        ProfileImageAccessor.sharedManager.profileImagePutData(fileName: fileName, uploadImage: uploadImage, metadata: metaData) { [weak self]
             (error) in
             guard let self = self else { return }
 
