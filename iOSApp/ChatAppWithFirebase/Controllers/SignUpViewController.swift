@@ -24,19 +24,19 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func tappedRegisterButton(_ sender: Any) {
         
         // FIXME: デフォルトイメージを登録(仮画像)
-        let image = UIImage(named: "freeImage01")
+        let defaultImage = UIImage(named: "freeImage01")
 
-        guard let uploadImage = image?.jpegData(compressionQuality: 0.3) else {
+        guard let uploadImage = defaultImage?.jpegData(compressionQuality: 0.3) else {
             return
         }
         
         HUD.show(.progress)
         
-        let fileName = "\(NSUUID().uuidString).jpg"
+        let defaultFileName = "defautIcon.jpg"
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
-        ProfileImageAccessor.sharedManager.profileImagePutData(fileName: fileName, uploadImage: uploadImage, metadata: metaData) { [weak self]
+        ProfileImageAccessor.sharedManager.profileImagePutData(fileName: defaultFileName, uploadImage: uploadImage, metadata: metaData) { [weak self]
             (error) in
             guard let self = self else { return }
 
@@ -46,7 +46,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 return
             }
                         
-            ProfileImageAccessor.sharedManager.downloadImageReturnURLString(fileName: fileName) { [weak self] (result) in
+            ProfileImageAccessor.sharedManager.downloadImageReturnURLString(fileName: defaultFileName) { [weak self] (result) in
                 guard let self = self else { return }
 
                 switch result {
