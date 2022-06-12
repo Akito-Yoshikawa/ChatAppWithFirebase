@@ -33,32 +33,36 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
         HUD.show(.progress)
         
         let fileName = NSUUID().uuidString
-        let storageRef = Storage.storage().reference().child("profile_image").child(fileName)
+        
+        ProfileImageAccessor.sharedManager.profileImagePutData(fileName: fileName, uploadImage: uploadImage) { [weak self]
+            (error) in
+            guard let self = self else { return }
 
-        storageRef.putData(uploadImage, metadata: nil) { (matadata,err) in
-            if let err = err {
-                print("Firestorageへの情報の保存に失敗しました。\(err)")
+            if let _ = error {
                 self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
                 HUD.hide()
                 return
             }
-            print("Firestorageへの情報の保存に成功しました。")
+                        
+            ProfileImageAccessor.sharedManager.downloadImageReturnURLString(fileName: fileName) { [weak self] (result) in
+                guard let self = self else { return }
 
-            storageRef.downloadURL { (url, err) in
-                if let err = err {
-                    print("Firestorageからのダウンロードに失敗しました。\(err)")
+                switch result {
+                case .success(let urlString):
+                    guard let urlString = urlString else {
+                        self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
+                        HUD.hide()
+                        return
+                    }
+                                        
+                    self.createUserToFirestore(profileImageUrl: urlString)
+
+                case .failure(_):
                     self.showSingleBtnAlert(title: "アカウントの作成に失敗しました。")
                     HUD.hide()
                     return
                 }
-                
-                guard let urlString = url?.absoluteString else {
-                    return
-                }
-                
-                self.createUserToFirestore(profileImageUrl: urlString)
             }
-            
         }
     }
     
