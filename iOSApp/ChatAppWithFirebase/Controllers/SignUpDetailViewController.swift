@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import PKHUD
+import Firebase
 
 class SignUpDetailViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -49,22 +51,120 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
 
     
     @IBAction func tappedRegister(_ sender: Any) {
-        // TODO: 全て設定されていなかったらアラート表示(あとで設定を行いますか？ OK 押したらチャットリスト画面)
+        // 全て設定されていなかったらアラート表示
+        guard let userId = self.userIdTextField.text,
+              let userIntroduction = self.userIntroductionTextField.text else {
+                  return
+              }
+        if self.profileImageButton.imageView?.image == nil && userId.isEmpty && userIntroduction.isEmpty {
+
+            // アカウントの設定はあとで行いますか？はい、いいえを表示。「はい」だったらチャットリスト画面へ、「いいえ」だったら何もしない
+            self.showCommonlableAlert(title: "アカウントの設定はあとで行いますか？", message: "", okActionTitle: "はい", okHandler: {
+                self.goChatListView()
+            }, cancelActionTitle: "いいえ") {}
+            return
+        }
         
-        // 保存してチャットリスト画面に遷移
-        
-        // TODO: userimage画像更新、なければしない
+        // インジケーター表示
+        HUD.show(.progress)
+
+        var docData = [String: Any]()
+
         // TODO: ユーザーID追加、使用可能か確認して、あったら追加
-        // TODO: 自己紹介文あったら追加
+        if !userId.isEmpty {
+            docData["userID"] = userId
+        }
+
+        // 自己紹介文あったら追加
+        if !userIntroduction.isEmpty {
+            docData["selfIntroduction"] = userIntroduction
+        }
         
-        let image = profileImageButton.imageView?.image ?? UIImage(named: "freeImage01")
-                
-        self.goChatListView()
+        // userimage画像更新、なければしない
+        guard let profileImageUrl = profileImageButton.imageView?.image,
+              let uploadImage = profileImageUrl.jpegData(compressionQuality: 0.3) else {
+                  // Userの更新
+                  self.updateUserToFirestore(docData: docData)
+                  return
+              }
+
+        // userimage画像更新
+        // プロフィール画像のアップロード
+        self.uploadProfileImage(uploadImage) { [weak self]
+            (urlString) in
+            
+            guard let urlString = urlString else {
+                self?.showSingleBtnAlert(title: "アカウントの設定に失敗しました。")
+                return
+            }
+            
+            // プロフィール画像URL追加
+            docData["profileImageUrl"] = urlString
+            
+            // Userの更新
+            self?.updateUserToFirestore(docData: docData)
+        }
     }
     
     @IBAction func tappedSkip(_ sender: Any) {
         // 保存しないでチャットリスト画面遷移
         self.goChatListView()
+    }
+        
+    private func uploadProfileImage(_ uploadImage: Data, completion: @escaping (String?) -> Void) {
+        let fileName = "\(NSUUID().uuidString).jpg"
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        ProfileImageAccessor.sharedManager.profileImagePutData(fileName: fileName, uploadImage: uploadImage, metadata: metaData) { (error) in
+
+            if let _ = error {
+                completion(nil)
+                return
+            }
+                        
+            ProfileImageAccessor.sharedManager.downloadImageReturnURLString(fileName: fileName) { (result) in
+
+                switch result {
+                case .success(let urlString):
+                    guard let urlString = urlString else {
+                        completion(nil)
+                        return
+                    }
+                    
+                    completion(urlString)
+                case .failure(_):
+                    completion(nil)
+                    return
+                }
+            }
+        }
+    }
+    
+    private func updateUserToFirestore(docData: [String: Any]) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            self.showSingleBtnAlert(title: "アカウントの設定に失敗しました。")
+            HUD.hide()
+            return
+        }
+                    
+        UserAccessor.sharedManager.setUserData(memberUid: uid, docData: docData, isMerge: true) { [weak self]
+            (error) in
+
+            guard let self = self else { return }
+
+            if let _ = error {
+                self.showSingleBtnAlert(title: "アカウントの設定に失敗しました。")
+                HUD.hide()
+                return
+            }
+            
+            HUD.hide()
+            
+            print("アカウントの設定に成功しました")
+            
+            self.goChatListView()
+        }
     }
 }
 

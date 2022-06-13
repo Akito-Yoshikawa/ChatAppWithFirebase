@@ -109,9 +109,9 @@ class UserAccessor: NSObject {
     }
     
     /// users、DocumentID配下にuserを作成する
-    func setUserData(memberUid: String, docData: [String: Any], completion: @escaping (Error?) -> Void) {
+    func setUserData(memberUid: String, docData: [String: Any], isMerge: Bool = false, completion: @escaping (Error?) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
-            User.identificationTargetCollectionRef(memberUid).setData(docData) {
+            User.identificationTargetCollectionRef(memberUid).setData(docData, merge: isMerge) {
                 (error) in
                 if let error = error {
                     print("UserをFirestoreへの保存に失敗しました。\(error)" )
