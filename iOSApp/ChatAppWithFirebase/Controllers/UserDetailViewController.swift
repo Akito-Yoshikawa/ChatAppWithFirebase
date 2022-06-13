@@ -11,7 +11,7 @@ import Firebase
 
 class UserDetailViewController: UIViewController {
     
-    public var partherUser: User?
+    public var partherUser: User!
             
     @IBOutlet weak var userDetailStackView: UIStackView!
 
@@ -19,6 +19,8 @@ class UserDetailViewController: UIViewController {
                 
     @IBOutlet weak var userLabel: UILabel!
         
+    @IBOutlet weak var userId: UILabel!
+
     @IBOutlet weak var commentLabelContent: UILabel!
     
     @IBOutlet weak var chatStartButton: UIButton!
@@ -38,6 +40,9 @@ class UserDetailViewController: UIViewController {
         userLabel.text = partherUser?.username
         userImage?.loadImage(with: partherUser?.profileImageUrl ?? "")
 
+        commentLabelContent.text = partherUser.selfIntroduction
+        
+        userId.text = "@" + partherUser.userID
     }
     
     override func viewDidDisappear(_ animated: Bool) {

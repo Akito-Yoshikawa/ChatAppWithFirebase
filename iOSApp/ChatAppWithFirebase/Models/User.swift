@@ -15,7 +15,9 @@ struct User {
     let username: String
     let createdAt: Timestamp
     let profileImageUrl: String
-
+    let selfIntroduction: String?
+    let userID: String
+    
     var uid: String?
     
     init(dic: [String: Any]) {
@@ -23,6 +25,8 @@ struct User {
         self.username = dic["username"] as? String ?? ""
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
+        self.selfIntroduction = dic["selfIntroduction"] as? String ?? ""
+        self.userID = dic["userID"] as? String ?? ""
     }
     
     static func targetCollectionRef() -> CollectionReference {

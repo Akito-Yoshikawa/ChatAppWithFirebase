@@ -59,7 +59,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜ひとこと〜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJU-5K-9S1" userLabel="CommentLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜自己紹介〜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJU-5K-9S1" userLabel="CommentLabel">
                                         <rect key="frame" x="0.0" y="160" width="414" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
@@ -136,6 +136,7 @@
                         <outlet property="closeButton" destination="NYa-o3-1Nn" id="hjT-UJ-mVH"/>
                         <outlet property="commentLabelContent" destination="oCB-nO-nPI" id="x4C-sM-0Wt"/>
                         <outlet property="userDetailStackView" destination="O9G-rl-MvN" id="lTJ-I8-Bdz"/>
+                        <outlet property="userId" destination="NAb-Zo-b8z" id="ONG-sy-qcU"/>
                         <outlet property="userImage" destination="7Lg-jS-BI6" id="qse-4l-tGa"/>
                         <outlet property="userLabel" destination="u6C-Oq-KIC" id="uT2-zC-buy"/>
                     </connections>
