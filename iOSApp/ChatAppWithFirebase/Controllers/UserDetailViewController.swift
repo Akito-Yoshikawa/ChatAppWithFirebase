@@ -20,7 +20,8 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var userLabel: UILabel!
         
     @IBOutlet weak var userId: UILabel!
-
+        
+    @IBOutlet weak var commentLabelBackView: UIView!
     @IBOutlet weak var commentLabelContent: UILabel!
     
     @IBOutlet weak var chatStartButton: UIButton!
@@ -41,6 +42,7 @@ class UserDetailViewController: UIViewController {
         userImage?.loadImage(with: partherUser?.profileImageUrl ?? "")
 
         commentLabelContent.text = partherUser.selfIntroduction
+        commentLabelBackView.layer.cornerRadius = 50
         
         userId.text = "@" + partherUser.userID
     }

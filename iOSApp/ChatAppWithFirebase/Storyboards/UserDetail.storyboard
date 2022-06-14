@@ -46,12 +46,12 @@
                                                         </attributedString>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@test0127" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAb-Zo-b8z" userLabel="userID">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@MgfFrua6e5g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAb-Zo-b8z" userLabel="userID">
                                                         <rect key="frame" x="0.0" y="100" width="204" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Izw-b2-2qT"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -65,16 +65,43 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCB-nO-nPI" userLabel="CommentLabelContent">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bod-he-JwE">
                                         <rect key="frame" x="0.0" y="191.5" width="414" height="150"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92f-Nh-eMl" userLabel="backView">
+                                                <rect key="frame" x="10" y="0.0" width="394" height="150"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCB-nO-nPI" userLabel="CommentLabelContent">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="150"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="こんにちわ！暇なのでアプリ入れてみました！！趣味は、ゲームやアニメが好きです！アニメは最近鬼滅の刃を見ています！">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="oCB-nO-nPI" secondAttribute="trailing" id="EHG-ug-2Zu"/>
+                                                    <constraint firstItem="oCB-nO-nPI" firstAttribute="leading" secondItem="92f-Nh-eMl" secondAttribute="leading" id="WyI-ok-tT8"/>
+                                                    <constraint firstItem="oCB-nO-nPI" firstAttribute="top" secondItem="92f-Nh-eMl" secondAttribute="top" id="jAY-GO-5p1"/>
+                                                    <constraint firstAttribute="bottom" secondItem="oCB-nO-nPI" secondAttribute="bottom" id="lYI-nK-hWk"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="B4t-Y2-r3c"/>
+                                            <constraint firstItem="92f-Nh-eMl" firstAttribute="top" secondItem="bod-he-JwE" secondAttribute="top" id="CHW-Ae-9Q7"/>
+                                            <constraint firstAttribute="trailing" secondItem="92f-Nh-eMl" secondAttribute="trailing" constant="10" id="EuS-nL-opV"/>
+                                            <constraint firstAttribute="height" constant="150" id="YQ6-9h-nTk"/>
+                                            <constraint firstAttribute="bottom" secondItem="92f-Nh-eMl" secondAttribute="bottom" id="lE5-ZT-lfM"/>
+                                            <constraint firstItem="92f-Nh-eMl" firstAttribute="leading" secondItem="bod-he-JwE" secondAttribute="leading" constant="10" id="tX1-9Z-2Yx"/>
                                         </constraints>
-                                        <string key="text">こんにちわ！暇なのでアプリ入れてみました！！趣味は、ゲームやアニメが好きです！アニメは最近鬼滅の刃を見ています！あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phb-pz-PVU">
                                         <rect key="frame" x="0.0" y="351.5" width="414" height="70"/>
                                         <subviews>
@@ -134,6 +161,7 @@
                     <connections>
                         <outlet property="chatStartButton" destination="OmC-6L-myw" id="RvH-rV-iMm"/>
                         <outlet property="closeButton" destination="NYa-o3-1Nn" id="hjT-UJ-mVH"/>
+                        <outlet property="commentLabelBackView" destination="92f-Nh-eMl" id="QHK-od-RzE"/>
                         <outlet property="commentLabelContent" destination="oCB-nO-nPI" id="x4C-sM-0Wt"/>
                         <outlet property="userDetailStackView" destination="O9G-rl-MvN" id="lTJ-I8-Bdz"/>
                         <outlet property="userId" destination="NAb-Zo-b8z" id="ONG-sy-qcU"/>
@@ -143,11 +171,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="94"/>
+            <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
         </scene>
     </scenes>
     <resources>
         <image name="freeImage01" width="1029" height="1030"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
