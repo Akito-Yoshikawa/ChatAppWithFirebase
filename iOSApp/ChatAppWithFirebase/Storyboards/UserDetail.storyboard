@@ -17,24 +17,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O9G-rl-MvN">
-                                <rect key="frame" x="0.0" y="237.5" width="414" height="421.5"/>
+                                <rect key="frame" x="0.0" y="235" width="414" height="426.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="Uuc-MA-Ch1">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Uuc-MA-Ch1">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freeImage01" translatesAutoresizingMaskIntoConstraints="NO" id="7Lg-jS-BI6" userLabel="userImage">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpL-eq-FiF" userLabel="backView">
+                                                <rect key="frame" x="0.0" y="0.0" width="190" height="155"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freeImage01" translatesAutoresizingMaskIntoConstraints="NO" id="7Lg-jS-BI6" userLabel="userImage">
+                                                        <rect key="frame" x="10" y="5" width="150" height="150"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="7Lg-jS-BI6" secondAttribute="height" multiplier="1:1" id="5Br-Y4-ZdG"/>
+                                                            <constraint firstAttribute="height" constant="150" id="RxR-Ml-Gxy"/>
+                                                            <constraint firstAttribute="width" constant="150" id="Zze-xq-S6i"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="CAE-XN-JKj"/>
-                                                    <constraint firstAttribute="height" constant="150" id="Qm6-Ba-UIa"/>
-                                                    <constraint firstAttribute="width" secondItem="7Lg-jS-BI6" secondAttribute="height" multiplier="1:1" id="b3h-0v-s8j"/>
+                                                    <constraint firstItem="7Lg-jS-BI6" firstAttribute="top" secondItem="FpL-eq-FiF" secondAttribute="top" constant="5" id="D0U-ne-566"/>
+                                                    <constraint firstItem="7Lg-jS-BI6" firstAttribute="leading" secondItem="FpL-eq-FiF" secondAttribute="leading" constant="10" id="IkO-BD-Ybc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="7Lg-jS-BI6" secondAttribute="bottom" id="Ka7-Xd-D2L"/>
+                                                    <constraint firstAttribute="width" constant="190" id="hNp-M5-J7M"/>
                                                 </constraints>
-                                            </imageView>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zOs-Qy-Qmk">
-                                                <rect key="frame" x="210" y="0.0" width="204" height="150"/>
+                                                <rect key="frame" x="220" y="0.0" width="194" height="155"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6C-Oq-KIC" userLabel="userLabel">
-                                                        <rect key="frame" x="0.0" y="0.0" width="204" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="194" height="105"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="古川　聖斗">
                                                                 <attributes>
@@ -47,7 +58,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@MgfFrua6e5g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAb-Zo-b8z" userLabel="userID">
-                                                        <rect key="frame" x="0.0" y="100" width="204" height="50"/>
+                                                        <rect key="frame" x="0.0" y="105" width="194" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Izw-b2-2qT"/>
                                                         </constraints>
@@ -60,13 +71,13 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜自己紹介〜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJU-5K-9S1" userLabel="CommentLabel">
-                                        <rect key="frame" x="0.0" y="160" width="414" height="21.5"/>
+                                        <rect key="frame" x="0.0" y="165" width="414" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bod-he-JwE">
-                                        <rect key="frame" x="0.0" y="191.5" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="196.5" width="414" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92f-Nh-eMl" userLabel="backView">
                                                 <rect key="frame" x="10" y="0.0" width="394" height="150"/>
@@ -103,7 +114,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phb-pz-PVU">
-                                        <rect key="frame" x="0.0" y="351.5" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="356.5" width="414" height="70"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Lte-yA-jUr">
                                                 <rect key="frame" x="32" y="0.0" width="350" height="50"/>
