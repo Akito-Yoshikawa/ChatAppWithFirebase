@@ -99,15 +99,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="1M6-FH-BdY"/>
                                         </constraints>
-                                        <attributedString key="attributedText">
-                                            <fragment content="ここに自己紹介を入力します。">
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor"/>
-                                                    <font key="NSFont" size="14" name=".HiraKakuInterface-W3"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                        <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -176,9 +168,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
