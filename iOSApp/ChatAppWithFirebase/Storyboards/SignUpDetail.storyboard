@@ -55,7 +55,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYt-f1-cM9">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="入力しなくても設定できます。" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYt-f1-cM9">
                                                 <rect key="frame" x="20.5" y="0.0" width="279.5" height="40"/>
                                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -75,6 +75,9 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="使用可能か確認"/>
+                                        <connections>
+                                            <action selector="tappedUserIdUniqueCheck:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3Ng-2L-FGy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -152,7 +155,9 @@
                     </view>
                     <connections>
                         <outlet property="profileImageButton" destination="hOZ-4Z-0Sg" id="zkd-oZ-qCD"/>
+                        <outlet property="user" destination="r3H-1l-Le2" id="i73-ve-6ba"/>
                         <outlet property="userIdTextField" destination="ZYt-f1-cM9" id="3O2-eA-Owd"/>
+                        <outlet property="userIdUniqueCheckButton" destination="r3H-1l-Le2" id="8hR-VX-8bq"/>
                         <outlet property="userIntroductionTextField" destination="GiQ-k2-WeB" id="8dd-WD-gQS"/>
                     </connections>
                 </viewController>

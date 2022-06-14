@@ -123,6 +123,33 @@ class UserAccessor: NSObject {
         }
     }
     
+    func checkUniqueUserId(userId: String, completion: @escaping (Bool) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            User.uniqueTargetCollectionRef(userId: userId).getDocuments {
+                (snapshot, error) in
+                
+                if let error = error {
+                    print("user情報の取得に失敗しました。\(error)")
+                    completion(false)
+                    return
+                }
+
+                guard let snapshot = snapshot else {
+                    completion(false)
+                    return
+                }
+                
+                if snapshot.documents.count <= 0 {
+                    completion(true)
+                    return
+                }
+                
+                completion(false)
+            }
+        
+        }
+    }
+    
     func removeUserListener() {
         self.userListener?.remove()
         self.userListener = nil

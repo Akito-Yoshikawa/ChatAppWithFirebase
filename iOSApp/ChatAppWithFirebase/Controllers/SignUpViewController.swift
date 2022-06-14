@@ -122,7 +122,8 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
                 "email": email,
                 "username": username,
                 "createdAt": Timestamp(),
-                "profileImageUrl": profileImageUrl
+                "profileImageUrl": profileImageUrl,
+                "userID": uid // デフォルトuserIDはデフォルトuid
             ] as [String: Any]
                         
             UserAccessor.sharedManager.setUserData(memberUid: uid, docData: docData) { [weak self]

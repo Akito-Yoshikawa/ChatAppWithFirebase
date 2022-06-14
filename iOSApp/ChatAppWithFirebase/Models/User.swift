@@ -36,6 +36,10 @@ struct User {
     static func identificationTargetCollectionRef(_ memberUid: String) -> DocumentReference {
         return Firestore.firestore().collection("users").document(memberUid)
     }
+    
+    static func uniqueTargetCollectionRef(userId: String) -> Query {
+        return Firestore.firestore().collection("users").whereField("userID", isEqualTo: userId)
+    }
 }
 
 extension User {

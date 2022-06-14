@@ -12,11 +12,34 @@ import Firebase
 
 class SignUpDetailViewController: UIViewController, UINavigationControllerDelegate {
     
+    private var isUserIdUnique = false {
+        // 値の監視
+        didSet {
+            if isUserIdUnique {
+                // アラート表示
+                self.showSingleBtnAlert(title: "利用可能です。") {
+                    // ボタンタイトル利用可能変更
+                    self.userIdUniqueCheckButton.setTitle("利用可能です", for: .normal)
+                    // ボタン選択させない
+                    self.userIdUniqueCheckButton.isEnabled = false
+                }
+            } else {
+                // ボタンタイトル利用可能変更
+                self.userIdUniqueCheckButton.setTitle("利用可能か確認", for: .normal)
+                // ボタン選択させない
+                self.userIdUniqueCheckButton.isEnabled = true
+            }
+        }
+    }
+    
     @IBOutlet weak var profileImageButton: UIButton!
     
+    @IBOutlet weak var userIdUniqueCheckButton: UIButton!
     
     @IBOutlet weak var userIdTextField: UITextField!
         
+    @IBOutlet weak var user: UIButton!
+    
     @IBOutlet weak var userIntroductionTextField: UITextField!
     
     override func viewDidLoad() {
@@ -28,6 +51,8 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
         profileImageButton.layer.cornerRadius = 85
         profileImageButton.layer.borderWidth = 1
         profileImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
+
+        userIdTextField.delegate = self
     }
     
     private func goChatListView() {
@@ -48,7 +73,27 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
 
         self.present(imagePickerController, animated: true, completion: nil)
     }
-
+    
+    @IBAction func tappedUserIdUniqueCheck(_ sender: Any) {
+        guard let userId = self.userIdTextField.text,
+                  !userId.isEmpty else {
+                      self.showSingleBtnAlert(title: "ユーザーIDを入力してください。")
+                      return
+              }
+        
+        // 入力されたuserIDがユニークかどうかチェック
+        UserAccessor.sharedManager.checkUniqueUserId(userId: userId) {
+            (isUnique) in
+            
+            if isUnique {
+                // ユニークであるため登録おっけ
+                self.isUserIdUnique = true
+            } else {
+                // ユニークではないため登録NG
+                self.isUserIdUnique = false
+            }
+        }
+    }
     
     @IBAction func tappedRegister(_ sender: Any) {
         // 全て設定されていなかったらアラート表示
@@ -65,13 +110,15 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
             return
         }
         
-        // インジケーター表示
-        HUD.show(.progress)
-
         var docData = [String: Any]()
 
-        // TODO: ユーザーID追加、使用可能か確認して、あったら追加
+        // ユーザーID追加、使用可能か確認して、あったら追加
         if !userId.isEmpty {
+            // ユーザーIDが設定されていたら,それが使用可能かチェックしてまだチェックしていなかったらアラート表示。使用可能な場合はセットする
+            if !isUserIdUnique {
+                self.showSingleBtnAlert(title: "ユーザーIDが利用可能か確認ボタンを押してください。")
+                return
+            }
             docData["userID"] = userId
         }
 
@@ -79,6 +126,9 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
         if !userIntroduction.isEmpty {
             docData["selfIntroduction"] = userIntroduction
         }
+        
+        // インジケーター表示
+        HUD.show(.progress)
         
         // userimage画像更新、なければしない
         guard let profileImageUrl = profileImageButton.imageView?.image,
@@ -184,5 +234,16 @@ extension SignUpDetailViewController: UIImagePickerControllerDelegate {
         profileImageButton.clipsToBounds = true
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignUpDetailViewController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+
+        if let _ = userIdTextField.text {
+            self.isUserIdUnique = false
+            return
+        }
     }
 }
