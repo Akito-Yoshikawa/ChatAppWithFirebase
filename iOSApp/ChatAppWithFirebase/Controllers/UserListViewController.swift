@@ -14,7 +14,10 @@ class UserListViewController: UIViewController {
 
     private let cellId = "UserListTableViewCell"
     private var users = [User]()
+    private var showAllUsers = [User]()
     
+    @IBOutlet weak var userSearchBar: UISearchBar!
+        
     @IBOutlet weak var userListTableView: UITableView!
     
     override func viewDidLoad() {
@@ -25,6 +28,7 @@ class UserListViewController: UIViewController {
         userListTableView.delegate = self
         userListTableView.dataSource = self
         
+        userSearchBar.delegate = self
         
         userListTableView.register(UINib(nibName: "UserListTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
 
@@ -71,11 +75,11 @@ class UserListViewController: UIViewController {
                         return
                     }
                     
-                    self.users.append(user)
+                    self.showAllUsers.append(user)
                 })
             
                 // ユーザーを最新順にソートする
-                self.users.sort { (m1, m2) -> Bool in
+                self.showAllUsers.sort { (m1, m2) -> Bool in
                     let m1Date = m1.createdAt.dateValue()
                     let m2Date = m2.createdAt.dateValue()
                     return m1Date > m2Date
@@ -91,14 +95,21 @@ class UserListViewController: UIViewController {
                             let dic = chatRoomdDocumentChange.document.data()
                             let chatRoom = ChatRoom.init(dic: dic)
                             
-                            for (index, user) in self.users.enumerated() {
+                            for (index, user) in self.showAllUsers.enumerated() {
                                 if user.searchMembersUser(members: chatRoom.members) {
-                                    self.users.remove(at: index)
+                                    self.showAllUsers.remove(at: index)
                                 }
                             }
                         })
                         
-                        self.userListTableView.reloadData()
+                        // 検索バーの検索項目にテキストが入力されているか
+                        guard let searchText = self.userSearchBar.text, !searchText.isEmpty else {
+                            self.users = self.showAllUsers
+                            self.userListTableView.reloadData()
+                            return
+                        }
+                        // 入力されていたら、追加したユーザーでも絞り込む
+                        self.userSearch(searchText)
                     case .failure(_): break
                     }
                 }
@@ -133,5 +144,28 @@ extension UserListViewController:  UITableViewDelegate, UITableViewDataSource {
         self.present(userDetailViewController, animated: true, completion: nil)
         
         userListTableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension UserListViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        userSearch(searchText)
+    }
+
+    private func userSearch(_ text: String) {
+        
+        self.users = self.showAllUsers
+
+        if !text.isEmpty {
+            var newArray = [User]()
+            self.users.forEach ({ user in
+                if user.username.contains(text) ||  user.userID.contains(text) {
+                    newArray.append(user)
+                }
+            })
+            self.users = newArray
+        }
+        userListTableView.reloadData()
     }
 }

@@ -35,22 +35,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wVu-jd-Cww">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="ユーザー名またはユーザーIDで検索" translatesAutoresizingMaskIntoConstraints="NO" id="3ch-CB-k00">
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="E1x-AF-WjT"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wVu-jd-Cww" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="3PD-5F-plD"/>
+                            <constraint firstItem="3ch-CB-k00" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8xs-Gy-RcG"/>
+                            <constraint firstItem="wVu-jd-Cww" firstAttribute="top" secondItem="3ch-CB-k00" secondAttribute="bottom" id="Bez-un-Dgh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wVu-jd-Cww" secondAttribute="trailing" id="YEn-g5-KUg"/>
+                            <constraint firstItem="3ch-CB-k00" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="dg3-VE-4bP"/>
                             <constraint firstItem="wVu-jd-Cww" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="faa-yU-thC"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="wVu-jd-Cww" secondAttribute="bottom" id="n5t-c1-Hli"/>
+                            <constraint firstItem="3ch-CB-k00" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ylQ-fP-9nb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Cjr-Gx-y1G"/>
                     <connections>
                         <outlet property="userListTableView" destination="wVu-jd-Cww" id="2YF-o6-aZI"/>
+                        <outlet property="userSearchBar" destination="3ch-CB-k00" id="cYG-cY-PQr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
