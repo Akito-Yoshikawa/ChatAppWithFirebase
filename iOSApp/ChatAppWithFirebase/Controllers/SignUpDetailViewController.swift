@@ -140,7 +140,7 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
 
         // userimage画像更新
         // プロフィール画像のアップロード
-        self.uploadProfileImage(uploadImage) { [weak self]
+        ProfileImageAccessor.sharedManager.uploadProfileImage(uploadImage) { [weak self]
             (urlString) in
             
             guard let urlString = urlString else {
@@ -161,35 +161,6 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
         self.goChatListView()
     }
         
-    private func uploadProfileImage(_ uploadImage: Data, completion: @escaping (String?) -> Void) {
-        let fileName = "\(NSUUID().uuidString).jpg"
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
-        
-        ProfileImageAccessor.sharedManager.profileImagePutData(fileName: fileName, uploadImage: uploadImage, metadata: metaData) { (error) in
-
-            if let _ = error {
-                completion(nil)
-                return
-            }
-                        
-            ProfileImageAccessor.sharedManager.downloadImageReturnURLString(fileName: fileName) { (result) in
-
-                switch result {
-                case .success(let urlString):
-                    guard let urlString = urlString else {
-                        completion(nil)
-                        return
-                    }
-                    
-                    completion(urlString)
-                case .failure(_):
-                    completion(nil)
-                    return
-                }
-            }
-        }
-    }
     
     private func updateUserToFirestore(docData: [String: Any]) {
         guard let uid = Auth.auth().currentUser?.uid else {

@@ -17,6 +17,10 @@ class ProfileImageAccessor: NSObject {
     
     static let sharedManager = ProfileImageAccessor()
     
+    // FIXME: デフォルトイメージを登録(仮画像)
+    let defaultImage =  UIImage(named: "freeImage01")
+    let defaultImageFileName = "defautIcon.jpg"
+    
     /// profile_image/fileName(指定した名前)の直下に画像データをセットする
     func profileImagePutData(fileName: String, uploadImage: Data, metadata: StorageMetadata, completion: @escaping (Error?) -> Void) {
         
@@ -51,6 +55,36 @@ class ProfileImageAccessor: NSObject {
             }
 
             completion(.success(urlString))
+        }
+    }
+    
+    func uploadProfileImage(_ uploadImage: Data, completion: @escaping (String?) -> Void) {
+        let fileName = "\(NSUUID().uuidString).jpg"
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        self.profileImagePutData(fileName: fileName, uploadImage: uploadImage, metadata: metaData) { (error) in
+
+            if let _ = error {
+                completion(nil)
+                return
+            }
+                        
+            self.downloadImageReturnURLString(fileName: fileName) { (result) in
+
+                switch result {
+                case .success(let urlString):
+                    guard let urlString = urlString else {
+                        completion(nil)
+                        return
+                    }
+                    
+                    completion(urlString)
+                case .failure(_):
+                    completion(nil)
+                    return
+                }
+            }
         }
     }
 }
