@@ -31,8 +31,13 @@ class UserListViewController: UIViewController {
         userSearchBar.delegate = self
         
         userListTableView.register(UINib(nibName: "UserListTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
+        
+        
+        userListTableView.keyboardDismissMode = .onDrag
 
         navigationController?.changeNavigationBarBackGroundColor()
+        
+        navigationItem.title = "チャット開始"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +65,8 @@ class UserListViewController: UIViewController {
         // ユーザー情報取得
         UserAccessor.sharedManager.getUserAddSnapshotListener() { [weak self] (result) in
             guard let self = self else { return }
+            
+            self.showAllUsers = []
             
             switch result {
             case .success(let documentChanges):
