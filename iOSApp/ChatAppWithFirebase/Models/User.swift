@@ -56,4 +56,18 @@ extension User {
         
         return false
     }
+    
+    public func userSameConfirmation(confirmationUser: User) -> Bool {
+        if confirmationUser.email == self.email &&
+            confirmationUser.username == self.username &&
+            confirmationUser.profileImageUrl == self.profileImageUrl &&
+            confirmationUser.selfIntroduction == self.selfIntroduction &&
+            confirmationUser.userID == self.userID &&
+            confirmationUser.uid == self.uid {
+            
+            return false
+        }
+        
+        return true
+    }
 }

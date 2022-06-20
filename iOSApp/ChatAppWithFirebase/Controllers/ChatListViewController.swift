@@ -34,6 +34,19 @@ class ChatListViewController: UIViewController {
         reloaChatListViewController()
     }
         
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let currentUser = currentUser,
+           let userAccessorCurrentUser = UserAccessor.sharedManager.currentUser {
+            if userAccessorCurrentUser.userSameConfirmation(confirmationUser: currentUser) {
+                // user取得
+                self.currentUser = UserAccessor.sharedManager.currentUser
+            }
+        }
+
+    }
+    
     public func reloaChatListViewController() {
         UserAccessor.sharedManager.setCurrentUser() { [weak self] (result) in
             guard let self = self else { return }
