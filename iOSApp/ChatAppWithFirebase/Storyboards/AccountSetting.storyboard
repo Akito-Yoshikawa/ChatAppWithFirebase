@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WmW-Mb-Iqp">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,16 +13,162 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="AccountSettingViewController" customModule="ChatAppWithFirebase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSr-0R-Xb3" userLabel="profileImage">
+                                <rect key="frame" x="110" y="108" width="170" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RSr-0R-Xb3" secondAttribute="height" multiplier="1:1" id="JeQ-Gy-M8v"/>
+                                    <constraint firstAttribute="width" constant="170" id="bWi-Gf-uLs"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="プロフィール画像">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedProfileBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="UyM-Wx-IxX"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="b9e-m8-5ou" userLabel="UserName Stack View">
+                                <rect key="frame" x="45" y="278" width="300" height="70.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGN-DW-hpo">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wsW-ec-Mt8">
+                                        <rect key="frame" x="0.0" y="30.333333333333314" width="300" height="40"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="vAA-9Z-8yV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="Nm1-lB-TCb"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="hn8-AP-kZ5"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dct-xZ-cwL" userLabel="UserID Stack View">
+                                <rect key="frame" x="45" y="368.33333333333331" width="300" height="120.33333333333331"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザーID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uo-dh-VUf">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DMh-eF-1GL">
+                                        <rect key="frame" x="0.0" y="30.333333333333371" width="300" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fN-ET-5oP">
+                                                <rect key="frame" x="0.0" y="0.0" width="15.333333333333334" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="入力しなくても設定できます。" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fkl-Pv-lVw">
+                                                <rect key="frame" x="20.333333333333343" y="0.0" width="279.66666666666663" height="40"/>
+                                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="C4c-Tx-q7y"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MZ-fj-14d" userLabel="UserIdUniqueCheckButton">
+                                        <rect key="frame" x="0.0" y="80.333333333333371" width="300" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.72549019609999998" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ie2-j9-HRU"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="使用可能か確認"/>
+                                        <connections>
+                                            <action selector="tappedUserIdUniqueCheck:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="H5C-df-SXy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="N60-Ih-p1b"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="RzO-08-OlH"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sDl-gv-gY5">
+                                <rect key="frame" x="45" y="508.66666666666669" width="300" height="130.33333333333331"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自己紹介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-FD-UiB">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" usesAttributedText="YES" borderStyle="roundedRect" placeholder="趣味など書いて友達をさがそう！" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EzJ-ru-qFL">
+                                        <rect key="frame" x="0.0" y="30.333333333333314" width="300" height="100"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="3Jj-qh-f1z"/>
+                                        </constraints>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="YMi-kT-VA4"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="3Sa-cJ-gVz"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ia-7I-kpP" userLabel="AccountUpdateButton">
+                                <rect key="frame" x="120" y="669" width="150" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.72549019609999998" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="62B-nn-084"/>
+                                    <constraint firstAttribute="width" constant="150" id="jO4-AF-Yjx"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="設定"/>
+                                <connections>
+                                    <action selector="tappedAccountUpdate:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="I8X-zu-cyT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RSr-0R-Xb3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="5DP-0E-mOW"/>
+                            <constraint firstItem="b9e-m8-5ou" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="8m0-ba-ZMK"/>
+                            <constraint firstItem="b9e-m8-5ou" firstAttribute="top" secondItem="RSr-0R-Xb3" secondAttribute="bottom" id="HcD-Wl-ZaD"/>
+                            <constraint firstItem="3ia-7I-kpP" firstAttribute="top" secondItem="sDl-gv-gY5" secondAttribute="bottom" constant="30" id="XZK-0z-Idl"/>
+                            <constraint firstItem="Dct-xZ-cwL" firstAttribute="top" secondItem="b9e-m8-5ou" secondAttribute="bottom" constant="20" id="eMo-Zo-fC6"/>
+                            <constraint firstItem="Dct-xZ-cwL" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="g6q-3C-3Zb"/>
+                            <constraint firstItem="sDl-gv-gY5" firstAttribute="top" secondItem="Dct-xZ-cwL" secondAttribute="bottom" constant="20" id="noP-2J-vAA"/>
+                            <constraint firstItem="sDl-gv-gY5" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="pzX-gb-0Yi"/>
+                            <constraint firstItem="3ia-7I-kpP" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="t9r-Cd-1IJ"/>
+                            <constraint firstItem="RSr-0R-Xb3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="xrT-8Z-iJU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DPt-pu-8Lq"/>
+                    <connections>
+                        <outlet property="accountUpdateButton" destination="3ia-7I-kpP" id="8h8-uI-V3J"/>
+                        <outlet property="profileImageButton" destination="RSr-0R-Xb3" id="ApR-gR-koR"/>
+                        <outlet property="userIdTextField" destination="fkl-Pv-lVw" id="mkp-Wt-Cqb"/>
+                        <outlet property="userIdUniqueCheckButton" destination="5MZ-fj-14d" id="qaQ-UJ-HVw"/>
+                        <outlet property="userIntroductionTextField" destination="EzJ-ru-qFL" id="dwe-pJ-tpF"/>
+                        <outlet property="userNameTextField" destination="wsW-ec-Mt8" id="SwT-2E-pdx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9" y="78"/>
+            <point key="canvasLocation" x="7.2000000000000002" y="77.58620689655173"/>
         </scene>
         <!--設定-->
         <scene sceneID="yyH-PQ-Q8q">
@@ -31,7 +177,7 @@
                     <tabBarItem key="tabBarItem" title="設定" image="gearshape" catalog="system" id="loo-eW-6BY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HIQ-d5-pqC">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

@@ -34,6 +34,7 @@
 		3643BE0E28523042004C3E17 /* SignUpDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */; };
 		3643BE102852ABF7004C3E17 /* SignUpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */; };
 		36480CDE2855D5010032374B /* ProfileImageAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36480CDD2855D5010032374B /* ProfileImageAccessor.swift */; };
+		36480CE1285B74200032374B /* NukeAccessore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36480CE0285B74200032374B /* NukeAccessore.swift */; };
 		364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */; };
 		3652590A2830E37200D42D13 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365259092830E37200D42D13 /* Login.storyboard */; };
 		3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652590B2830EA2300D42D13 /* LoginViewController.swift */; };
@@ -105,6 +106,7 @@
 		3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpDetail.storyboard; sourceTree = "<group>"; };
 		3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDetailViewController.swift; sourceTree = "<group>"; };
 		36480CDD2855D5010032374B /* ProfileImageAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageAccessor.swift; sourceTree = "<group>"; };
+		36480CE0285B74200032374B /* NukeAccessore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeAccessore.swift; sourceTree = "<group>"; };
 		364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		365259092830E37200D42D13 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3652590B2830EA2300D42D13 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		36397B732816A4410083F5AE /* ChatAppWithFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				36480CDF285B73D80032374B /* Common */,
 				365D10232848759E008E9285 /* Firestore */,
 				361E5D602827FF3C00BF36D1 /* Models */,
 				361A61D228197F2800C464C2 /* Extensions */,
@@ -297,6 +300,14 @@
 				36480CDD2855D5010032374B /* ProfileImageAccessor.swift */,
 			);
 			path = StorageAccessor;
+			sourceTree = "<group>";
+		};
+		36480CDF285B73D80032374B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				36480CE0285B74200032374B /* NukeAccessore.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		365D10232848759E008E9285 /* Firestore */ = {
@@ -589,6 +600,7 @@
 				3692B7EE284CA902001097C7 /* MessageAccessor.swift in Sources */,
 				36480CDE2855D5010032374B /* ProfileImageAccessor.swift in Sources */,
 				365D10222845997C008E9285 /* UserDetailViewController.swift in Sources */,
+				36480CE1285B74200032374B /* NukeAccessore.swift in Sources */,
 				36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */,
 				3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */,
 				364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */,
