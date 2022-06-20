@@ -85,6 +85,8 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
                 
         // currentUser.uidとUserAccessor.sharedManager.currentUser?.uidが違う場合(ログアウトして変更された)再度取得を行う
         if self.currentUser?.uid != UserAccessor.sharedManager.currentUser?.uid {
+
+            HUD.show(.progress)
             // user取得
             self.setUserAndGetUser()
         }
