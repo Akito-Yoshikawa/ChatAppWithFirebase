@@ -115,11 +115,11 @@
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
         </scene>
-        <!--ホーム-->
+        <!--トーク-->
         <scene sceneID="rdV-yi-Gkt">
             <objects>
                 <navigationController storyboardIdentifier="Nav-ChatListVC" id="Lg3-2Q-WXM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ホーム" image="house" catalog="system" id="nGW-sS-hP0"/>
+                    <tabBarItem key="tabBarItem" title="トーク" image="message" catalog="system" id="nGW-sS-hP0"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="73Z-LN-PPd">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -136,8 +136,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="freeImage01" width="1029" height="1030"/>
-        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="freeImage01" width="800" height="800"/>
+        <image name="message" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
