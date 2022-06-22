@@ -277,7 +277,12 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
         let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController
         
         chatRoomViewController.user = currentUser
-        chatRoomViewController.chatRoom = chatRooms[indexPath.row]
+        let chatRoom = chatRooms[indexPath.row]
+        chatRoomViewController.chatRoom = chatRoom
+
+        // チャットルーム画面左上の文字を相手の名前を表示する
+        let backItem  = UIBarButtonItem(title: chatRoom.partnerUser?.username, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
 
         navigationController?.pushViewController(chatRoomViewController, animated: true)
         
