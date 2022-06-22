@@ -185,6 +185,13 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
                       return
               }
 
+        // 自分が使用しているユーザーIDかどうかチェック
+        if userId == UserAccessor.sharedManager.currentUser?.userID {
+            // ユニークであるため登録おっけ
+            self.isUserIdUnique = true
+            return
+        }
+        
         // 入力されたuserIDがユニークかどうかチェック
         UserAccessor.sharedManager.checkUniqueUserId(userId: userId) {
             (isUnique) in
@@ -223,11 +230,14 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
         // ユーザーID追加、使用可能か確認して、あったら追加
         if !userId.isEmpty {
 
-            if !isUserIdUnique {
-                self.showSingleBtnAlert(title: "ユーザーIDが利用可能か確認ボタンを押してください。")
-                return
+            // 自分が使用しているユーザーIDかどうかチェック
+            if userId != UserAccessor.sharedManager.currentUser?.userID {
+                if !isUserIdUnique {
+                    self.showSingleBtnAlert(title: "ユーザーIDが利用可能か確認ボタンを押してください。")
+                    return
+                }
+                docData["userID"] = userId
             }
-            docData["userID"] = userId
         }
         // 自己紹介文あったら追加
         if !userIntroduction.isEmpty {
