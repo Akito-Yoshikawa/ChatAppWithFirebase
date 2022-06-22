@@ -30,7 +30,12 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpViews()
         
+        configure()
+    }
+    
+    private func setUpViews() {
         userDetailStackView.layer.cornerRadius = 15
         userImage.layer.cornerRadius = 75
         
@@ -38,13 +43,19 @@ class UserDetailViewController: UIViewController {
         
         closeButton.layer.cornerRadius = 15
         
+        commentLabelBackView.layer.cornerRadius = 50
+    }
+    
+    private func configure() {
         userLabel.text = partherUser?.username
         userImage?.loadImage(with: partherUser?.profileImageUrl ?? "")
-
-        commentLabelContent.text = partherUser.selfIntroduction
-        commentLabelBackView.layer.cornerRadius = 50
         
-        userId.text = "@" + partherUser.userID
+        commentLabelContent.text = partherUser.selfIntroduction
+        
+        // 値が設定されていたら表示する
+        if !partherUser.userID.isEmpty {
+            userId.text = "@" + partherUser.userID
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

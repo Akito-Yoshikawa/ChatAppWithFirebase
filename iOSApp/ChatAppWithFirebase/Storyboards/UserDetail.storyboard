@@ -57,7 +57,7 @@
                                                         </attributedString>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@MgfFrua6e5g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAb-Zo-b8z" userLabel="userID">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAb-Zo-b8z" userLabel="userID">
                                                         <rect key="frame" x="0.0" y="105" width="194" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Izw-b2-2qT"/>
@@ -186,7 +186,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="freeImage01" width="1029" height="1030"/>
+        <image name="freeImage01" width="800" height="800"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
