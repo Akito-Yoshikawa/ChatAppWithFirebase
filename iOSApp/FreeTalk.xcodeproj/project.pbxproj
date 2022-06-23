@@ -1,0 +1,1005 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		046520DDD5427468D36043B3 /* Pods_FreeTalk_FreeTalkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C782FB90B2D7566026D8527 /* Pods_FreeTalk_FreeTalkUITests.framework */; };
+		361A61C72818275F00C464C2 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A61C62818275F00C464C2 /* UIColor-Extension.swift */; };
+		361A61C928183BCB00C464C2 /* ChatRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 361A61C828183BCB00C464C2 /* ChatRoom.storyboard */; };
+		361A61CB28183C2600C464C2 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A61CA28183C2600C464C2 /* ChatRoomViewController.swift */; };
+		361A61CD2818426000C464C2 /* ChatRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A61CC2818426000C464C2 /* ChatRoomTableViewCell.xib */; };
+		361A61CF2818437400C464C2 /* ChatRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A61CE2818437400C464C2 /* ChatRoomTableViewCell.swift */; };
+		361A61D428197FBC00C464C2 /* ChatInputAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A61D328197FBC00C464C2 /* ChatInputAccessoryView.xib */; };
+		361A61D62819810B00C464C2 /* ChatInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A61D52819810B00C464C2 /* ChatInputAccessoryView.swift */; };
+		361A61D828227BDE00C464C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 361A61D728227BDE00C464C2 /* GoogleService-Info.plist */; };
+		361A61DA2822890800C464C2 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 361A61D92822890800C464C2 /* SignUp.storyboard */; };
+		361A61DC28240F0900C464C2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A61DB28240F0900C464C2 /* SignUpViewController.swift */; };
+		361E5D622827FF5E00BF36D1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E5D612827FF5E00BF36D1 /* User.swift */; };
+		362D8E2D2829DFFF00EAC347 /* UserList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362D8E2C2829DFFF00EAC347 /* UserList.storyboard */; };
+		362D8E2F2829E17B00EAC347 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362D8E2E2829E17B00EAC347 /* UserListViewController.swift */; };
+		36397B752816A4410083F5AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36397B742816A4410083F5AE /* AppDelegate.swift */; };
+		36397B772816A4410083F5AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36397B762816A4410083F5AE /* SceneDelegate.swift */; };
+		36397B7E2816A4480083F5AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36397B7D2816A4480083F5AE /* Assets.xcassets */; };
+		36397B812816A4480083F5AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36397B7F2816A4480083F5AE /* LaunchScreen.storyboard */; };
+		36397B8C2816A4480083F5AE /* FreeTalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36397B8B2816A4480083F5AE /* FreeTalkTests.swift */; };
+		36397B962816A4480083F5AE /* FreeTalkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36397B952816A4480083F5AE /* FreeTalkUITests.swift */; };
+		36397B982816A4480083F5AE /* FreeTalkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36397B972816A4480083F5AE /* FreeTalkUITestsLaunchTests.swift */; };
+		36397BA52816A78D0083F5AE /* ChatList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36397BA42816A78D0083F5AE /* ChatList.storyboard */; };
+		36397BA72816A8230083F5AE /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36397BA62816A8230083F5AE /* ChatListViewController.swift */; };
+		364169F7282D492F00ABF06C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364169F6282D492F00ABF06C /* Message.swift */; };
+		3643BE0E28523042004C3E17 /* SignUpDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */; };
+		3643BE102852ABF7004C3E17 /* SignUpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */; };
+		36480CDE2855D5010032374B /* ProfileImageAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36480CDD2855D5010032374B /* ProfileImageAccessor.swift */; };
+		36480CE1285B74200032374B /* NukeAccessore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36480CE0285B74200032374B /* NukeAccessore.swift */; };
+		364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */; };
+		3652590A2830E37200D42D13 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365259092830E37200D42D13 /* Login.storyboard */; };
+		3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652590B2830EA2300D42D13 /* LoginViewController.swift */; };
+		3652B486283D9EBD004BFAF4 /* UINavigationController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652B485283D9EBD004BFAF4 /* UINavigationController-Extension.swift */; };
+		3652B488283DA126004BFAF4 /* TabBarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */; };
+		36541B11283DE5F40047D0E5 /* AccountSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */; };
+		36541B13283DE6350047D0E5 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */; };
+		365CF74C283F3A5A002F0E12 /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */; };
+		365CF74E283F3AC1002F0E12 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */; };
+		365D102028448427008E9285 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365D101F28448427008E9285 /* UserDetail.storyboard */; };
+		365D10222845997C008E9285 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D10212845997C008E9285 /* UserDetailViewController.swift */; };
+		36655206282BFBFE005105CF /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36655205282BFBFD005105CF /* ChatRoom.swift */; };
+		3692B7EA284C8F2B001097C7 /* ChatRoomAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692B7E9284C8F2B001097C7 /* ChatRoomAccessor.swift */; };
+		3692B7EC284CA01F001097C7 /* UserAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692B7EB284CA01F001097C7 /* UserAccessor.swift */; };
+		3692B7EE284CA902001097C7 /* MessageAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692B7ED284CA902001097C7 /* MessageAccessor.swift */; };
+		36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */; };
+		36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */; };
+		6A6B338C88AA0AADAC659073 /* Pods_FreeTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194A90B58C3B0E7A813FE978 /* Pods_FreeTalk.framework */; };
+		B5AD0F9C92D9489EA298F9DD /* Pods_FreeTalkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8270E8C5F4C90C1E08B7D1DF /* Pods_FreeTalkTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		36397B882816A4480083F5AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36397B692816A4410083F5AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36397B702816A4410083F5AE;
+			remoteInfo = ChatAppWithFirebase;
+		};
+		36397B922816A4480083F5AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36397B692816A4410083F5AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36397B702816A4410083F5AE;
+			remoteInfo = ChatAppWithFirebase;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		16A801E8ECFD385BF8D7FCB3 /* Pods-FreeTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeTalkTests.release.xcconfig"; path = "Target Support Files/Pods-FreeTalkTests/Pods-FreeTalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		194A90B58C3B0E7A813FE978 /* Pods_FreeTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FreeTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BA4CFE444FB9656464FFE81 /* Pods-FreeTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeTalk.debug.xcconfig"; path = "Target Support Files/Pods-FreeTalk/Pods-FreeTalk.debug.xcconfig"; sourceTree = "<group>"; };
+		361A61C62818275F00C464C2 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
+		361A61C828183BCB00C464C2 /* ChatRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoom.storyboard; sourceTree = "<group>"; };
+		361A61CA28183C2600C464C2 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		361A61CC2818426000C464C2 /* ChatRoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRoomTableViewCell.xib; sourceTree = "<group>"; };
+		361A61CE2818437400C464C2 /* ChatRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTableViewCell.swift; sourceTree = "<group>"; };
+		361A61D328197FBC00C464C2 /* ChatInputAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatInputAccessoryView.xib; sourceTree = "<group>"; };
+		361A61D52819810B00C464C2 /* ChatInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputAccessoryView.swift; sourceTree = "<group>"; };
+		361A61D728227BDE00C464C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		361A61D92822890800C464C2 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		361A61DB28240F0900C464C2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		361E5D612827FF5E00BF36D1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		362D8E2C2829DFFF00EAC347 /* UserList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserList.storyboard; sourceTree = "<group>"; };
+		362D8E2E2829E17B00EAC347 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		36397B712816A4410083F5AE /* FreeTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36397B742816A4410083F5AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		36397B762816A4410083F5AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		36397B7D2816A4480083F5AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36397B802816A4480083F5AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		36397B822816A4480083F5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36397B872816A4480083F5AE /* FreeTalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeTalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36397B8B2816A4480083F5AE /* FreeTalkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTalkTests.swift; sourceTree = "<group>"; };
+		36397B912816A4480083F5AE /* FreeTalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeTalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36397B952816A4480083F5AE /* FreeTalkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTalkUITests.swift; sourceTree = "<group>"; };
+		36397B972816A4480083F5AE /* FreeTalkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTalkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		36397BA42816A78D0083F5AE /* ChatList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatList.storyboard; sourceTree = "<group>"; };
+		36397BA62816A8230083F5AE /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		364169F6282D492F00ABF06C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpDetail.storyboard; sourceTree = "<group>"; };
+		3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDetailViewController.swift; sourceTree = "<group>"; };
+		36480CDD2855D5010032374B /* ProfileImageAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageAccessor.swift; sourceTree = "<group>"; };
+		36480CE0285B74200032374B /* NukeAccessore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeAccessore.swift; sourceTree = "<group>"; };
+		364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
+		365259092830E37200D42D13 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		3652590B2830EA2300D42D13 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3652B485283D9EBD004BFAF4 /* UINavigationController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController-Extension.swift"; sourceTree = "<group>"; };
+		3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarViewController.storyboard; sourceTree = "<group>"; };
+		36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountSetting.storyboard; sourceTree = "<group>"; };
+		36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserListTableViewCell.xib; sourceTree = "<group>"; };
+		365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
+		365D101F28448427008E9285 /* UserDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
+		365D10212845997C008E9285 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		36655205282BFBFD005105CF /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		3692B7E9284C8F2B001097C7 /* ChatRoomAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomAccessor.swift; sourceTree = "<group>"; };
+		3692B7EB284CA01F001097C7 /* UserAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccessor.swift; sourceTree = "<group>"; };
+		3692B7ED284CA902001097C7 /* MessageAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAccessor.swift; sourceTree = "<group>"; };
+		36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
+		36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Extension.swift"; sourceTree = "<group>"; };
+		3C782FB90B2D7566026D8527 /* Pods_FreeTalk_FreeTalkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FreeTalk_FreeTalkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E50A12F55EA31CDDCA2ADD0 /* Pods-ChatAppWithFirebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebaseTests.release.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebaseTests/Pods-ChatAppWithFirebaseTests.release.xcconfig"; sourceTree = "<group>"; };
+		5A6AACBA3136EB37F70FF097 /* Pods-ChatAppWithFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebase.debug.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebase/Pods-ChatAppWithFirebase.debug.xcconfig"; sourceTree = "<group>"; };
+		5E9173473CAE558CFCC8E773 /* Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.release.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests/Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.release.xcconfig"; sourceTree = "<group>"; };
+		67D49CB23275520E2F1CC290 /* Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests/Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8270E8C5F4C90C1E08B7D1DF /* Pods_FreeTalkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FreeTalkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86861AABF8EE41C91706E757 /* Pods-FreeTalk-FreeTalkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeTalk-FreeTalkUITests.release.xcconfig"; path = "Target Support Files/Pods-FreeTalk-FreeTalkUITests/Pods-FreeTalk-FreeTalkUITests.release.xcconfig"; sourceTree = "<group>"; };
+		881EF2A52E3E2F682CE852CA /* Pods-FreeTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeTalk.release.xcconfig"; path = "Target Support Files/Pods-FreeTalk/Pods-FreeTalk.release.xcconfig"; sourceTree = "<group>"; };
+		8BF352FC00527855CFF50CE2 /* Pods-FreeTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeTalkTests.debug.xcconfig"; path = "Target Support Files/Pods-FreeTalkTests/Pods-FreeTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ABE366F901D07DC128E320D8 /* Pods-FreeTalk-FreeTalkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeTalk-FreeTalkUITests.debug.xcconfig"; path = "Target Support Files/Pods-FreeTalk-FreeTalkUITests/Pods-FreeTalk-FreeTalkUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BDC98C15DEA50926FD4C5682 /* Pods-ChatAppWithFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebase.release.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebase/Pods-ChatAppWithFirebase.release.xcconfig"; sourceTree = "<group>"; };
+		F4AE1AE84F27A7BC018885FE /* Pods-ChatAppWithFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppWithFirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-ChatAppWithFirebaseTests/Pods-ChatAppWithFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		36397B6E2816A4410083F5AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A6B338C88AA0AADAC659073 /* Pods_FreeTalk.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36397B842816A4480083F5AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5AD0F9C92D9489EA298F9DD /* Pods_FreeTalkTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36397B8E2816A4480083F5AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				046520DDD5427468D36043B3 /* Pods_FreeTalk_FreeTalkUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		361A61C4281826F300C464C2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				36397BA62816A8230083F5AE /* ChatListViewController.swift */,
+				361A61CA28183C2600C464C2 /* ChatRoomViewController.swift */,
+				361A61DB28240F0900C464C2 /* SignUpViewController.swift */,
+				3643BE0F2852ABF7004C3E17 /* SignUpDetailViewController.swift */,
+				362D8E2E2829E17B00EAC347 /* UserListViewController.swift */,
+				3652590B2830EA2300D42D13 /* LoginViewController.swift */,
+				36541B12283DE6350047D0E5 /* AccountSettingViewController.swift */,
+				365D10212845997C008E9285 /* UserDetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		361A61C52818270200C464C2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				36397BA42816A78D0083F5AE /* ChatList.storyboard */,
+				361A61C828183BCB00C464C2 /* ChatRoom.storyboard */,
+				361A61D92822890800C464C2 /* SignUp.storyboard */,
+				3643BE0D28523042004C3E17 /* SignUpDetail.storyboard */,
+				365259092830E37200D42D13 /* Login.storyboard */,
+				362D8E2C2829DFFF00EAC347 /* UserList.storyboard */,
+				3652B487283DA126004BFAF4 /* TabBarViewController.storyboard */,
+				36541B10283DE5F40047D0E5 /* AccountSetting.storyboard */,
+				365D101F28448427008E9285 /* UserDetail.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		361A61D028197EE900C464C2 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				361A61CC2818426000C464C2 /* ChatRoomTableViewCell.xib */,
+				361A61D328197FBC00C464C2 /* ChatInputAccessoryView.xib */,
+				365CF74B283F3A5A002F0E12 /* UserListTableViewCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		361A61D128197F0900C464C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				361A61CE2818437400C464C2 /* ChatRoomTableViewCell.swift */,
+				361A61D52819810B00C464C2 /* ChatInputAccessoryView.swift */,
+				365CF74D283F3AC1002F0E12 /* UserListTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		361A61D228197F2800C464C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				361A61C62818275F00C464C2 /* UIColor-Extension.swift */,
+				364F50D7282AAFA70023FAA2 /* UIImageView-Extension.swift */,
+				36F4BDF3283C4F150077CC6E /* UIViewController-Extension.swift */,
+				36F4BDF5283C4FF80077CC6E /* UIAlertController-Extension.swift */,
+				3652B485283D9EBD004BFAF4 /* UINavigationController-Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		361E5D602827FF3C00BF36D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				361E5D612827FF5E00BF36D1 /* User.swift */,
+				36655205282BFBFD005105CF /* ChatRoom.swift */,
+				364169F6282D492F00ABF06C /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		36397B682816A4410083F5AE = {
+			isa = PBXGroup;
+			children = (
+				36397B732816A4410083F5AE /* FreeTalk */,
+				36397B8A2816A4480083F5AE /* FreeTalkTests */,
+				36397B942816A4480083F5AE /* FreeTalkUITests */,
+				36397B722816A4410083F5AE /* Products */,
+				DE363C71AF228BF2B96D039A /* Pods */,
+				C3A8197E9C5D409A9D2187C7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		36397B722816A4410083F5AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36397B712816A4410083F5AE /* FreeTalk.app */,
+				36397B872816A4480083F5AE /* FreeTalkTests.xctest */,
+				36397B912816A4480083F5AE /* FreeTalkUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36397B732816A4410083F5AE /* FreeTalk */ = {
+			isa = PBXGroup;
+			children = (
+				36480CDF285B73D80032374B /* Common */,
+				365D10232848759E008E9285 /* Firestore */,
+				361E5D602827FF3C00BF36D1 /* Models */,
+				361A61D228197F2800C464C2 /* Extensions */,
+				361A61D128197F0900C464C2 /* Views */,
+				361A61D028197EE900C464C2 /* Xibs */,
+				361A61C52818270200C464C2 /* Storyboards */,
+				361A61C4281826F300C464C2 /* Controllers */,
+				36397B742816A4410083F5AE /* AppDelegate.swift */,
+				36397B762816A4410083F5AE /* SceneDelegate.swift */,
+				36397B7D2816A4480083F5AE /* Assets.xcassets */,
+				36397B7F2816A4480083F5AE /* LaunchScreen.storyboard */,
+				36397B822816A4480083F5AE /* Info.plist */,
+				361A61D728227BDE00C464C2 /* GoogleService-Info.plist */,
+			);
+			path = FreeTalk;
+			sourceTree = "<group>";
+		};
+		36397B8A2816A4480083F5AE /* FreeTalkTests */ = {
+			isa = PBXGroup;
+			children = (
+				36397B8B2816A4480083F5AE /* FreeTalkTests.swift */,
+			);
+			path = FreeTalkTests;
+			sourceTree = "<group>";
+		};
+		36397B942816A4480083F5AE /* FreeTalkUITests */ = {
+			isa = PBXGroup;
+			children = (
+				36397B952816A4480083F5AE /* FreeTalkUITests.swift */,
+				36397B972816A4480083F5AE /* FreeTalkUITestsLaunchTests.swift */,
+			);
+			path = FreeTalkUITests;
+			sourceTree = "<group>";
+		};
+		36480CDC2855D4430032374B /* StorageAccessor */ = {
+			isa = PBXGroup;
+			children = (
+				36480CDD2855D5010032374B /* ProfileImageAccessor.swift */,
+			);
+			path = StorageAccessor;
+			sourceTree = "<group>";
+		};
+		36480CDF285B73D80032374B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				36480CE0285B74200032374B /* NukeAccessore.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		365D10232848759E008E9285 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				36480CDC2855D4430032374B /* StorageAccessor */,
+				3692B7E9284C8F2B001097C7 /* ChatRoomAccessor.swift */,
+				3692B7EB284CA01F001097C7 /* UserAccessor.swift */,
+				3692B7ED284CA902001097C7 /* MessageAccessor.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		C3A8197E9C5D409A9D2187C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				194A90B58C3B0E7A813FE978 /* Pods_FreeTalk.framework */,
+				3C782FB90B2D7566026D8527 /* Pods_FreeTalk_FreeTalkUITests.framework */,
+				8270E8C5F4C90C1E08B7D1DF /* Pods_FreeTalkTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE363C71AF228BF2B96D039A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A6AACBA3136EB37F70FF097 /* Pods-ChatAppWithFirebase.debug.xcconfig */,
+				BDC98C15DEA50926FD4C5682 /* Pods-ChatAppWithFirebase.release.xcconfig */,
+				67D49CB23275520E2F1CC290 /* Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.debug.xcconfig */,
+				5E9173473CAE558CFCC8E773 /* Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.release.xcconfig */,
+				F4AE1AE84F27A7BC018885FE /* Pods-ChatAppWithFirebaseTests.debug.xcconfig */,
+				4E50A12F55EA31CDDCA2ADD0 /* Pods-ChatAppWithFirebaseTests.release.xcconfig */,
+				1BA4CFE444FB9656464FFE81 /* Pods-FreeTalk.debug.xcconfig */,
+				881EF2A52E3E2F682CE852CA /* Pods-FreeTalk.release.xcconfig */,
+				ABE366F901D07DC128E320D8 /* Pods-FreeTalk-FreeTalkUITests.debug.xcconfig */,
+				86861AABF8EE41C91706E757 /* Pods-FreeTalk-FreeTalkUITests.release.xcconfig */,
+				8BF352FC00527855CFF50CE2 /* Pods-FreeTalkTests.debug.xcconfig */,
+				16A801E8ECFD385BF8D7FCB3 /* Pods-FreeTalkTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		36397B702816A4410083F5AE /* FreeTalk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36397B9B2816A4480083F5AE /* Build configuration list for PBXNativeTarget "FreeTalk" */;
+			buildPhases = (
+				5563DF5A6A5E5C44257ABD47 /* [CP] Check Pods Manifest.lock */,
+				36397B6D2816A4410083F5AE /* Sources */,
+				36397B6E2816A4410083F5AE /* Frameworks */,
+				36397B6F2816A4410083F5AE /* Resources */,
+				A73D7B5885DD4E3318363029 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FreeTalk;
+			productName = ChatAppWithFirebase;
+			productReference = 36397B712816A4410083F5AE /* FreeTalk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		36397B862816A4480083F5AE /* FreeTalkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36397B9E2816A4480083F5AE /* Build configuration list for PBXNativeTarget "FreeTalkTests" */;
+			buildPhases = (
+				C5F1062C48903B8F41C4A894 /* [CP] Check Pods Manifest.lock */,
+				36397B832816A4480083F5AE /* Sources */,
+				36397B842816A4480083F5AE /* Frameworks */,
+				36397B852816A4480083F5AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36397B892816A4480083F5AE /* PBXTargetDependency */,
+			);
+			name = FreeTalkTests;
+			productName = ChatAppWithFirebaseTests;
+			productReference = 36397B872816A4480083F5AE /* FreeTalkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		36397B902816A4480083F5AE /* FreeTalkUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36397BA12816A4480083F5AE /* Build configuration list for PBXNativeTarget "FreeTalkUITests" */;
+			buildPhases = (
+				7560DA2D8F173D8257739480 /* [CP] Check Pods Manifest.lock */,
+				36397B8D2816A4480083F5AE /* Sources */,
+				36397B8E2816A4480083F5AE /* Frameworks */,
+				36397B8F2816A4480083F5AE /* Resources */,
+				E26AB9E0439D1EBA26FFAF52 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36397B932816A4480083F5AE /* PBXTargetDependency */,
+			);
+			name = FreeTalkUITests;
+			productName = ChatAppWithFirebaseUITests;
+			productReference = 36397B912816A4480083F5AE /* FreeTalkUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36397B692816A4410083F5AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					36397B702816A4410083F5AE = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					36397B862816A4480083F5AE = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 36397B702816A4410083F5AE;
+					};
+					36397B902816A4480083F5AE = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 36397B702816A4410083F5AE;
+					};
+				};
+			};
+			buildConfigurationList = 36397B6C2816A4410083F5AE /* Build configuration list for PBXProject "FreeTalk" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 36397B682816A4410083F5AE;
+			productRefGroup = 36397B722816A4410083F5AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				36397B702816A4410083F5AE /* FreeTalk */,
+				36397B862816A4480083F5AE /* FreeTalkTests */,
+				36397B902816A4480083F5AE /* FreeTalkUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		36397B6F2816A4410083F5AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				362D8E2D2829DFFF00EAC347 /* UserList.storyboard in Resources */,
+				36397B812816A4480083F5AE /* LaunchScreen.storyboard in Resources */,
+				365D102028448427008E9285 /* UserDetail.storyboard in Resources */,
+				36397B7E2816A4480083F5AE /* Assets.xcassets in Resources */,
+				36541B11283DE5F40047D0E5 /* AccountSetting.storyboard in Resources */,
+				36397BA52816A78D0083F5AE /* ChatList.storyboard in Resources */,
+				3652B488283DA126004BFAF4 /* TabBarViewController.storyboard in Resources */,
+				361A61CD2818426000C464C2 /* ChatRoomTableViewCell.xib in Resources */,
+				361A61D428197FBC00C464C2 /* ChatInputAccessoryView.xib in Resources */,
+				361A61C928183BCB00C464C2 /* ChatRoom.storyboard in Resources */,
+				361A61DA2822890800C464C2 /* SignUp.storyboard in Resources */,
+				3652590A2830E37200D42D13 /* Login.storyboard in Resources */,
+				3643BE0E28523042004C3E17 /* SignUpDetail.storyboard in Resources */,
+				361A61D828227BDE00C464C2 /* GoogleService-Info.plist in Resources */,
+				365CF74C283F3A5A002F0E12 /* UserListTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36397B852816A4480083F5AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36397B8F2816A4480083F5AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5563DF5A6A5E5C44257ABD47 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FreeTalk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7560DA2D8F173D8257739480 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FreeTalk-FreeTalkUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A73D7B5885DD4E3318363029 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTalk/Pods-FreeTalk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTalk/Pods-FreeTalk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FreeTalk/Pods-FreeTalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5F1062C48903B8F41C4A894 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FreeTalkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E26AB9E0439D1EBA26FFAF52 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTalk-FreeTalkUITests/Pods-FreeTalk-FreeTalkUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTalk-FreeTalkUITests/Pods-FreeTalk-FreeTalkUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FreeTalk-FreeTalkUITests/Pods-FreeTalk-FreeTalkUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36397B6D2816A4410083F5AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3652B486283D9EBD004BFAF4 /* UINavigationController-Extension.swift in Sources */,
+				365CF74E283F3AC1002F0E12 /* UserListTableViewCell.swift in Sources */,
+				3692B7EE284CA902001097C7 /* MessageAccessor.swift in Sources */,
+				36480CDE2855D5010032374B /* ProfileImageAccessor.swift in Sources */,
+				365D10222845997C008E9285 /* UserDetailViewController.swift in Sources */,
+				36480CE1285B74200032374B /* NukeAccessore.swift in Sources */,
+				36F4BDF6283C4FF80077CC6E /* UIAlertController-Extension.swift in Sources */,
+				3652590C2830EA2300D42D13 /* LoginViewController.swift in Sources */,
+				364F50D8282AAFA70023FAA2 /* UIImageView-Extension.swift in Sources */,
+				361A61CF2818437400C464C2 /* ChatRoomTableViewCell.swift in Sources */,
+				361A61D62819810B00C464C2 /* ChatInputAccessoryView.swift in Sources */,
+				361A61DC28240F0900C464C2 /* SignUpViewController.swift in Sources */,
+				36397B752816A4410083F5AE /* AppDelegate.swift in Sources */,
+				361A61C72818275F00C464C2 /* UIColor-Extension.swift in Sources */,
+				36F4BDF4283C4F150077CC6E /* UIViewController-Extension.swift in Sources */,
+				36655206282BFBFE005105CF /* ChatRoom.swift in Sources */,
+				36541B13283DE6350047D0E5 /* AccountSettingViewController.swift in Sources */,
+				362D8E2F2829E17B00EAC347 /* UserListViewController.swift in Sources */,
+				361E5D622827FF5E00BF36D1 /* User.swift in Sources */,
+				364169F7282D492F00ABF06C /* Message.swift in Sources */,
+				361A61CB28183C2600C464C2 /* ChatRoomViewController.swift in Sources */,
+				36397BA72816A8230083F5AE /* ChatListViewController.swift in Sources */,
+				36397B772816A4410083F5AE /* SceneDelegate.swift in Sources */,
+				3692B7EA284C8F2B001097C7 /* ChatRoomAccessor.swift in Sources */,
+				3643BE102852ABF7004C3E17 /* SignUpDetailViewController.swift in Sources */,
+				3692B7EC284CA01F001097C7 /* UserAccessor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36397B832816A4480083F5AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36397B8C2816A4480083F5AE /* FreeTalkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36397B8D2816A4480083F5AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36397B962816A4480083F5AE /* FreeTalkUITests.swift in Sources */,
+				36397B982816A4480083F5AE /* FreeTalkUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		36397B892816A4480083F5AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36397B702816A4410083F5AE /* FreeTalk */;
+			targetProxy = 36397B882816A4480083F5AE /* PBXContainerItemProxy */;
+		};
+		36397B932816A4480083F5AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36397B702816A4410083F5AE /* FreeTalk */;
+			targetProxy = 36397B922816A4480083F5AE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		36397B7F2816A4480083F5AE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36397B802816A4480083F5AE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		36397B992816A4480083F5AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		36397B9A2816A4480083F5AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		36397B9C2816A4480083F5AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BA4CFE444FB9656464FFE81 /* Pods-FreeTalk.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ASYY52PPPV;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FreeTalk/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FreeTalk;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "写真のアクセスを許可しますか？";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.FreeTalk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		36397B9D2816A4480083F5AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 881EF2A52E3E2F682CE852CA /* Pods-FreeTalk.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ASYY52PPPV;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FreeTalk/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FreeTalk;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "写真のアクセスを許可しますか？";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.FreeTalk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		36397B9F2816A4480083F5AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BF352FC00527855CFF50CE2 /* Pods-FreeTalkTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ASYY52PPPV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChatAppWithFirebase.app/ChatAppWithFirebase";
+			};
+			name = Debug;
+		};
+		36397BA02816A4480083F5AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16A801E8ECFD385BF8D7FCB3 /* Pods-FreeTalkTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ASYY52PPPV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChatAppWithFirebase.app/ChatAppWithFirebase";
+			};
+			name = Release;
+		};
+		36397BA22816A4480083F5AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABE366F901D07DC128E320D8 /* Pods-FreeTalk-FreeTalkUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ASYY52PPPV;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChatAppWithFirebase;
+			};
+			name = Debug;
+		};
+		36397BA32816A4480083F5AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86861AABF8EE41C91706E757 /* Pods-FreeTalk-FreeTalkUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ASYY52PPPV;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChatAppWithFirebase;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36397B6C2816A4410083F5AE /* Build configuration list for PBXProject "FreeTalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36397B992816A4480083F5AE /* Debug */,
+				36397B9A2816A4480083F5AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36397B9B2816A4480083F5AE /* Build configuration list for PBXNativeTarget "FreeTalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36397B9C2816A4480083F5AE /* Debug */,
+				36397B9D2816A4480083F5AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36397B9E2816A4480083F5AE /* Build configuration list for PBXNativeTarget "FreeTalkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36397B9F2816A4480083F5AE /* Debug */,
+				36397BA02816A4480083F5AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36397BA12816A4480083F5AE /* Build configuration list for PBXNativeTarget "FreeTalkUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36397BA22816A4480083F5AE /* Debug */,
+				36397BA32816A4480083F5AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36397B692816A4410083F5AE /* Project object */;
+}

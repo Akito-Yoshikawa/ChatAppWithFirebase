@@ -1,5 +1,0 @@
-#import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests : NSObject
-@end
-@implementation PodsDummy_Pods_ChatAppWithFirebase_ChatAppWithFirebaseUITests
-@end

@@ -165,21 +165,21 @@
 			<key>orderHint</key>
 			<integer>27</integer>
 		</dict>
-		<key>Pods-ChatAppWithFirebase-ChatAppWithFirebaseUITests.xcscheme</key>
+		<key>Pods-FreeTalk-FreeTalkUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>30</integer>
 		</dict>
-		<key>Pods-ChatAppWithFirebase.xcscheme</key>
+		<key>Pods-FreeTalk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>29</integer>
 		</dict>
-		<key>Pods-ChatAppWithFirebaseTests.xcscheme</key>
+		<key>Pods-FreeTalkTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
