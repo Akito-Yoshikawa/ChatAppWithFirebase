@@ -61,6 +61,12 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
         
     /// プロフィール画像を一度でも変更したか？
     private var modifeldProfileImage = false
+
+    // 最大UserName文字数
+    private let maxUserNameLength = UserAccessor.sharedManager.maxUserNameLength
+    
+    // 最大UserID文字数
+    private let maxUserIdLength = UserAccessor.sharedManager.maxUserIdLength
     
     @IBOutlet weak var profileImageButton: UIButton!
         
@@ -101,6 +107,7 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
         self.profileImageButton.imageView?.contentMode = .scaleAspectFill
         self.profileImageButton.clipsToBounds = true
 
+        userNameTextField.delegate = self
         userIdTextField.delegate = self
         
         navigationController?.changeNavigationBarBackGroundColor()
@@ -323,10 +330,18 @@ extension AccountSettingViewController: UIImagePickerControllerDelegate {
 extension AccountSettingViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-
-        if let _ = userIdTextField.text {
+        if let userName = userNameTextField.text {
+            if userName.count > maxUserNameLength {
+                userNameTextField.text = String(userName.prefix(maxUserNameLength))
+            }
+        }
+        
+        if let userId = userIdTextField.text {
+            if userId.count > maxUserIdLength {
+                userIdTextField.text = String(userId.prefix(maxUserIdLength))
+            }
+            
             self.isUserIdUnique = false
-            return
         }
     }
 }

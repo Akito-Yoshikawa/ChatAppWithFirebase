@@ -10,6 +10,9 @@ import Firebase
 import PKHUD
 
 class SignUpViewController: UIViewController, UINavigationControllerDelegate {
+            
+    // 最大UserName文字数
+    private let maxUserNameLength = UserAccessor.sharedManager.maxUserNameLength
         
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -154,6 +157,11 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate {
 extension SignUpViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        if let userName = usernameTextField.text {
+            if userName.count > maxUserNameLength {
+                usernameTextField.text = String(userName.prefix(maxUserNameLength))
+            }
+        }
         
         let emailIsEmpty = emailTextField.text?.isEmpty ?? false
         let passwordIsEmpty = passwordTextField.text?.isEmpty ?? false

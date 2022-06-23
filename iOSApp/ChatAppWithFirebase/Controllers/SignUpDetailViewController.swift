@@ -32,6 +32,9 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
         }
     }
     
+    // 最大UserID文字数
+    private let maxUserIdLength = UserAccessor.sharedManager.maxUserIdLength
+    
     @IBOutlet weak var profileImageButton: UIButton!
     
     @IBOutlet weak var userIdUniqueCheckButton: UIButton!
@@ -211,10 +214,12 @@ extension SignUpDetailViewController: UIImagePickerControllerDelegate {
 extension SignUpDetailViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-
-        if let _ = userIdTextField.text {
-            self.isUserIdUnique = false
-            return
+        guard let userId = userIdTextField.text else { return }
+        
+        if userId.count > maxUserIdLength {
+            userIdTextField.text = String(userId.prefix(maxUserIdLength))
         }
+        
+        self.isUserIdUnique = false
     }
 }

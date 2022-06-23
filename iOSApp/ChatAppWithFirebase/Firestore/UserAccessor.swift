@@ -18,6 +18,12 @@ class UserAccessor: NSObject {
     var currentUid = Auth.auth().currentUser?.uid
     var currentUser: User?
     
+    // 最大UserName文字数
+    let maxUserNameLength = 12
+    
+    // 最大UserID文字数
+    let maxUserIdLength = 12
+    
     func setCurrentUser(completion: @escaping (Bool) -> Void) {
         self.currentUid = Auth.auth().currentUser?.uid
         
