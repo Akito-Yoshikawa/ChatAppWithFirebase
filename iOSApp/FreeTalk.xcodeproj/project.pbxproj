@@ -877,12 +877,12 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.FreeTalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChatAppWithFirebase.app/ChatAppWithFirebase";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreeTalk.app/FreeTalk";
 			};
 			name = Debug;
 		};
@@ -903,12 +903,12 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.FreeTalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChatAppWithFirebase.app/ChatAppWithFirebase";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreeTalk.app/FreeTalk";
 			};
 			name = Release;
 		};
@@ -927,12 +927,12 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.FreeTalkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ChatAppWithFirebase;
+				TEST_TARGET_NAME = FreeTalk;
 			};
 			name = Debug;
 		};
@@ -951,12 +951,12 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.ChatAppWithFirebaseUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoshikawa.FreeTalkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ChatAppWithFirebase;
+				TEST_TARGET_NAME = FreeTalk;
 			};
 			name = Release;
 		};

@@ -13,21 +13,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.yoshikawa.ChatAppWithFirebase</string>
+	<string>com.yoshikawa.FreeTalk</string>
 	<key>PROJECT_ID</key>
 	<string>chatwithfirebaseapp-600ea</string>
 	<key>STORAGE_BUCKET</key>
 	<string>chatwithfirebaseapp-600ea.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:859263260018:ios:ee66817a5b482ed90b39eb</string>
 </dict>

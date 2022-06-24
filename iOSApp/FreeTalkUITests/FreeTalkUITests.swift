@@ -1,13 +1,13 @@
 //
-//  ChatAppWithFirebaseUITests.swift
-//  ChatAppWithFirebaseUITests
+//  FreeTalkUITests.swift
+//  FreeTalkUITests
 //
 //  Created by 吉川聖斗 on 2022/04/25.
 //
 
 import XCTest
 
-class ChatAppWithFirebaseUITests: XCTestCase {
+class FreeTalkUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

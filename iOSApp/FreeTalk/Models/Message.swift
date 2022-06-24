@@ -1,6 +1,6 @@
 //
 //  Message.swift
-//  ChatAppWithFirebase
+//  FreeTalk
 //
 //  Created by 吉川聖斗 on 2022/05/12.
 //

@@ -1,13 +1,13 @@
 //
-//  ChatAppWithFirebaseUITestsLaunchTests.swift
-//  ChatAppWithFirebaseUITests
+//  FreeTalkUITestsLaunchTests.swift
+//  FreeTalkUITests
 //
 //  Created by 吉川聖斗 on 2022/04/25.
 //
 
 import XCTest
 
-class ChatAppWithFirebaseUITestsLaunchTests: XCTestCase {
+class FreeTalkUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
