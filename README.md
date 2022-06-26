@@ -19,6 +19,14 @@
 2. pod install後、xcworkspaceファイルが作成されるので開く
 <img width="780" alt="xcwoorkspace" src="https://user-images.githubusercontent.com/105440671/175799820-5fba29fe-c716-4ad2-8c82-8be3629563fd.png">
 
+**Xcode13.2以下の環境の場合**
+
+現状FirebaseStorageライブラリでXcode13.2以上でないとビルドエラーが起きるバグが起きています。  
+対策としましては、Pods.xcodeproj → TARGETS → FirebaseStorage → Deployment Info → **iOS 10.0** を **iOS 15.0** に変更することでビルドが出来ます。以下を参照。  
+https://github.com/firebase/quickstart-unity/issues/1282
+
+<img width="1388" alt="FirebaseStorageError" src="https://user-images.githubusercontent.com/105440671/175808579-2703fa35-5c61-412d-bc3f-d10e1ae9fd1c.png">
+
 ## 実装機能
 
 - ログイン機能
