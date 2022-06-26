@@ -80,6 +80,19 @@ class UserListViewController: UIViewController {
                     if currentUid == documentChange.document.documentID {
                         return
                     }
+                                        
+                    switch documentChange.type {
+                    case .modified:
+                        // 変更されたユーザーが、既に画面に表示されている場合
+                        // 古いユーザー情報を削除
+                        for (index, showAllUser) in self.showAllUsers.enumerated() {
+                            
+                            if showAllUser.uid == user.uid {
+                                self.showAllUsers.remove(at: index)
+                            }
+                        }
+                    default: break
+                    }
                     
                     self.showAllUsers.append(user)
                 })
