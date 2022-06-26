@@ -4,8 +4,6 @@
 
 暇な時に、手軽にチャットをすることができるチャットアプリ
 
-Firebaseを使って、アカウントの保存、データを取得する。
-
 ## 使用技術
 - Xcode Version: 13.0
 - Swift Version: 5.5
@@ -60,7 +58,7 @@ Firebaseを使って、アカウントの保存、データを取得する。
 
 ## Demo
 
-    <img src="gifResource/chatDemo.gif">   
+   <img src="gifResource/chatDemo.gif">   
 
 ## なぜ、このサービスを作ろうと考えたのか
 
