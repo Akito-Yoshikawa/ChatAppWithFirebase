@@ -113,10 +113,6 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
         navigationController?.changeNavigationBarBackGroundColor()
 
         navigationItem.title = "アカウント設定"
-
-        let logoutBarButton = UIBarButtonItem(title: "アカウント削除", style: .plain, target: self, action: #selector(accountDeleteButton))
-        navigationItem.rightBarButtonItem = logoutBarButton
-        navigationItem.rightBarButtonItem?.tintColor = .red
     }
     
     private func setUserAndGetUser() {
@@ -166,11 +162,6 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
             self.showSingleBtnAlert(title: "アカウントの設定を変更しました。")
             print("アカウントの設定に成功しました")
         }
-    }
-    
-    
-    @objc private func accountDeleteButton() {
-            // TODO: アカウントの削除
     }
     
     @IBAction func tappedProfileBtn(_ sender: Any) {
