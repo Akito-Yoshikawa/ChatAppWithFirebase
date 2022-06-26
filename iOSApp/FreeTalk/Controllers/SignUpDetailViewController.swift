@@ -43,7 +43,7 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
         
     @IBOutlet weak var user: UIButton!
     
-    @IBOutlet weak var userIntroductionTextField: UITextField!
+    @IBOutlet weak var userIntroductionTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +101,7 @@ class SignUpDetailViewController: UIViewController, UINavigationControllerDelega
     @IBAction func tappedRegister(_ sender: Any) {
         // 全て設定されていなかったらアラート表示
         guard let userId = self.userIdTextField.text,
-              let userIntroduction = self.userIntroductionTextField.text else {
+              let userIntroduction = self.userIntroductionTextView.text else {
                   return
               }
         if self.profileImageButton.imageView?.image == nil && userId.isEmpty && userIntroduction.isEmpty {

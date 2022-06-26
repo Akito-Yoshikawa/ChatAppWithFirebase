@@ -111,15 +111,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EzJ-ru-qFL">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gte-lf-Vaz" userLabel="User Introduction TextView">
                                         <rect key="frame" x="0.0" y="30.333333333333314" width="300" height="100"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="3Jj-qh-f1z"/>
+                                            <constraint firstAttribute="height" constant="100" id="nwE-0j-ItI"/>
                                         </constraints>
-                                        <attributedString key="attributedText"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="YMi-kT-VA4"/>
                                 <constraints>
@@ -162,7 +163,7 @@
                         <outlet property="profileImageButton" destination="RSr-0R-Xb3" id="ApR-gR-koR"/>
                         <outlet property="userIdTextField" destination="fkl-Pv-lVw" id="mkp-Wt-Cqb"/>
                         <outlet property="userIdUniqueCheckButton" destination="5MZ-fj-14d" id="qaQ-UJ-HVw"/>
-                        <outlet property="userIntroductionTextField" destination="EzJ-ru-qFL" id="dwe-pJ-tpF"/>
+                        <outlet property="userIntroductionTextView" destination="gte-lf-Vaz" id="NyQ-nj-g8y"/>
                         <outlet property="userNameTextField" destination="wsW-ec-Mt8" id="SwT-2E-pdx"/>
                     </connections>
                 </viewController>
@@ -191,6 +192,9 @@
     </scenes>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

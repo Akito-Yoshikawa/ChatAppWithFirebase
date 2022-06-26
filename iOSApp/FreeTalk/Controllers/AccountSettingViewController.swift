@@ -54,7 +54,7 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
                 self.userNameTextField.text = currentUser.username
                 self.userIdTextField.text = currentUser.userID
 
-                self.userIntroductionTextField.text = currentUser.selfIntroduction
+                self.userIntroductionTextView.text = currentUser.selfIntroduction
             }
         }
     }
@@ -76,8 +76,8 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
             
     @IBOutlet weak var userIdUniqueCheckButton: UIButton!
     
-    @IBOutlet weak var userIntroductionTextField: UITextField!
-        
+    @IBOutlet weak var userIntroductionTextView: UITextView!
+
     @IBOutlet weak var accountUpdateButton: UIButton!
             
     override func viewDidLoad() {
@@ -209,7 +209,7 @@ class AccountSettingViewController: UIViewController, UINavigationControllerDele
     @IBAction func tappedAccountUpdate(_ sender: Any) {
         guard let userNameStr = self.userNameTextField.text,
               let userId = self.userIdTextField.text,
-              let userIntroduction = self.userIntroductionTextField.text else {
+              let userIntroduction = self.userIntroductionTextView.text else {
                   return
               }
         
